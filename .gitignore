@@ -1,0 +1,10 @@
+/.vs
+/Library
+/Temp
+/UnityPackageManager
+/MyTuShow_XuLieTu.csproj
+/MyTuShow_XuLieTu.Editor.csproj
+/MyTuShow_XuLieTu.Editor.Plugins.csproj
+/MyTuShow_XuLieTu.Plugins.csproj
+/MyTuShow_XuLieTu.sln
+/Assets/Plugins/MyPSPUtil

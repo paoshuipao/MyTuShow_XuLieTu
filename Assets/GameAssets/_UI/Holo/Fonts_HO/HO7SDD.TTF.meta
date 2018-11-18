@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 74ca994aa924390458ed6fec42559912
+timeCreated: 1535117069
+licenseType: Pro
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: 7 SEGMENTAL DIGITAL DISPLAY
+  fontNames:
+  - 7 SEGMENTAL DIGITAL DISPLAY
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

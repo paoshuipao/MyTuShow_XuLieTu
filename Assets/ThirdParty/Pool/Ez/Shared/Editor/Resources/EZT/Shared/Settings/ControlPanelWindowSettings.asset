@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cab544dc4c8fe744bcb0137bbde0a6b, type: 3}
+  m_Name: ControlPanelWindowSettings
+  m_EditorClassIdentifier: 
+  windowMinimumHeight: 640
+  sidebarExpandedWidth: 127.9
+  sidebarCollapsedWidth: 32
+  sidebarIsExpanded:
+    m_Target: 1
+    speed: 2
+    m_Value: 1
+  sidebarButtonHeight: 32
+  sidebarVerticalSpacing: 16
+  sidebarLogoHeight: 50
+  scrollbarSize: 20
+  pageShadowWidth: 7.24
+  pageWidth: 654.4
+  pageWidthExtraSpace:
+    m_Target: 160
+    speed: 2
+    m_Value: 160
+  pageHeaderHeight: 60
+  editorAnimationSpeed: 4
+  currentPage: 0

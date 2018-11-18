@@ -1,0 +1,2419 @@
+fileFormatVersion: 2
+guid: 767e53508be9f324183b114bf6b17a0f
+timeCreated: 1541040402
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Example_Image
+    21300002: labelBackground
+    21300004: separator
+    21300006: Window_Header
+    21300008: Tooltip_Background
+    21300010: radioNormal
+    21300012: toggleHover
+    21300014: toggleNormal
+    21300016: radioHover
+    21300018: radioCheckmark
+    21300020: toggleCheckmark
+    21300022: Table_Row_Header_Background
+    21300024: Table_Row_Normal_Background
+    21300026: Table_Row_Normal_Background_Hover
+    21300028: textFieldFocused
+    21300030: textFieldNormal
+    21300032: Slider_Horizontal_Background
+    21300034: Slider_Vertical_Background
+    21300036: Slider_Horizontal_ThumbHover
+    21300038: Slider_Horizontal_ThumbNormal
+    21300040: Slider_Vertical_ThumbHover
+    21300042: Slider_Vertical_ThumbNormal
+    21300044: Table_Row_Header_Separator
+    21300046: Table_Row_Normal_Separator
+    21300048: Loading_Bar_Background
+    21300050: Image_Box_Background
+    21300052: Loading_Bar_Fill
+    21300054: ScrollBar_Horizontal_Background
+    21300056: ScrollBar_Vertical_Background
+    21300058: ScrollBar_Horizontal_ThumbNormal
+    21300060: ScrollBar_Vertical_ThumbNormal
+    21300062: ScrollBar_Horizontal_ThumbHover
+    21300064: ScrollBar_Vertical_ThumbHover
+    21300066: ScrollBar_Vertical_Top_Button
+    21300068: ScrollBar_Horizontal_Button_Right
+    21300070: ScrollBar_Horizontal_Button_Left
+    21300072: ScrollBar_Vertical_Bottom_Button
+    21300074: BtnPressed
+    21300076: BtnHover
+    21300078: BtnNormal
+    21300080: smallButton_Hover
+    21300082: smallButton_Pressed
+    21300084: smallButton_Normal
+    21300086: tinyButton_Hover
+    21300088: tinyButton_Normal
+    21300090: tinyButton_Pressed
+    21300092: arrowButtonRight_Normal
+    21300094: arrowButtonRight_Pressed
+    21300096: arrowButtonLeft_Hover
+    21300098: arrowButtonRight_Hover
+    21300100: arrowButtonLeft_Normal
+    21300102: arrowButtonLeft_Pressed
+    21300104: tinyButton_Mail
+    21300106: tinyButton_Accept
+    21300108: tinyButton_Decline
+    21300110: tinyButton_Social
+    21300112: iconButton_Star_Hover
+    21300114: iconButton_Star_Normal
+    21300116: iconButton_Star_Pressed
+    21300118: iconButton_Heart_Pressed
+    21300120: iconButton_Heart_Normal
+    21300122: iconButton_Heart_Hover
+    21300124: iconButton_Decline_Pressed
+    21300126: iconButton_Decline_Hover
+    21300128: iconButton_Decline_Normal
+    21300130: iconButton_Plus_Hover
+    21300132: iconButton_Plus_Pressed
+    21300134: iconButton_Plus_Normal
+    21300136: arrowButtonMiddle_Pressed
+    21300138: arrowButtonMiddle_Normal
+    21300140: arrowButtonMiddle_Hover
+    21300142: Window_Background
+    21300144: SmallWindow_Background
+    21300146: HOSLA_Frame_10
+    21300148: HOSLA_Frame_19
+    21300150: HOSLA_Frame_13
+    21300152: HOSLA_Frame_18
+    21300154: HOSLA_Frame_02
+    21300156: HOSLA_Frame_11
+    21300158: HOSLA_Frame_04
+    21300160: HOSLA_Frame_03
+    21300162: HOSLA_Frame_17
+    21300164: HOSLA_Frame_12
+    21300166: HOSLA_Frame_16
+    21300168: HOSLA_Frame_09
+    21300170: HOSLA_Frame_20
+    21300172: HOSLA_Frame_15
+    21300174: HOSLA_Frame_14
+    21300176: HOSLA_Frame_06
+    21300178: HOSLA_Frame_07
+    21300180: HOSLA_Frame_05
+    21300182: HOSLA_Frame_01
+    21300184: HOSLA_Frame_08
+    21300186: Hei
+    21300188: With
+    21300190: Holo Atlas_0
+    21300192: Day_Week
+    21300194: HODayLeft1
+    21300196: HODayRight1
+    21300198: HODayLeft2
+    21300200: HODayRight2
+    21300202: HODayLeft2
+    21300204: HODayRight2
+    21300206: HODayLeft1
+    21300208: HODayRight1
+    21300210: ClockFace
+    21300212: HOQuan
+    21300214: what
+    21300216: ClockHandHour
+    21300218: ClockHandMinute
+    21300220: ClockHandSecond
+    21300222: HandBig
+    21300224: HandSmall
+    21300226: DaoJiShi1
+    21300228: Pause
+    21300230: Stop
+    21300232: ClockDigital
+    21300234: HOYuan
+    21300236: Icon_Zhong
+    21300238: Icon_Zhong2
+    21300240: SHA_05
+    21300242: SHA_06
+    21300244: SHA_07
+    21300246: SHA_08
+    21300248: SHA_02
+    21300250: SHA_10
+    21300252: SHA_03
+    21300254: SHA_09
+    21300256: SHA_11
+    21300258: SHA_12
+    21300260: SHA_01
+    21300262: SHA_04
+    21300264: DaZuo
+    21300266: NG
+    21300268: ShuoMing_3
+    21300270: ShuoMing_4
+    21300272: Shu
+    21300274: Setting
+    21300276: QianDao
+    21300278: DaoJiShi2
+    21300280: ShuoMing
+    21300282: ShuoMing_1
+    21300284: Running_01
+    21300286: ShuoMing_2
+    21300288: Delete
+    21300290: Running_02
+    21300292: Running_03
+    21300294: Running_04
+    21300296: Running_05
+    21300298: Running_06
+    21300300: Running_07
+    21300302: LiZi
+    21300304: JUZhong_01
+    21300306: JUZhong_02
+    21300308: Audio1
+    21300310: Audio2
+    21300312: Audio3
+    21300314: Quit01
+    21300316: About
+    21300318: Back
+    21300320: Bai
+    21300322: Quit02
+    21300324: ShuiJiao
+    21300326: TaoMing
+    21300328: Zao
+    21300330: DaoChu
+    21300332: YinYin
+    21300334: YinYin_Left
+    21300336: YinYin_Right
+    21300338: AudioIcon
+    21300340: DengYao
+    21300342: Yuan_Left
+    21300344: Star
+    21300346: Shou
+    21300348: Floder
+    21300350: YinPan
+    21300352: Up
+    21300354: Computer
+    21300356: Warring
+    21300358: Close
+    21300360: Down
+    21300362: ZhuoMain
+    21300364: Folder2
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 16
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Loading_Bar_Background
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 514
+        width: 937
+        height: 59
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 177, y: 17, z: 200, w: 38}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Image_Box_Background
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 0
+        width: 369
+        height: 102
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Loading_Bar_Fill
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 575
+        width: 903
+        height: 31
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Window_Header
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 194
+        width: 398
+        height: 48
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 28, y: 6, z: 12, w: 26}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_10
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 8
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_18
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 583
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_13
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 252
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_07
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 365
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_12
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 252
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_19
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 365
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_11
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 252
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_04
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 365
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_17
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 252
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_02
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 365
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_03
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 696
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_20
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 809
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_16
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 696
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_15
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 809
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_14
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 696
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_09
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 809
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_05
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 696
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_06
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 809
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_01
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 616
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HOSLA_Frame_08
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 616
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: BtnHover
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 608
+        width: 207
+        height: 55
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 30, y: 16, z: 27, w: 16}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: BtnPressed
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 608
+        width: 207
+        height: 55
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 34, y: 15, z: 25, w: 15}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: BtnNormal
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 608
+        width: 207
+        height: 55
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 32, y: 16, z: 32, w: 16}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Tooltip_Background
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 665
+        width: 202
+        height: 47
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 20, y: 16, z: 14, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: smallButton_Hover
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 113
+        width: 137
+        height: 49
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: smallButton_Pressed
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 688
+        width: 137
+        height: 49
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: smallButton_Normal
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 714
+        width: 137
+        height: 49
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: labelBackground
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 470
+        width: 166
+        height: 33
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Table_Row_Header_Background
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 470
+        width: 128
+        height: 39
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Table_Row_Normal_Background
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 470
+        width: 128
+        height: 35
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 4, y: 6, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Table_Row_Normal_Background_Hover
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 739
+        width: 128
+        height: 35
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 4, y: 6, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Slider_Horizontal_Background
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 665
+        width: 365
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 4, y: 4, z: 4, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: textFieldFocused
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 507
+        width: 64
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 15, y: 15, z: 15, w: 15}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: textFieldNormal
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 164
+        width: 64
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 15, y: 15, z: 15, w: 15}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: separator
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 677
+        width: 366
+        height: 9
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Horizontal_Background
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 765
+        width: 328
+        height: 9
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 2, y: 3, z: 2, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tinyButton_Normal
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 219
+        width: 44
+        height: 44
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 7, y: 8, z: 8, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tinyButton_Hover
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 265
+        width: 44
+        height: 44
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 7, y: 7, z: 8, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tinyButton_Pressed
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 311
+        width: 44
+        height: 44
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 7, y: 7, z: 8, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Slider_Vertical_Background
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 0
+        width: 10
+        height: 165
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 5, y: 4, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Vertical_Background
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 357
+        width: 9
+        height: 129
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: radioNormal
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 164
+        width: 28
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: toggleHover
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 164
+        width: 28
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: radioHover
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 470
+        width: 28
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: toggleNormal
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 608
+        width: 28
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonLeft_Normal
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 638
+        width: 30
+        height: 25
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonLeft_Pressed
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 357
+        width: 30
+        height: 25
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonRight_Pressed
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 384
+        width: 30
+        height: 25
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonRight_Normal
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 411
+        width: 30
+        height: 25
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonRight_Hover
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 438
+        width: 30
+        height: 25
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonLeft_Hover
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 465
+        width: 30
+        height: 25
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tinyButton_Mail
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 194
+        width: 30
+        height: 23
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tinyButton_Accept
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 219
+        width: 28
+        height: 23
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tinyButton_Decline
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 765
+        width: 24
+        height: 26
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tinyButton_Social
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 721
+        width: 24
+        height: 25
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Star_Pressed
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 665
+        width: 20
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Star_Normal
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 219
+        width: 20
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Star_Hover
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 714
+        width: 20
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Heart_Hover
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 714
+        width: 19
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Heart_Pressed
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 714
+        width: 19
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Heart_Normal
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 665
+        width: 19
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Decline_Normal
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 665
+        width: 18
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Decline_Pressed
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 665
+        width: 18
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Decline_Hover
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 665
+        width: 18
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Plus_Normal
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 721
+        width: 18
+        height: 19
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Plus_Hover
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 742
+        width: 18
+        height: 19
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: iconButton_Plus_Pressed
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 721
+        width: 18
+        height: 19
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonMiddle_Normal
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 488
+        width: 13
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonMiddle_Pressed
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 748
+        width: 13
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: arrowButtonMiddle_Hover
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 608
+        width: 13
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Horizontal_ThumbNormal
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 492
+        width: 24
+        height: 7
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 3, y: 3, z: 3, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Horizontal_ThumbHover
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 562
+        width: 24
+        height: 7
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 3, y: 3, z: 3, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Vertical_ThumbHover
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 167
+        width: 7
+        height: 24
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 3, y: 3, z: 3, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Vertical_ThumbNormal
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 164
+        width: 7
+        height: 24
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 3, y: 3, z: 3, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Slider_Horizontal_ThumbHover
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 625
+        width: 11
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Slider_Vertical_ThumbNormal
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 642
+        width: 15
+        height: 11
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Slider_Vertical_ThumbHover
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 562
+        width: 15
+        height: 11
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Slider_Horizontal_ThumbNormal
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 505
+        width: 11
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Table_Row_Header_Separator
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 357
+        width: 5
+        height: 29
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Horizontal_Button_Left
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 748
+        width: 9
+        height: 9
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Vertical_Bottom_Button
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 562
+        width: 9
+        height: 9
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Vertical_Top_Button
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 562
+        width: 9
+        height: 9
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ScrollBar_Horizontal_Button_Right
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 562
+        width: 9
+        height: 9
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Table_Row_Normal_Separator
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 608
+        width: 2
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: radioCheckmark
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 104
+        width: 6
+        height: 6
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: toggleCheckmark
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 655
+        width: 6
+        height: 6
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Hei
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 796
+        width: 227
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 29, y: 28, z: 29, w: 35}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Holo Atlas_0
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 724
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HODayLeft2
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 993
+        width: 36
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HODayRight2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 993
+        width: 36
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HODayLeft1
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 993
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HODayRight1
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 992
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HOQuan
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 908
+        width: 86
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DaoJiShi1
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 273
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pause
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1005
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Stop
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 1005
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ClockDigital
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 413
+        width: 225
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HOYuan
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 912
+        width: 71
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_Zhong
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 975
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_Zhong2
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 955
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_05
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 991
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_06
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 991
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_07
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 991
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_08
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 991
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_02
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 954
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_10
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 960
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_03
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 951
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_09
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 960
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_11
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 921
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_12
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 921
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_01
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 921
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SHA_04
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 914
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DaZuo
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 914
+        width: 51
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Shu
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 939
+        width: 69
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Setting
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 956
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QianDao
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 956
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DaoJiShi2
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 273
+        width: 127
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NG
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 956
+        width: 55
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShuoMing_1
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 963
+        width: 42
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShuoMing_2
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 962
+        width: 42
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShuoMing_3
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 904
+        width: 42
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShuoMing_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 140
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Delete
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 740
+        width: 70
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: About
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 883
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Back
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 899
+        width: 64
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bai
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 884
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 26, z: 25, w: 26}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Quit01
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 924
+        width: 64
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Quit02
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 899
+        width: 64
+        height: 25
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DaoChu
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 899
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TaoMing
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 912
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: YinYin_Left
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 793
+        width: 29
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: YinYin_Right
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 793
+        width: 29
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Audio1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 443
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Audio2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 379
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Audio3
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 315
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AudioIcon
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 333
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DengYao
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 843
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 31, y: 2, z: 31, w: 28}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Yuan_Left
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 816
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Star
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 835
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Shou
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 441
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Floder
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 2
+        width: 124
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: YinPan
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 6
+        width: 160
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Computer
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 131
+        width: 101
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Warring
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 343
+        width: 64
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Close
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 271
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Up
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 785
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Down
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 785
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ZhuoMain
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 153
+        width: 72
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Folder2
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 1
+        width: 91
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,293 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ec9b745cca36574bb22553a3dac402e, type: 3}
+  m_Name: PoolyStatistics
+  m_EditorClassIdentifier: 
+  poolyWidth: 130
+  defaultLowWarningThreshold: 5
+  defaultHighWarningThreshold: 95
+  databaseLineHorizontalIndent: 8
+  databaseElementHorizontalSpacing: 2
+  databaseLineVerticalSpacing: 2
+  databaseLineHeight: 16
+  databaseItemButtonWidth: 180
+  databaseClearStatisticsButtonWidth: 100
+  databaseDeleteButtonWidth: 100
+  graphLineWidth: 2
+  graphPointSize: 16
+  graphHeight: 128
+  graphPointToPointDistance: 76
+  pools:
+  - sceneName: MainScene
+    poolType: 0
+    isExpanded:
+      m_Target: 1
+      speed: 2
+      m_Value: 1
+    categories:
+    - categoryName: Rockets
+      isExpanded:
+        m_Target: 0
+        speed: 2
+        m_Value: 0
+      items:
+      - prefabName: PoolyRocketGreen
+        prefab: {fileID: 4000013114316068, guid: 1d4ddbe0a2b4f0c4fbce42ea2b5bdad8,
+          type: 2}
+        alltimeMaxSpawnCount: 7
+        data:
+        - preloadedClones: 40
+          maxSpawnCount: 7
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 0
+          speed: 4
+          m_Value: 0
+      - prefabName: PoolyRocketPink
+        prefab: {fileID: 4000014170667168, guid: b7cbef2559794a54bbc26640d9e86405,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 40
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      - prefabName: PoolyRocketPurple
+        prefab: {fileID: 4000011650817194, guid: b0b5022dbac99a84ba5bd44186184aee,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 40
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      - prefabName: PoolyRocketRed
+        prefab: {fileID: 4000011092004770, guid: a5f97a77a77659c4c934245da920d3e9,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 40
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      - prefabName: PoolyRocketYellow
+        prefab: {fileID: 4000012677608330, guid: 7639247ef8fe8894bbf6c0dac426355c,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 40
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      hasInfoMessage: 1
+      hasWarningMessage: 0
+      hasErrorMessage: 0
+    - categoryName: Projectiles
+      isExpanded:
+        m_Target: 0
+        speed: 2
+        m_Value: 0
+      items:
+      - prefabName: PoolyProjectileYellow
+        prefab: {fileID: 4000011230141410, guid: 010d26a575e967b439e5446af66a5277,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 50
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      - prefabName: PoolyProjectileRed
+        prefab: {fileID: 4000010088780658, guid: 3640c205661310d438b9d9b3f5531e8d,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 50
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      - prefabName: PoolyProjectileGreen
+        prefab: {fileID: 4000013404471178, guid: 531820cbea244fe40a1cfeeeccc802fa,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 50
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      hasInfoMessage: 1
+      hasWarningMessage: 0
+      hasErrorMessage: 0
+    - categoryName: Impacts
+      isExpanded:
+        m_Target: 0
+        speed: 2
+        m_Value: 1
+      items:
+      - prefabName: PoolyProjectileYellowImpact
+        prefab: {fileID: 4000010609927718, guid: 7d3b2ebecf91ebf4fa148bd2f04020e2,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 50
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      - prefabName: PoolyProjectileRedImpact
+        prefab: {fileID: 4000011051526398, guid: 95d284b72c1a1d5428afd1f0ed8302a9,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 50
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      - prefabName: PoolyProjectileGreenImpact
+        prefab: {fileID: 4000010728749166, guid: d717325ea5d972946929ea6fc88fe9dd,
+          type: 2}
+        alltimeMaxSpawnCount: 0
+        data:
+        - preloadedClones: 50
+          maxSpawnCount: 0
+        showGraph:
+          m_Target: 0
+          speed: 2
+          m_Value: 0
+        warningsEnabled:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+        lowWarningThreshold: 5
+        highWarningThreshold: 95
+        showInfoMessage:
+          m_Target: 1
+          speed: 4
+          m_Value: 1
+      hasInfoMessage: 1
+      hasWarningMessage: 0
+      hasErrorMessage: 0
