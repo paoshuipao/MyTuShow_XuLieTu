@@ -11,12 +11,12 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 {
 
 
-    public void Show(ushort index)
+    public void Show(ushort bigIndex,ushort bottomIndex)
     {
         mUIGameObject.SetActive(true);
-        l_ItemGOs[index].SetActive(true);
-        mCurrentBigIndex = index;
-
+        l_ItemGOs[bigIndex].SetActive(true);
+        mCurrentBigIndex = bigIndex;
+        l_ToggleGroup[bigIndex].ChangeItem(bottomIndex);
     }
 
 
@@ -31,7 +31,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     protected override void OnStart(Transform root)
     {
         MyEventCenter.AddListener<ushort,ushort,List<FileInfo>>(E_GameEvent.DaoRu_FromFile, E_OnDaoRuFromFile);
-        MyEventCenter.AddListener<ushort,ushort,List<ResultBean>>(E_GameEvent.DaoRuAudioFromResult, E_OnDaoRuAudioFromResult);
+        MyEventCenter.AddListener<ushort,ushort,List<ResultBean>>(E_GameEvent.DaoRu_FromResult, E_OnDaoRuFromResult);
         MyEventCenter.AddListener<EDuoTuInfoType>(E_GameEvent.CloseDuoTuInfo, E_CloseDuoTuInfo);                              // 关闭多图信息
         MyEventCenter.AddListener<EDuoTuInfoType,string[]>(E_GameEvent.OnClickNoSaveThisDuoTu, E_DeleteOne);           // 多图信息中删除一个
 
@@ -48,16 +48,13 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
             // 8 个 内容 RectTransform
             RectTransform[] rts = new RectTransform[5];
-            UGUI_Grid[]  grids = new UGUI_Grid[5];
             for (int j = 1; j < rts.Length+1; j++)
             {
-                RectTransform rt = Get<RectTransform>("Item" + bigIndex + "/SrcollRect/FenLie" + j);
-                rts[j - 1] = rt;
-                grids[j - 1] = rt.GetComponent<UGUI_Grid>();
+                rts[j - 1] = Get<RectTransform>("Item" + bigIndex + "/SrcollRect/FenLie" + j);
+       
             }
 
-            l_TopContant.Add(rts);
-            l_Grids.Add(grids);
+            l_TopContant[i]= rts;
 
             // 给每个 UGUI_BtnToggleGroup 添加事件
             ScrollRect scroll = Get<ScrollRect>("Item" + bigIndex + "/SrcollRect");
@@ -71,7 +68,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
                 E_OnBottomChangeItem(bigIndex, bottomIndex, scroll);
             };
             bottomGroup.E_OnDoubleClickItem += E_OnBottomDoubleClick;
-
+            l_ToggleGroup[i] = bottomGroup;
 
             // 添加所有底下的字
             Text[] txNames = new Text[5];
@@ -80,7 +77,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
                 txNames[j] = Get<Text>("Item"+i+"/Bottom/Contant/GeShiItem"+(j+1)+"/TxBottomName");
 
             }
-            l_BottomNames.Add(txNames);
+            l_BottomNames[i] = txNames;
 
 
             // 改名
@@ -115,6 +112,8 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
             {
                 l_BottomNames[i][j].text = Ctrl_Info.Instance.BottomName[i][j];
                 l_Grids[i][j].CallSize = Ctrl_Info.Instance.l_GridSize[i][j].CurrentSize;
+
+                Get<TopTipItem>("Item" + i + "/Bottom/Contant/GeShiItem" + (j + 1)).mGrid = l_Grids[i][j];
             }
         }
 
@@ -130,10 +129,18 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
     private ushort mCurrentBigIndex,mCurrentBottomIndex;    // 当前处于那个大的Item索引，和小的索引
     private readonly GameObject[] l_ItemGOs = new GameObject[8];                        // 8个总对象
-    private readonly List<RectTransform[]> l_TopContant = new List<RectTransform[]>(8); // 8个下的分别5个RectTransform
-    private readonly List<Text[]> l_BottomNames = new List<Text[]>(8);                  // 8个下的分别5个底下名称
-    private readonly List<UGUI_Grid[]> l_Grids = new List<UGUI_Grid[]>(8);
+    private readonly RectTransform[][] l_TopContant = new RectTransform[8][]; // 8个下的分别5个RectTransform
+    private readonly Text[][] l_BottomNames = new Text[8][];                  // 8个下的分别5个底下名称
+    private readonly UGUI_BtnToggleGroup[] l_ToggleGroup = new UGUI_BtnToggleGroup[8];
 
+
+    private UGUI_Grid[][] l_Grids;     // 所有的 UGUI_Grid 集合
+
+
+    public void SetUGUI_GridList(UGUI_Grid[][] grids)
+    {
+        l_Grids = grids;
+    }
 
 
     // 模版
@@ -273,7 +280,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
 
 
-    private void E_OnDaoRuAudioFromResult(ushort bigIndex,ushort bottomIndex,List<ResultBean> resultBeans)  // 通过 ResultBean 导入
+    private void E_OnDaoRuFromResult(ushort bigIndex,ushort bottomIndex,List<ResultBean> resultBeans)  // 通过 ResultBean 导入
     {
         Transform t = InstantiateMoBan(go_MoBan, l_TopContant[bigIndex][bottomIndex]);
         InitMoBan(t, resultBeans.ToArray());

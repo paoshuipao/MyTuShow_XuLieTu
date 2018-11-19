@@ -152,14 +152,13 @@ public static class MyLoadTu
 
                 System.Drawing.Image yuanImage = System.Drawing.Image.FromFile(fileInfos[i].FullName);
 
-
                 int width = yuanImage.Width;
                 int height = yuanImage.Height;
                 GetShouFan(ref width, ref height);
                 System.Drawing.Image useImage = yuanImage.GetThumbnailImage(width, height, () => false, System.IntPtr.Zero);
                 ResultBean bean = new ResultBean();
-                bean.Width = width;
-                bean.Height = height;
+                bean.Width = yuanImage.Width;
+                bean.Height = yuanImage.Height;
                 resList[i] = bean;
                 l_UseImages[i] = useImage;
             }

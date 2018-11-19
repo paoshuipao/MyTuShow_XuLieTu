@@ -14,9 +14,6 @@ public class _1_Start : ISceneBean
     }
     protected override void OnStart()
     {
-        GameObject go = Resources.Load<GameObject>("MusicContrl");
-        GameObject go_MusicContrl = Object.Instantiate(go);
-        go_MusicContrl.SetActive(false);
     }
 
 

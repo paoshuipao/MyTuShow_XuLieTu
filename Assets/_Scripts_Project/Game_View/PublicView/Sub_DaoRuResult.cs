@@ -98,11 +98,11 @@ public class Sub_DaoRuResult : SubUI
                 break;
             case EButtonType.TwoBtn:
                 go_Bottom2.SetActive(true);
-                tx_GoTo2.text = "去 "+Ctrl_Info.Instance.LeftItemNames[mCurrentBigIndex]+" 处";
+                tx_GoTo2.text = "去"+Ctrl_Info.Instance.LeftItemNames[mCurrentBigIndex];
                 break;
             case EButtonType.ThreeBtn:
                 go_Bottom3.SetActive(true);
-                tx_GoTo3.text = "去 " + Ctrl_Info.Instance.LeftItemNames[mCurrentBigIndex] + " 处";
+                tx_GoTo3.text = "去" + Ctrl_Info.Instance.LeftItemNames[mCurrentBigIndex];
                 break;
             default:
                 throw new Exception("未定义 —— "+ buttonType);
@@ -125,7 +125,8 @@ public class Sub_DaoRuResult : SubUI
 
     private void Btn_GoToDaoRuWhere()                                   // 点击 去到刚刚导入的地方
     {
-        MyEventCenter.SendEvent(E_GameEvent.LeftChangeItem, mCurrentBigIndex, mCurrentBottomIndex);
+        MyEventCenter.SendEvent(E_GameEvent.ChangeLeftItem, mCurrentBigIndex, mCurrentBottomIndex);
+        CloseThis();
     }
 
 

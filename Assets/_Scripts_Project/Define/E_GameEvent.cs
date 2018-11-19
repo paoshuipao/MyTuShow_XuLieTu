@@ -13,8 +13,10 @@ public enum E_GameEvent                           // 这里写事件
     HideLog,                    // 隐藏
 
 
-    LeftChangeItem,             // 切换左边总的 Item （ushort 大的索引，ushort 小 底下的索引）
 
+    ChangeLeftItem,             // 切换左边总的 Item （ushort 大的索引，ushort 小 底下的索引）
+    
+    ItemChange,                 // 大 Item 真的切换了,右边有什么开着的就关闭吧
 
 
 
@@ -35,7 +37,7 @@ public enum E_GameEvent                           // 这里写事件
 
 
 
-    ShowBeforeClick,            // 显示前置的按钮界面
+    ShowBeforeClick,            // 显示前置的按钮界面(EBeforeShow)
     OnClickChangeColor,         // 点击了改变颜色按钮(ushort 大的索引 string 颜色字符)
 
 
@@ -105,46 +107,8 @@ public enum E_GameEvent                           // 这里写事件
     OnQuitGame,                // 点击退出游戏
 
 
+
     //——————————————————— 导入 —————————————————
-
-
-    DaoRuTuFromFile,                //导入图片通过文件(EGameType 大类型，ushort 小类型,List<FileInfo> 文件集合，bool 是否保存)
-    DaoRuTuFromResult,              //导入图片通过已加载的结果(EGameType 大类型,ushort 小类型,List<ResultBean> 结果集合,bool 是否从直接导入处导入)
-
-    DaoRuAudioFromFiles,            // 从快速导入处 导入音频（EAudioType 类型,List<FileInfo> 文件集合，bool 是否保存）
-    DaoRuAudioFromResult,            // 从快速导入处 导入音频（EAudioType 类型,AudioResBean 结果）
-
-
-
-
-    DaoRu_XLT_FromFile,                // 导入序列图（EXuLieTu222 类型 ，List<FileInfo> 文件集合)
-    DaoRu_XLT_FromResult,              // （已加载）导入序列图(EXuLieTu222 类，List<ResultBean> 结果集合)
-
-
-    DaoRu_XLT222_FromFile,            // 导入 序列图222（EXuLieTu 类型 ，List<FileInfo> 文件集合)
-    DaoRu_XLT222_FromResult,          //（已加载）导入序列图222(EXuLieTu 类，List<ResultBean> 结果集合)
-
-
-
-    DaoRu_JiHeXLT_FromFile,           // 导入 集合序列图 (EJiHeXuLieTuType 类型, List<FileInfo> 多文件)
-    DaoRu_JiHeXLT_FromResult,         // （已加载）导入 集合序列图（EJiHeXuLieTuType 类型 ， List<ResultBean> 结果集合）
-
-
-
-    DaoRu_TaoMing_FromFile,           // 导入 透明图 (ETaoMingType 类型, List<FileInfo> 多文件)
-    DaoRu_TaoMing_FromResult,         // （已加载）导入 透明图（ETaoMingType 类型 ， List<ResultBean> 结果集合）
-
-
-    DaoRu_Jpg_FromFile,               // 导入 Jpg图 (ENormalTuType 类型, List<FileInfo> 多文件)
-    DaoRu_Jpg_FromResult,             // （已加载）导入 Jpg图（ENormalTuType 类型 ， List<ResultBean> 结果集合）
-
-
-    DaoRu_JiHe_FromFile,              // 导入 集合图 (EJiHeType 类型, List<FileInfo> 多文件)
-    DaoRu_JiHe_FromResult,            // （已加载）导入 集合图（EJiHeType 类型 ， List<ResultBean> 结果集合）
-
-
-
-    DaoRu_Audio,                      // 真正 导入音频(EAudioType 类型,AudioResBean 结果)
 
 
 
@@ -154,11 +118,6 @@ public enum E_GameEvent                           // 这里写事件
 
 
     //————————————————————————————————————
-
-
-    ShowMusicInfo,         // 显示音乐信息(Text 用于导入变绿色,FileInfo,bool true:需要导入)
-    CloseMusicInfo,        // 关闭音乐信息
-
 
 
 

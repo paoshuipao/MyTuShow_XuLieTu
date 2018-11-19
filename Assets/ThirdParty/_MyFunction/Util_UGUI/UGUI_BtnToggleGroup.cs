@@ -31,10 +31,10 @@ public class UGUI_BtnToggleGroup : MonoBehaviour
             // 选中
             mCurrentIndex = index;
             SubToggles[mCurrentIndex].ChooseThis();
-            if (null != E_OnChooseItem)
-            {
-                E_OnChooseItem((ushort)mCurrentIndex);
-            }
+//            if (null != E_OnChooseItem)
+//            {
+//                E_OnChooseItem((ushort)mCurrentIndex);
+//            }
         }
     }
 

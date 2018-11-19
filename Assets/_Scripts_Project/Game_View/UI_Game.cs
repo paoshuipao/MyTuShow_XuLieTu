@@ -19,7 +19,10 @@ public class UI_Game : BaseUI
 
         for (int i = 0; i < 8; i++)
         {
+
             L_LeftText[i] = Get<Text>("Left/Item"+(i+1)+"/TxLeft");
+
+
         }
 
         for (int i = 0; i < 11; i++)
@@ -34,6 +37,20 @@ public class UI_Game : BaseUI
         go_WaitBrowser = GetGameObject("OpenBrowser");
         tx_Wait = Get<Text>("OpenBrowser/Text");
 
+        // 所有的 UGUI_Grid 集合
+        UGUI_Grid[][] l_Grids = new UGUI_Grid[8][]; 
+        for (int i = 0; i < 8; i++)
+        {
+            UGUI_Grid[] grids = new UGUI_Grid[5];
+            for (int j = 0; j < 5; j++)
+            {
+                grids[j] = Get<UGUI_Grid>("Right/EachContant/ItemContant/Item"+i+"/SrcollRect/FenLie"+(j+1));
+            }
+            l_Grids[i] = grids;
+        }
+
+        sub_ItemContant.SetUGUI_GridList(l_Grids);
+        sub_DuoTuInfo.SetUGUI_GridList(l_Grids);
 
 
         // 一开始把之前所有的都加载进来
@@ -48,13 +65,16 @@ public class UI_Game : BaseUI
         {
             L_LeftText[i].text = Ctrl_Info.Instance.LeftItemNames[i];
         }
+
+
+
     }
 
 
 
     protected override void OnAddListener()
     {
-        MyEventCenter.AddListener<ushort,ushort>(E_GameEvent.LeftChangeItem, E_LeftChangeItem);     // 切换其他 Item
+        MyEventCenter.AddListener<ushort,ushort>(E_GameEvent.ChangeLeftItem, E_LeftChangeItem);     // 切换其他 Item
         MyEventCenter.AddListener(E_GameEvent.OpenFileContrl, OnShowGameWaitUI_File);               // 打开 文件 资源管理器
         MyEventCenter.AddListener(E_GameEvent.OpenFolderContrl, OnShowGameWaitUI_Folder);           // 打开 文件夹 资源管理器
         MyEventCenter.AddListener(E_GameEvent.CloseFileOrFolderContrl, OnHideGameWaitUI_Browser);   // 关闭 文件或者文件夹资源管理器
@@ -131,6 +151,8 @@ public class UI_Game : BaseUI
     private Text tx_Wait;
     private const string WAIT_FILE = "等待,选择文件中...";
     private const string WAIT_FOLDER = "等待,选择文件夹中...";
+
+
 
 
 
@@ -216,12 +238,11 @@ public class UI_Game : BaseUI
     }
 
 
-    private void E_OnLeftGroupChange(ushort index)       // 切换
+    private void E_OnLeftGroupChange(ushort bigIndex)       // 切换
     {
-        switch (index)
+        switch (bigIndex)
         {
             case 0:
-                
             case 1:
             case 2:
             case 3:
@@ -229,7 +250,7 @@ public class UI_Game : BaseUI
             case 5:
             case 6:
             case 7:
-                sub_ItemContant.Show(index);
+                sub_ItemContant.Show(bigIndex,0); 
                 break;
             case 8:
                 sub_DaoRu.Show();
@@ -243,12 +264,13 @@ public class UI_Game : BaseUI
             default:
                 throw new Exception("未定义");
         }
+        MyEventCenter.SendEvent(E_GameEvent.ItemChange);
     }
 
 
-    private void E_OnLeftDoubleClick(ushort index)       // 双击左边的Item
+    private void E_OnLeftDoubleClick(ushort bigIndex)       // 双击左边的Item
     {
-        MyEventCenter.SendEvent(E_GameEvent.ShowBeforeClick, (EBeforeShow)index);
+        MyEventCenter.SendEvent(E_GameEvent.ShowBeforeClick, (EBeforeShow)bigIndex);
 
     }
 
@@ -261,6 +283,7 @@ public class UI_Game : BaseUI
     private void E_LeftChangeItem(ushort bigIndex,ushort bottomIndex)           // 不是点击切换 Item ，而是其他要求切换
     {
         mLeftGroup.ChangeItem(bigIndex);
+        sub_ItemContant.Show(bigIndex, bottomIndex);
     }
 
 

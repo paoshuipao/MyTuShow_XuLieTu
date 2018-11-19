@@ -23,20 +23,24 @@ public class Sub_DuoTuInfo : SubUI
     protected override void OnStart(Transform root)
     {
         MyEventCenter.AddListener<ResultBean[], EDuoTuInfoType>(E_GameEvent.ShowDuoTuInfo, E_Show);    // 显示
-        MyEventCenter.AddListener<ushort,ushort>(E_GameEvent.LeftChangeItem, E_OnChangeLeftItem);
+        MyEventCenter.AddListener(E_GameEvent.ItemChange, E_OnChangeLeftItem);      // 左边改
 
 
 
         AddButtOnClick("BtnClose", Btn_OnCloseShowInfo);
 
         #region 大图显示
-        rtAnimTu = Get<RectTransform>("Contant/Top/D2_Tu/Tu/AnimTu");
-        anim_Tu = Get<UGUI_SpriteAnim>("Contant/Top/D2_Tu/Tu/AnimTu/Anim");
-        tx_Name = Get<Text>("Contant/Top/D2_Tu/Right/TxName/Name");
-        tx_WidthSize = Get<Text>("Contant/Top/D2_Tu/Right/SliderWidth/TxValue");
-        slider_Width = Get<Slider>("Contant/Top/D2_Tu/Right/SliderWidth/Slider");
-        tx_HeightSize = Get<Text>("Contant/Top/D2_Tu/Right/SliderHeight/TxValue");
-        slider_Height = Get<Slider>("Contant/Top/D2_Tu/Right/SliderHeight/Slider");
+
+        rtAnimTu = Get<RectTransform>("Contant/Left/D2_Tu/Tu/AnimTu");
+        anim_Tu = Get<UGUI_SpriteAnim>("Contant/Left/D2_Tu/Tu/AnimTu/Anim");
+ 
+        tx_WidthSize = Get<Text>("Contant/Left/D2_Tu/Bottom/SliderWidth/TxValue");
+        slider_Width = Get<Slider>("Contant/Left/D2_Tu/Bottom/SliderWidth/Slider");
+        tx_HeightSize = Get<Text>("Contant/Left/D2_Tu/Bottom/SliderHeight/TxValue");
+        slider_Height = Get<Slider>("Contant/Left/D2_Tu/Bottom/SliderHeight/Slider");
+        slider_Width.maxValue = Max_TuSize;
+        slider_Height.maxValue = Max_TuSize;
+
         AddSliderOnValueChanged(slider_Width, (value) =>
         {
             SetTuSize(value);
@@ -45,60 +49,71 @@ public class Sub_DuoTuInfo : SubUI
         {
             SetTuSize(0, value);
         });
-        AddButtOnClick("Contant/Top/D2_Tu/Right/BtnSize/BtnPlusHalf", () =>
+        AddButtOnClick("Contant/Left/D2_Tu/Bottom/BtnSize/BtnPlusHalf", () =>
         {
             SetTuSize(yuanLaiWidth * 0.5f, yuanLaiHidth * 0.5f);
         });
-        AddButtOnClick("Contant/Top/D2_Tu/Right/BtnSize/BtnFirst", () =>
+        AddButtOnClick("Contant/Left/D2_Tu/Bottom/BtnSize/BtnFirst", () =>
         {
             SetTuSize(yuanLaiWidth, yuanLaiHidth);
         });
-        AddButtOnClick("Contant/Top/D2_Tu/Right/BtnSize/BtnAddHalf", () =>
+        AddButtOnClick("Contant/Left/D2_Tu/Bottom/BtnSize/BtnAddHalf", () =>
         {
             SetTuSize(yuanLaiWidth * 1.5f, yuanLaiHidth * 1.5f);
         });
-        AddButtOnClick("Contant/Top/D2_Tu/Right/BtnSize/BtnAddTwo", () =>
+        AddButtOnClick("Contant/Left/D2_Tu/Bottom/BtnSize/BtnAddTwo", () =>
         {
             SetTuSize(yuanLaiWidth * 2f, yuanLaiHidth * 2f);
         });
 
         #endregion
 
-        #region 条目
 
-        moBan_Item = GetGameObject("Contant/Top/D2_Item/MoBan");
-        rt_GridContant = Get<RectTransform>("Contant/Top/D2_Item/Contant");
-
-
+        // 条目
+        moBan_Item = GetGameObject("Contant/Left/D2_Item/MoBan");
+        rt_GridContant = Get<RectTransform>("Contant/Left/D2_Item/Contant");
 
 
-        #endregion
+
+
+        // 右
+        tx_Name = Get<Text>("Contant/Right/Top/TxInfo/Name/Name");
+        tx_Num = Get<Text>("Contant/Right/Top/TxInfo/Num/Num");
+        tx_Size = Get<Text>("Contant/Right/Top/TxInfo/Size/Num");
 
         // 切换
-        go_D2Tu = GetGameObject("Contant/Top/D2_Tu");
-        go_D2Item = GetGameObject("Contant/Top/D2_Item");
-        tx_ChangeText = Get<Text>("Contant/Middle/Left/BtnQieHuan/Text");
-        AddButtOnClick("Contant/Middle/Left/BtnQieHuan", Btn_OnChangeBiTu);
+        go_D2Tu = GetGameObject("Contant/Left/D2_Tu");
+        go_D2Item = GetGameObject("Contant/Left/D2_Item");
+        tx_ChangeText = Get<Text>("Contant/Right/Top/Btn/BtnQieHuan/Text");
+        AddButtOnClick("Contant/Right/Top/Btn/BtnQieHuan", Btn_OnChangeBiTu);
 
 
         // 打开文件、速度、不保存
-        AddButtOnClick("Contant/Middle/Left/BtnOpenFolder", Btn_OnOpenFolder);
-        AddSliderOnValueChanged("Contant/Middle/Left/Speed/Slider", Sldier_OnSpeedChange);
-        go_Delete = GetGameObject("Contant/Middle/Left/BtnIsDelete");
-        AddButtOnClick("Contant/Middle/Left/BtnIsDelete", Btn_OnNoSaveThis);
+        AddButtOnClick("Contant/Right/Top/Btn/BtnOpenFolder", Btn_OnOpenFolder);
+        AddSliderOnValueChanged("Contant/Right/Top/Btn/Speed/Slider", Sldier_OnSpeedChange);
+        go_Delete = GetGameObject("Contant/Right/Top/Btn/BtnIsDelete");
+        AddButtOnClick("Contant/Right/Top/Btn/BtnIsDelete", Btn_OnNoSaveThis);
 
 
 
-        // 下
-        go_Bottom = GetGameObject("Contant/Bottom");
-        for (int i = 0; i < 8; i++)
+        // 右下 导入 
+        go_AllDaoRu = GetGameObject("Contant/Right/DaoRu");
+        for (ushort i = 0; i < 8; i++)
         {
-            l_TittleNames[i] = Get<Text>("Contant/Bottom/ScrollView/Contant/Item_Item" + i + "/TxTittle");
+            // 标题
+            l_TittleNames[i] = Get<Text>("Contant/Right/DaoRu/Contant/Item_Item" + i + "/TxTittle");
 
+            // 每个按钮文字
             Text[] eachList = new Text[5];
-            for (int j = 0; j < 5; j++)
+            for (ushort j = 0; j < 5; j++)
             {
-                eachList[j] = Get<Text>("Contant/Bottom/ScrollView/Contant/Item_Item" + i + "/Contant/Btn"+(j+1)+"/BtnMDR/ItemDaoRu");
+                eachList[j] = Get<Text>("Contant/Right/DaoRu/Contant/Item_Item" + i + "/Contant/Btn"+j+"/ItemDaoRu");
+                ushort bigIndex = i;
+                ushort bottomIndex = j;
+                AddButtOnClick("Contant/Right/DaoRu/Contant/Item_Item" + i + "/Contant/Btn" + j, () =>
+                    {
+                        ManyBtn_DaoRu(bigIndex, bottomIndex);
+                    });
             }
             l_DaoRuTexts[i] = eachList;
         }
@@ -113,26 +128,39 @@ public class Sub_DuoTuInfo : SubUI
             for (int j = 0; j < 5; j++)
             {
                 l_DaoRuTexts[i][j].text = Ctrl_Info.Instance.BottomName[i][j];
+                Get<TopTipItem>("Contant/Right/DaoRu/Contant/Item_Item" + i + "/Contant/Btn" + j).mGrid = l_Grids[i][j];
+
             }
         }
+
     }
 
 
     #region 私有
 
+    private UGUI_Grid[][] l_Grids;
 
+    public void SetUGUI_GridList(UGUI_Grid[][] grids)
+    {
+        l_Grids = grids;
+    }
+
+
+
+
+    private const ushort Max_TuSize = 400;   // 限制图片最大的大小
     private EDuoTuInfoType mCurrentType;
     private ResultBean[] mCurrentBeans;
 
-    // 上的大图
+    // 左边的大图
     private RectTransform rtAnimTu;
     private UGUI_SpriteAnim anim_Tu;
     private Slider slider_Width, slider_Height;
-    private Text tx_Name,tx_WidthSize, tx_HeightSize;
+    private Text tx_WidthSize, tx_HeightSize;
     private Vector2 TuSize = new Vector2(512, 512);
     private float yuanLaiWidth, yuanLaiHidth;
 
-    // 上的条目
+    // 左边的条目
     private bool isFirstShowItem = true;
     private GameObject moBan_Item;
     private RectTransform rt_GridContant;
@@ -148,11 +176,16 @@ public class Sub_DuoTuInfo : SubUI
 
 
 
-    // 下
+    // 右
     private GameObject go_Delete;
-    private GameObject go_Bottom;
+    private GameObject go_AllDaoRu;
+    private Text tx_Name,tx_Num,tx_Size;
+
+
+
+
     private readonly Text[] l_TittleNames = new Text[8];
-    private Text[][] l_DaoRuTexts = new Text[8][];
+    private readonly Text[][] l_DaoRuTexts = new Text[8][];
 
 
     public override string GetUIPathForRoot()
@@ -196,9 +229,9 @@ public class Sub_DuoTuInfo : SubUI
             {
                 width = 8;
             }
-            if (width > 512)
+            if (width > Max_TuSize)
             {
-                width = 512;
+                width = Max_TuSize;
             }
             TuSize.x = width;
             slider_Width.value = width;
@@ -210,9 +243,9 @@ public class Sub_DuoTuInfo : SubUI
             {
                 height = 8;
             }
-            if (height > 512)
+            if (height > Max_TuSize)
             {
-                height = 512;
+                height = Max_TuSize;
             }
             TuSize.y = height;
             slider_Height.value = height;
@@ -255,7 +288,7 @@ public class Sub_DuoTuInfo : SubUI
         anim_Tu.FPS = 0.5f / value;
     }
 
-    private void Btn_OnNoSaveThis()                    // 点击不保存这个
+    private void Btn_OnNoSaveThis()                     // 点击不保存这个
     {
         MyEventCenter.SendEvent(E_GameEvent.OnClickNoSaveThisDuoTu, mCurrentType, mCurrentBeans.ToFullPaths());
         Btn_OnCloseShowInfo();
@@ -284,6 +317,29 @@ public class Sub_DuoTuInfo : SubUI
 
 
 
+    private void ManyBtn_DaoRu(ushort bigIndex,ushort bottomIndex)                       // 多项的导入
+    {
+        EButtonType buttonTyp;
+        switch (mCurrentType)
+        {
+            case EDuoTuInfoType.DaoRu:
+                buttonTyp = EButtonType.ThreeBtn;
+                break;
+            case EDuoTuInfoType.InfoShow:
+                buttonTyp = EButtonType.TwoBtn;
+                break;
+            case EDuoTuInfoType.SearchShow:
+                buttonTyp = EButtonType.OneBtn;
+                break;
+            default:
+                throw new Exception("未定义");
+        }
+
+        MyEventCenter.SendEvent(E_GameEvent.RealyDaoRu_Result, buttonTyp, bigIndex, bottomIndex, new List<ResultBean>(mCurrentBeans));
+        Btn_OnCloseShowInfo();
+    }
+
+
     #region 条目
 
 
@@ -307,12 +363,12 @@ public class Sub_DuoTuInfo : SubUI
 
 
             // 文件名
-            t.Find("FileName").GetComponent<Text>().text = bean.File.Name;
+            t.Find("Top/FileName").GetComponent<Text>().text = bean.File.Name;
             // 大小
-            t.Find("Size").GetComponent<Text>().text = bean.Width + " x " + bean.Height;
+            t.Find("Bottom/Size").GetComponent<Text>().text = bean.Width + " x " + bean.Height;
 
             // 单击这一项
-            GameObject chooseGOBg = t.Find("Choose/Bg").gameObject;
+            GameObject chooseGOBg = t.Find("Choose").gameObject;
             t.GetComponent<Button>().onClick.AddListener(() =>
             {
                 if (null != mCuurentChooseBg)
@@ -324,17 +380,17 @@ public class Sub_DuoTuInfo : SubUI
                 mCuurentChooseBg.SetActive(true);
             });
             // 删除按钮
-            t.Find("Choose/BtnContrl/BtnDelete").GetComponent<Button>().onClick.AddListener(() =>
+            t.Find("Bottom/BtnDelete").GetComponent<Button>().onClick.AddListener(() =>
             {
                 EachBtn_Delete(t.gameObject);
             });
             // Up 按钮
-            t.Find("Choose/BtnContrl/BtnUp").GetComponent<Button>().onClick.AddListener(() =>
+            t.Find("Bottom/BtnUp").GetComponent<Button>().onClick.AddListener(() =>
             {
                 EeachBtn_Up(t.gameObject);
             });
             // Down 按钮
-            t.Find("Choose/BtnContrl/BtnDown").GetComponent<Button>().onClick.AddListener(() =>
+            t.Find("Bottom/BtnDown").GetComponent<Button>().onClick.AddListener(() =>
             {
                 EachBtn_Down(t.gameObject);
             });
@@ -412,7 +468,7 @@ public class Sub_DuoTuInfo : SubUI
         {
             case EDuoTuInfoType.DaoRu:
                 go_Delete.SetActive(false);
-                go_Bottom.SetActive(true);
+                go_AllDaoRu.SetActive(true);
                 for (int i = 0; i < l_TittleNames.Length; i++)
                 {
                     l_TittleNames[i].text = "导入 "+Ctrl_Info.Instance.LeftItemNames[i]+" 处";
@@ -420,7 +476,7 @@ public class Sub_DuoTuInfo : SubUI
                 break;
             case EDuoTuInfoType.InfoShow:
                 go_Delete.SetActive(true);
-                go_Bottom.SetActive(true);
+                go_AllDaoRu.SetActive(true);
                 for (int i = 0; i < l_TittleNames.Length; i++)
                 {
                     l_TittleNames[i].text = "转移到 " + Ctrl_Info.Instance.LeftItemNames[i] + " 处";
@@ -428,7 +484,7 @@ public class Sub_DuoTuInfo : SubUI
                 break;
             case EDuoTuInfoType.SearchShow:
                 go_Delete.SetActive(false);
-                go_Bottom.SetActive(false);
+                go_AllDaoRu.SetActive(false);
                 break;
             default:
                 throw new Exception("未定义");
@@ -436,6 +492,11 @@ public class Sub_DuoTuInfo : SubUI
 
 
         ShowWhicContant(true);
+
+        // 设置右边信息
+        tx_Name.text = Path.GetFileNameWithoutExtension(resultBeans[0].File.FullName);
+        tx_Num.text = resultBeans.Length.ToString();
+        tx_Size.text = resultBeans[0].Width + "x" + resultBeans[0].Height;
 
 
         // 设置大图
@@ -445,17 +506,19 @@ public class Sub_DuoTuInfo : SubUI
         {
             sps[i] = resultBeans[i].SP;
         }
-        tx_Name.text = Path.GetFileNameWithoutExtension(resultBeans[0].File.FullName);
+
         yuanLaiWidth = resultBeans[0].Width;
         yuanLaiHidth = resultBeans[0].Height;
         anim_Tu.ChangeAnim(sps);
         SetTuSize(yuanLaiWidth, yuanLaiHidth);
 
+
+
     }
 
 
 
-    private void E_OnChangeLeftItem(ushort bigIndex,ushort bottomIndex)     // 切换左边总的Item时，如果开着就关了
+    private void E_OnChangeLeftItem()     // 切换左边总的Item时，如果开着就关了
     {
 
         if (mUIGameObject.activeSelf)
