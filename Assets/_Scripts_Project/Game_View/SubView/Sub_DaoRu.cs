@@ -52,7 +52,7 @@ public class Sub_DaoRu : SubUI
     protected override void OnStart(Transform root)
     {
         MyEventCenter.AddListener(E_GameEvent.OnClickMouseRightDown, E_OnMouseLeftClick);            // 鼠标右键点击
-        MyEventCenter.AddListener<EGameType, ushort, List<ResultBean>, bool>(E_GameEvent.DaoRuTuFromResult, E_OnDuoTuDaoRu);  // 确定导入图片
+//        MyEventCenter.AddListener<EGameType, ushort, List<ResultBean>, bool>(E_GameEvent.DaoRuTuFromResult, E_OnDuoTuDaoRu);  // 确定导入图片
         MyEventCenter.AddListener(E_GameEvent.GoToNextFolderDaoRu, E_GoToNextFolderDaoRu);          // 导入后 到一个文件夹
         MyEventCenter.AddListener(E_GameEvent.OnClickCtrlAndA, E_OnClickCtrlAndA);                  // 按下 Ctrl + A
         MyEventCenter.AddListener(E_GameEvent.OnClickCtrlAndC, E_OnClickCtrlAndC);                  // 按下 Ctrl + C
@@ -580,6 +580,35 @@ public class Sub_DaoRu : SubUI
 
 
 
+    private void Btn_OnDaoRuClick()                                     // 点击导入
+    {
+        if (chooseGOK_BgV.Count > 1)               // 选择了 多张
+        {
+            List<GameObject> sortList = GetSortChoose();      // 1. 先排好序
+            ResultBean[] resultBeans = new ResultBean[sortList.Count];
+            for (int i = 0; i < sortList.Count; i++)
+            {
+                resultBeans[i] = allGoK_ResultBeanV[sortList[i]];
+            }
+            MyEventCenter.SendEvent(E_GameEvent.ShowDuoTuInfo, resultBeans, EDuoTuInfoType.DaoRu);
+
+        }
+        else if (chooseGOK_BgV.Count == 1)       // 选择了 1 张
+        {
+            foreach (GameObject go in chooseGOK_BgV.Keys)
+            {
+                MyEventCenter.SendEvent(E_GameEvent.ShowSingleTuDaoRu, allGoK_ResultBeanV[go]);
+                break;
+            }
+        }
+        else
+        {
+            MyLog.Red("不可能吧");
+        }
+
+    }
+
+
 
     #region 中间
 
@@ -606,35 +635,6 @@ public class Sub_DaoRu : SubUI
     private void E_OnCtrlUp()                    // 松开 Shift
     {
         isNormalClick = true;
-
-    }
-
-
-    private void Btn_OnDaoRuClick()                                                 // 点击导入
-    {
-        if (chooseGOK_BgV.Count > 1)               // 选择了 多张
-        {
-            List<GameObject> sortList = GetSortChoose();      // 1. 先排好序
-            ResultBean[] resultBeans = new ResultBean[sortList.Count];
-            for (int i = 0; i < sortList.Count; i++)
-            {
-                resultBeans[i] = allGoK_ResultBeanV[sortList[i]];
-            }
-            MyEventCenter.SendEvent(E_GameEvent.ShowDuoTuDaoRu, resultBeans,mFileBrowser.GetCurrentDirectory().FullName);
-
-        }
-        else if (chooseGOK_BgV.Count == 1)       // 选择了 1 张
-        {
-            foreach (GameObject go in chooseGOK_BgV.Keys)
-            {
-                MyEventCenter.SendEvent(E_GameEvent.ShowSingleTuDaoRu, allGoK_ResultBeanV[go]);
-                break;
-            }
-        }
-        else
-        {
-            MyLog.Red("不可能吧");
-        }
 
     }
 
@@ -1183,11 +1183,6 @@ public class Sub_DaoRu : SubUI
 
 
 
-
-
-
-
-
     #endregion
 
     #region  头部栏
@@ -1484,27 +1479,27 @@ public class Sub_DaoRu : SubUI
     #endregion
 
 
-    private void E_OnDuoTuDaoRu(EGameType type,ushort index, List<ResultBean> resultBeans, bool isFromDaoRu)       // 点击了信息页的导入
-    {
-        if (isFromDaoRu)
-        {
-            // 把导入的都变成绿色字体
-            foreach (ResultBean resultBean in resultBeans)
-            {
-                foreach (GameObject go in chooseGOK_BgV.Keys)
-                {
-                    if (resultBean == allGoK_ResultBeanV[go])
-                    {
-                        go.transform.Find("Text").GetComponent<Text>().color = Color.green;
-                        break;
-                    }
-                }
-            }
-
-            // 清空选择
-            ClearAllChooseZhong();
-        }
-    }
+//    private void E_OnDuoTuDaoRu(EGameType type,ushort index, List<ResultBean> resultBeans, bool isFromDaoRu)       // 点击了信息页的导入
+//    {
+//        if (isFromDaoRu)
+//        {
+//            // 把导入的都变成绿色字体
+//            foreach (ResultBean resultBean in resultBeans)
+//            {
+//                foreach (GameObject go in chooseGOK_BgV.Keys)
+//                {
+//                    if (resultBean == allGoK_ResultBeanV[go])
+//                    {
+//                        go.transform.Find("Text").GetComponent<Text>().color = Color.green;
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            // 清空选择
+//            ClearAllChooseZhong();
+//        }
+//    }
 
 
     private void E_GoToNextFolderDaoRu()                       // 导入后 到下个文件兲

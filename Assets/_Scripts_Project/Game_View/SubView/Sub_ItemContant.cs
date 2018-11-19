@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using PSPUtil;
+using PSPUtil.Control;
 using PSPUtil.StaticUtil;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +31,13 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     protected override void OnStart(Transform root)
     {
         MyEventCenter.AddListener<ushort,ushort,List<FileInfo>>(E_GameEvent.DaoRu_FromFile, E_OnDaoRuFromFile);
+        MyEventCenter.AddListener<ushort,ushort,List<ResultBean>>(E_GameEvent.DaoRuAudioFromResult, E_OnDaoRuAudioFromResult);
+        MyEventCenter.AddListener<EDuoTuInfoType>(E_GameEvent.CloseDuoTuInfo, E_CloseDuoTuInfo);                              // 关闭多图信息
+        MyEventCenter.AddListener<EDuoTuInfoType,string[]>(E_GameEvent.OnClickNoSaveThisDuoTu, E_DeleteOne);           // 多图信息中删除一个
+
+
+        // 模版
+        go_MoBan = GetGameObject("MoBan");
 
 
         for (ushort i = 0; i < 8; i++)
@@ -39,12 +48,16 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
             // 8 个 内容 RectTransform
             RectTransform[] rts = new RectTransform[5];
+            UGUI_Grid[]  grids = new UGUI_Grid[5];
             for (int j = 1; j < rts.Length+1; j++)
             {
-                rts[j-1] = Get<RectTransform>("Item" + bigIndex + "/SrcollRect/FenLie"+j);
+                RectTransform rt = Get<RectTransform>("Item" + bigIndex + "/SrcollRect/FenLie" + j);
+                rts[j - 1] = rt;
+                grids[j - 1] = rt.GetComponent<UGUI_Grid>();
             }
 
             l_TopContant.Add(rts);
+            l_Grids.Add(grids);
 
             // 给每个 UGUI_BtnToggleGroup 添加事件
             ScrollRect scroll = Get<ScrollRect>("Item" + bigIndex + "/SrcollRect");
@@ -83,6 +96,13 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
         }
 
+
+
+        // 最右边
+        AddButtOnClick("RightContrl/DaoRu", Btn_DaoRu);
+        AddButtOnClick("RightContrl/DeleteAll", Btn_DaoClear);
+
+
     }
 
 
@@ -94,9 +114,9 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
             for (int j = 0; j <5; j++)
             {
                 l_BottomNames[i][j].text = Ctrl_Info.Instance.BottomName[i][j];
+                l_Grids[i][j].CallSize = Ctrl_Info.Instance.l_GridSize[i][j].CurrentSize;
             }
         }
-
 
     }
 
@@ -104,17 +124,27 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
     #region 私有
 
+    private GameObject go_CurrentSelect; // 当前选择的对象
+    private bool isSelect;               // 是否之前点击了
+
+
     private ushort mCurrentBigIndex,mCurrentBottomIndex;    // 当前处于那个大的Item索引，和小的索引
-    private readonly GameObject[] l_ItemGOs = new GameObject[8];
-    private readonly List<RectTransform[]> l_TopContant = new List<RectTransform[]>(8);
-    private readonly List<Text[]> l_BottomNames = new List<Text[]>(8);
+    private readonly GameObject[] l_ItemGOs = new GameObject[8];                        // 8个总对象
+    private readonly List<RectTransform[]> l_TopContant = new List<RectTransform[]>(8); // 8个下的分别5个RectTransform
+    private readonly List<Text[]> l_BottomNames = new List<Text[]>(8);                  // 8个下的分别5个底下名称
+    private readonly List<UGUI_Grid[]> l_Grids = new List<UGUI_Grid[]>(8);
+
+
+
+    // 模版
+    private GameObject go_MoBan;
+
 
 
     // 改名
     private GameObject go_GaiNing;
     private InputField input_GaiMIng;
     private Text tx_GaiMing;
-
 
 
     public override string GetUIPathForRoot()
@@ -129,6 +159,14 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     {
     }
 
+
+    private IEnumerator CheckoubleClick() // 检测是否双击
+    {
+        isSelect = true;
+        yield return new WaitForSeconds(MyDefine.DoubleClickTime);
+        isSelect = false;
+    }
+
     #endregion
 
 
@@ -139,6 +177,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         l_TopContant[bigIndex][bottomIndex].gameObject.SetActive(false);
     }
 
+
     private void E_OnBottomChangeItem(ushort bigIndex, ushort bottomIndex, ScrollRect scroll)      // 切换 Item
     {
         l_TopContant[bigIndex][bottomIndex].gameObject.SetActive(true);
@@ -147,6 +186,9 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         mCurrentBottomIndex = bottomIndex;
 
     }
+
+
+    //—————————————————— 改名 ——————————————————
 
 
     private void E_OnBottomDoubleClick(ushort index)            // 双击 要改名
@@ -173,16 +215,116 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     }
 
 
+    //—————————————————— 最右边 ——————————————————
+
+
+    private void Btn_DaoRu()                           // 点击导入
+    {
+        MyOpenFileOrFolder.OpenFile(Ctrl_UserInfo.Instance.DaoRuFirstPath, "选择多个文件（序列图）", EFileFilter.TuAndAll,
+            (filePaths) =>
+            {
+                List<FileInfo> fileInfos = new List<FileInfo>(filePaths.Length);
+                foreach (string filePath in filePaths)
+                {
+                    FileInfo fileInfo = new FileInfo(filePath);
+                    if (MyFilterUtil.IsTu(fileInfo))
+                    {
+                        fileInfos.Add(fileInfo);
+                    }
+                    else
+                    {
+                        MyLog.Red("选择了其他的格式文件 —— " + fileInfo.Name);
+                    }
+                }
+                MyEventCenter.SendEvent(E_GameEvent.RealyDaoRu_File, EButtonType.OneBtn,mCurrentBigIndex, mCurrentBottomIndex, fileInfos);
+            });
+    }
+
+
+    private void Btn_DaoClear()                        // 点击清空
+    {
+
+    }
+
+
+
+    private void Slider_OnSizeChange()                 // 拖动大小滑动条
+    {
+
+    }
 
 
     //—————————————————— 事件 ——————————————————
 
 
-    private void E_OnDaoRuFromFile(ushort bigIndex, ushort bottomIndex, List<FileInfo> fileInfos)  // 通过 FileInfo 导入
+    private void E_OnDaoRuFromFile(ushort bigIndex, ushort bottomIndex, List<FileInfo> fileInfos)          // 通过 FileInfo 导入
     {
+        // 1. 创建一个实例
+        Transform t = InstantiateMoBan(go_MoBan, l_TopContant[bigIndex][bottomIndex]);
 
+        // 2. 加载图片
+        MyLoadTu.LoadMultipleTu(fileInfos, (resBean) =>
+        {
+            // 3. 完成后把图集加上去
+            InitMoBan(t, resBean);
+        });
     }
 
+
+
+
+    private void E_OnDaoRuAudioFromResult(ushort bigIndex,ushort bottomIndex,List<ResultBean> resultBeans)  // 通过 ResultBean 导入
+    {
+        Transform t = InstantiateMoBan(go_MoBan, l_TopContant[bigIndex][bottomIndex]);
+        InitMoBan(t, resultBeans.ToArray());
+    }
+
+
+
+    private void InitMoBan(Transform t, ResultBean[] resultBeans)                                           // 初始化模版
+    {
+        GameObject go = t.gameObject;
+
+        t.Find("Tu").GetComponent<UGUI_SpriteAnim>().ChangeAnim(resultBeans.ToSprites());
+        t.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            if (go.Equals(go_CurrentSelect) && isSelect) // 双击
+            {
+
+                mUIGameObject.SetActive(false);       // 显示信息时把整个给隐藏了
+                MyEventCenter.SendEvent(E_GameEvent.ShowDuoTuInfo, resultBeans, EDuoTuInfoType.InfoShow);
+            }
+            else // 单击
+            {
+                go_CurrentSelect = go;
+                Ctrl_Coroutine.Instance.StartCoroutine(CheckoubleClick());
+            }
+        });
+    }
+
+
+
+
+    //————————————————————————————————————
+
+    
+    private void E_CloseDuoTuInfo(EDuoTuInfoType type)                  // 关闭显示多图信息
+    {
+        if (type == EDuoTuInfoType.InfoShow)
+        {
+            mUIGameObject.SetActive(true);
+        }
+    }
+
+
+    private void E_DeleteOne(EDuoTuInfoType type, string[] paths)      // 多图信息中删除一个 
+    {
+        if (type == EDuoTuInfoType.InfoShow)
+        {
+            Ctrl_XuLieTu.Instance.DeleteOne(mCurrentBigIndex, mCurrentBottomIndex, paths);
+            Object.Destroy(go_CurrentSelect);
+        }
+    }
 
 
 }

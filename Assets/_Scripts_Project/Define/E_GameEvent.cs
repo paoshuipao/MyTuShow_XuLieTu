@@ -13,12 +13,35 @@ public enum E_GameEvent                           // 这里写事件
     HideLog,                    // 隐藏
 
 
-    LeftChangeItem,             // 切换左边总的 Item （ushort）
+    LeftChangeItem,             // 切换左边总的 Item （ushort 大的索引，ushort 小 底下的索引）
 
 
 
-    DaoRu_FromFile,              // 导入 通过文件(ushort 大的索引，ushort 小 底下的索引，List<FileInfo> 文件集合)
-    DaoRu_FromResult,            // 导入 通过结果
+
+    RealyDaoRu_File,             // 准备要导入（不知道是否成功,需要返回个结果的）(EButtonType 按钮样式，ushort 大的索引，ushort 小 底下的索引,List<FileInfo> 文件集合)
+    RealyDaoRu_Result,           // 准备要导入（不知道是否成功,需要返回个结果的）(EButtonType 按钮样式，ushort 大的索引，ushort 小 底下的索引,List<ResultBean> 结果集合)
+
+
+    DaoRu_FromFile,              // 直接导入 通过文件(ushort 大的索引，ushort 小 底下的索引，List<FileInfo> 文件集合)
+    DaoRu_FromResult,            // 直接导入 通过结果(ushort 大的索引，ushort 小 底下的索引，List<ResultBean> 结果集合)
+
+
+
+
+    ShowDuoTuInfo,           // 显示多图信息(ResultBean[] 文件集合，EDuoTuInfoType 展示类型)
+    CloseDuoTuInfo,          // 关闭(EDuoTuInfoType 类型)
+    OnClickNoSaveThisDuoTu,  // 点击了 不保存这个多图（EDuoTuInfoType 类型,string[] 删除路径）
+
+
+
+
+
+    //————————————————————————————————————
+
+
+    OpenFileContrl,                // 打开 文件 资源管理器
+    OpenFolderContrl,              // 打开 文件夹 资源管理器
+    CloseFileOrFolderContrl,       // 关闭 文件或者文件夹资源管理器
 
 
     //—————————————————— Old ——————————————————
@@ -50,18 +73,11 @@ public enum E_GameEvent                           // 这里写事件
 
 
     /*
-        导入过程：   点击导入  -> 发DaoRuTuFromFile/DaoRuTuFromResult  ->（在 Game_DaoRuResult 处理） 合格了才向各大项发送导入事件
+        导入过程：   点击导入  -> 发DaoRuTuFromFile/DaoRuTuFromResult  ->（在 Sub_DaoRuResult 处理） 合格了才向各大项发送导入事件
      
      */
 
 
-
-    //————————————————————————————————————
-
-
-    OpenFileContrl,                // 打开 文件 资源管理器
-    OpenFolderContrl,              // 打开 文件夹 资源管理器
-    CloseFileOrFolderContrl,       // 关闭 文件或者文件夹资源管理器
 
 
 
@@ -152,11 +168,6 @@ public enum E_GameEvent                           // 这里写事件
     CloseSingleTuInfo,     // 关闭（EGameType 标记）
     OnClickNoSaveThis,     // 点击了 不保存这个（EGameType 标记）
 
-
-
-    ShowDuoTuInfo,           // 显示多图信息(EGameType 标记，ResultBean[] 文件集合)
-    CloseDuoTuInfo,          // 关闭（EGameType 标记）
-    OnClickNoSaveThisDuoTu,  // 点击了 不保存这个多图（EGameType 标记,string[] 删除路径）
 
 
     ShowDuoTuDaoRu,         // 显示多图导入(ResultBean[] 结果集合,string 文件夹路径)

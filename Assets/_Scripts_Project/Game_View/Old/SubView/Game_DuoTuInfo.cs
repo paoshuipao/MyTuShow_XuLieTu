@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using PSPUtil;
@@ -367,3 +368,4 @@ public class Game_DuoTuInfo : SubUI
 
 
 }
+*/

@@ -1,4 +1,5 @@
-﻿using PSPUtil;
+﻿/*
+using PSPUtil;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -116,3 +117,4 @@ public class Game_GaiMing : SubUI
 
 
 }
+*/

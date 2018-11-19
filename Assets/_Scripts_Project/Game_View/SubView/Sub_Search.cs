@@ -147,18 +147,18 @@ public class Sub_Search : SubUI
             Object.Destroy(rt_Contant.GetChild(i).gameObject);
         }
         // 搜索 序列图的
-        Dictionary<string, ResultBean[]> dir = Ctrl_TextureInfo.SearchXLT(kName);
-        if (dir.Count == 0)
-        {
-            anim_SearchNull.gameObject.SetActive(true);
-            anim_SearchNull.DORestart();
-            return;
-        }
-        if (isAddHisetory)
-        {
-            AddHistroy(kName);         // 添加到历史
-        }
-        Ctrl_Coroutine.Instance.StartCoroutine(CreateXuLieTu(dir));
+//        Dictionary<string, ResultBean[]> dir = Ctrl_TextureInfo.SearchXLT(kName);
+//        if (dir.Count == 0)
+//        {
+//            anim_SearchNull.gameObject.SetActive(true);
+//            anim_SearchNull.DORestart();
+//            return;
+//        }
+//        if (isAddHisetory)
+//        {
+//            AddHistroy(kName);         // 添加到历史
+//        }
+//        Ctrl_Coroutine.Instance.StartCoroutine(CreateXuLieTu(dir));
     }
 
 

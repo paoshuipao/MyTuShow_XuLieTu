@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -245,7 +246,7 @@ public class UIStart_Game : BaseUI
     private readonly Game_DuoTuInfo sub_DuoTuInfo = new Game_DuoTuInfo();            // 多张图片信息
     private readonly Game_DuoTuDaoRu sub_DuoTuDaoRu = new Game_DuoTuDaoRu();         // 多张图片 导入
     private readonly Game_SingleTuDaoRu sub_SingleTuDaoRu = new Game_SingleTuDaoRu();// 单张图片 导入
-    private readonly Game_DaoRuResult sub_DaoRuResult = new Game_DaoRuResult();      // 导入结果
+    private readonly Sub_DaoRuResult sub_DaoRuResult = new Sub_DaoRuResult();      // 导入结果
 
 //
 //    protected override SubUI[] GetSubUI()
@@ -807,3 +808,4 @@ public class UIStart_Game : BaseUI
 
 
 }
+*/

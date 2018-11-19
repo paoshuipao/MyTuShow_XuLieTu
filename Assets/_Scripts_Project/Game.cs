@@ -36,8 +36,9 @@ public class Game : MonoBehaviour
 
     IEnumerator JumpScene()
     {
-        Ctrl_TextureInfo.Instance.OnInitData();
-        yield return new WaitForSeconds(2f);
+        Ctrl_Info.Instance.InitData();
+        Ctrl_XuLieTu.Instance.InitData();
+        yield return new WaitForSeconds(2.5f);
         Manager.Get<MySceneManager>(EF_Manager.MyScene).LoadScene(EF_Scenes._1_Start);
 
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using PSPUtil;
@@ -425,7 +426,7 @@ public class Game_DuoTuDaoRu : SubUI
     }
 
 
-    private void ShowWhicContant(bool showBigTu)      // 显示那个 内容
+    private void ShowWhicContant(bool showBigTu)                           // 显示那个 内容
     {
         if (showBigTu)        // 显示大图
         {
@@ -638,3 +639,4 @@ public class Game_DuoTuDaoRu : SubUI
     } 
 
 }
+*/

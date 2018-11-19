@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,12 @@ public class XuLieSaveBean
 
 public class Ctrl_TextureInfo : Singleton_Mono<Ctrl_TextureInfo> 
 {
+
+
+
+
+    //——————————————————Old——————————————————
+
 
     #region 序列图
 
@@ -593,3 +600,4 @@ public class Ctrl_TextureInfo : Singleton_Mono<Ctrl_TextureInfo>
 
 
 }
+*/

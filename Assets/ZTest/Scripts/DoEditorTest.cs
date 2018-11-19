@@ -1,4 +1,7 @@
-﻿#if UNITY_EDITOR
+﻿using PSPUtil.StaticUtil;
+using UnityEditor;
+
+#if UNITY_EDITOR
 
 #endif
 
@@ -11,13 +14,11 @@ public static class DoEditorTest
 
     
 
-//    [MenuItem("测试/测试")]
+    [MenuItem("测试/测试")]
     static void DoTest()
     {
 
-
-
-    }
+     }
 
 
 

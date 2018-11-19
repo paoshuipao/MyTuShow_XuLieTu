@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using PSPUtil;
+using PSPUtil.Control;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,16 +16,27 @@ public class UI_Game : BaseUI
         mLeftGroup.E_OnChooseItem += E_OnLeftGroupChange;       // 选中这个 Item
         mLeftGroup.E_OnDoubleClickItem += E_OnLeftDoubleClick;
 
-        L_LeftText[0]= Get<Text>("Left/Item1/TxLeft");
-        L_LeftText[1] = Get<Text>("Left/Item2/TxLeft");
-        L_LeftText[2] = Get<Text>("Left/Item3/TxLeft");
-        L_LeftText[3] = Get<Text>("Left/Item4/TxLeft");
-        L_LeftText[4] = Get<Text>("Left/Item5/TxLeft");
-        L_LeftText[5] = Get<Text>("Left/Item6/TxLeft");
-        L_LeftText[6] = Get<Text>("Left/Item7/TxLeft");
-        L_LeftText[7] = Get<Text>("Left/Item8/TxLeft");
+        for (int i = 0; i < 8; i++)
+        {
+            L_LeftText[i] = Get<Text>("Left/Item"+(i+1)+"/TxLeft");
+        }
+
+        for (int i = 0; i < 11; i++)
+        {
+            L_LeftButton[i] = Get<Button>("Left/Item" + (i + 1));
+            L_LeftButton[i].interactable = false;
+        }
+
+        go_Loading = GetGameObject("LoadingAnim");
+
+        // 等待选择文件或文件UI
+        go_WaitBrowser = GetGameObject("OpenBrowser");
+        tx_Wait = Get<Text>("OpenBrowser/Text");
 
 
+
+        // 一开始把之前所有的都加载进来
+        Ctrl_Coroutine.Instance.StartCoroutine(StartFirst());
 
     }
 
@@ -35,40 +50,98 @@ public class UI_Game : BaseUI
 
     protected override void OnAddListener()
     {
-        MyEventCenter.AddListener<ushort>(E_GameEvent.LeftChangeItem, E_LeftChangeItem);     // 切换其他 Item
+        MyEventCenter.AddListener<ushort,ushort>(E_GameEvent.LeftChangeItem, E_LeftChangeItem);     // 切换其他 Item
+        MyEventCenter.AddListener(E_GameEvent.OpenFileContrl, OnShowGameWaitUI_File);               // 打开 文件 资源管理器
+        MyEventCenter.AddListener(E_GameEvent.OpenFolderContrl, OnShowGameWaitUI_Folder);           // 打开 文件夹 资源管理器
+        MyEventCenter.AddListener(E_GameEvent.CloseFileOrFolderContrl, OnHideGameWaitUI_Browser);   // 关闭 文件或者文件夹资源管理器
 
     }
 
+
+
+    IEnumerator StartFirst()
+    {
+        go_Loading.SetActive(true);
+        while (!Ctrl_XuLieTu.Instance.IsInitFinish)
+        {
+            yield return 0;
+        }
+
+
+        for (ushort bigIndex = 0; bigIndex < 8; bigIndex++)
+        {
+            for (ushort bottomIndex = 0; bottomIndex < 5; bottomIndex++)
+            {
+                List<string[]> psthList = Ctrl_XuLieTu.Instance.GetPaths(bigIndex, bottomIndex);
+                for (int k = 0; k < psthList.Count; k++)
+                {
+                    string[] tmpPaths = psthList[k];
+                    List<FileInfo> fileInfos = new List<FileInfo>(tmpPaths.Length);
+                    bool isChuZai = true; // 这些路径是否存在
+                    for (int j = 0; j < tmpPaths.Length; j++)
+                    {
+                        FileInfo fileInfo = new FileInfo(tmpPaths[j]);
+                        if (!fileInfo.Exists)
+                        {
+                            isChuZai = false;
+                            break;
+                        }
+                        fileInfos.Add(fileInfo);
+                    }
+                    if (isChuZai) // 存在就导入进来
+                    {
+                        MyEventCenter.SendEvent(E_GameEvent.DaoRu_FromFile, bigIndex, bottomIndex, fileInfos);
+                        yield return 0;
+                    }
+                    else // 不存在就删除存储的
+                    {
+                        Ctrl_XuLieTu.Instance.DeleteOne(bigIndex, bottomIndex, tmpPaths);
+                    }
+                }
+
+            }
+
+            L_LeftButton[bigIndex].interactable = true;
+        }
+
+        for (int i = 0; i < 11; i++)
+        {
+            L_LeftButton[i].interactable = true;
+        }
+        go_Loading.SetActive(false);
+
+    }
+
+
     #region 私有
 
-    private readonly Text[] L_LeftText = new Text[8];
-
+    private readonly Text[] L_LeftText = new Text[8];     // 左边的 8 个序列图文字
+    private readonly Button[] L_LeftButton = new Button[11];
     private UGUI_BtnToggleGroup mLeftGroup;
+    private GameObject go_Loading;
+
+
+    // 底下的等待UI
+    private GameObject go_WaitBrowser;
+    private Text tx_Wait;
+    private const string WAIT_FILE = "等待,选择文件中...";
+    private const string WAIT_FOLDER = "等待,选择文件夹中...";
+
 
 
     private readonly Sub_ItemContant sub_ItemContant = new Sub_ItemContant();
-//    private readonly Sub_Item2 sub_Item2 = new Sub_Item2();
-//    private readonly Sub_Item3 sub_Item3 = new Sub_Item3();
-//    private readonly Sub_Item4 sub_Item4 = new Sub_Item4();
-//    private readonly Sub_Item5 sub_Item5 = new Sub_Item5();
-//    private readonly Sub_Item6 sub_Item6 = new Sub_Item6();
-//    private readonly Sub_Item7 sub_Item7 = new Sub_Item7();
-//    private readonly Sub_Item8 sub_Item8 = new Sub_Item8();
-
-
     private readonly Sub_DaoRu sub_DaoRu = new Sub_DaoRu();
     private readonly Sub_Search sub_Search = new Sub_Search();
     private readonly Sub_Setting sub_Setting = new Sub_Setting();
-
-
+    private readonly Sub_DaoRuResult sub_DaRuResult = new Sub_DaoRuResult();
+    private readonly Sub_DuoTuInfo sub_DuoTuInfo = new Sub_DuoTuInfo();
 
 
     protected override SubUI[] GetSubUI()
     {
         return new SubUI[]
         {
-            sub_ItemContant,
-            sub_DaoRu,sub_Search,sub_Setting,
+            sub_ItemContant,sub_DaoRu,sub_Search,sub_Setting,sub_DaRuResult,sub_DuoTuInfo
         };
     }
 
@@ -177,9 +250,33 @@ public class UI_Game : BaseUI
 
     //—————————————————— 事件 ——————————————————
 
-    private void E_LeftChangeItem(ushort index)           // 不是点击切换 Item ，而是其他要求切换
+    private void E_LeftChangeItem(ushort bigIndex,ushort bottomIndex)           // 不是点击切换 Item ，而是其他要求切换
     {
-        mLeftGroup.ChangeItem(index);
+        mLeftGroup.ChangeItem(bigIndex);
+    }
+
+    //—————————————————— 文件、文件夹事件 ——————————————————
+
+
+    private void OnShowGameWaitUI_File()            // 接收 显示等待的界面 文件 事件
+    {
+        go_WaitBrowser.SetActive(true);
+        tx_Wait.text = WAIT_FILE;
+
+    }
+
+    private void OnShowGameWaitUI_Folder()          // 接收 显示等待的界面 文件夹 事件
+    {
+        go_WaitBrowser.SetActive(true);
+        tx_Wait.text = WAIT_FOLDER;
+
+    }
+
+
+
+    private void OnHideGameWaitUI_Browser()         // 接收 取消等待浏览器的界面 事件
+    {
+        go_WaitBrowser.SetActive(false);
     }
 
 
