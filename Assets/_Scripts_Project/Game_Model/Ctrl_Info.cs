@@ -21,10 +21,26 @@ public class Ctrl_Info : Singleton_Mono<Ctrl_Info>
     public void InitData()
     {
         // 左边 Item 名称
-        LeftItemNames = ES3.Load(PP_LEFT_NAME, new[] { "等边（小）", "等边（中）", "等边（中）", "等边（大）", "等边（大）", "等边（大）", "横", "竖" });
+        if (ES3.KeyExists(PP_LEFT_NAME))
+        {
+            LeftItemNames = ES3.Load<string[]>(PP_LEFT_NAME);
+        }
+        else
+        {
+            LeftItemNames = new string[8];
+            LeftItemNames[0] = "<color=white>" + LeftName[0] + "</color>";
+            LeftItemNames[1] = "<color=white>" + LeftName[1] + "</color>";
+            LeftItemNames[2] = "<color=white>" + LeftName[2] + "</color>";
+            LeftItemNames[3] = "<color=white>" + LeftName[3] + "</color>";
+            LeftItemNames[4] = "<color=white>" + LeftName[4] + "</color>";
+            LeftItemNames[5] = "<color=white>" + LeftName[5] + "</color>";
+            LeftItemNames[6] = "<color=green>" + LeftName[6] + "</color>";
+            LeftItemNames[7] = "<color=green>" + LeftName[7] + "</color>";
+        }
 
 
-        // 底下名称
+        #region 底下名称
+
         if (ES3.KeyExists(PP_BOTTOM_NAMES))
         {
             BottomName = ES3.Load<string[][]>(PP_BOTTOM_NAMES);
@@ -43,8 +59,11 @@ public class Ctrl_Info : Singleton_Mono<Ctrl_Info>
 
         }
 
+        #endregion
 
-        // Grid 大小
+
+        #region Grid 大小
+
         if (ES3.KeyExists(PP_BOTTOM_SIZES))
         {
             l_GridSize = ES3.Load<GridSizeBean[][]>(PP_BOTTOM_SIZES);
@@ -87,6 +106,15 @@ public class Ctrl_Info : Singleton_Mono<Ctrl_Info>
         }
 
 
+        #endregion
+
+    }
+
+
+
+    public void ChangeLeftItemNameColor(ushort index,string colorStr)          // 改变左边Item颜色
+    {
+        LeftItemNames[index] = "<color="+ colorStr + ">" + LeftName[index] + "</color>";
     }
 
 
@@ -102,6 +130,9 @@ public class Ctrl_Info : Singleton_Mono<Ctrl_Info>
 
 
     #region 私有
+
+    private readonly string[] LeftName = { "等边（小）", "等边（中）", "等边（中）", "等边（大）", "等边（大）", "等边（大）", "横", "竖" };
+
 
     private const string PP_LEFT_NAME = "PP_LEFT_NAME";
     private const string PP_BOTTOM_NAMES = "PP_BOTTOM_NAMES";
@@ -125,11 +156,9 @@ public class Ctrl_Info : Singleton_Mono<Ctrl_Info>
 
     void OnApplicationQuit()
     {
-
         ES3.Save<string[]>(PP_LEFT_NAME, LeftItemNames);
         ES3.Save<string[][]>(PP_BOTTOM_NAMES, BottomName);
         ES3.Save<GridSizeBean[][]>(PP_BOTTOM_SIZES, l_GridSize);
-
     }
 
 

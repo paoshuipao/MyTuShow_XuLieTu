@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class UI_Game : BaseUI
 {
+
     protected override void OnStart(Transform root)
     {
         mLeftGroup = Get<UGUI_BtnToggleGroup>("Left");
@@ -40,6 +41,7 @@ public class UI_Game : BaseUI
 
     }
 
+
     protected override void OnEnable()
     {
         for (int i = 0; i < L_LeftText.Length; i++)
@@ -48,12 +50,15 @@ public class UI_Game : BaseUI
         }
     }
 
+
+
     protected override void OnAddListener()
     {
         MyEventCenter.AddListener<ushort,ushort>(E_GameEvent.LeftChangeItem, E_LeftChangeItem);     // 切换其他 Item
         MyEventCenter.AddListener(E_GameEvent.OpenFileContrl, OnShowGameWaitUI_File);               // 打开 文件 资源管理器
         MyEventCenter.AddListener(E_GameEvent.OpenFolderContrl, OnShowGameWaitUI_Folder);           // 打开 文件夹 资源管理器
         MyEventCenter.AddListener(E_GameEvent.CloseFileOrFolderContrl, OnHideGameWaitUI_Browser);   // 关闭 文件或者文件夹资源管理器
+        MyEventCenter.AddListener<ushort,string>(E_GameEvent.OnClickChangeColor, E_OnClickChangeColor);
 
     }
 
@@ -115,7 +120,7 @@ public class UI_Game : BaseUI
 
     #region 私有
 
-    private readonly Text[] L_LeftText = new Text[8];     // 左边的 8 个序列图文字
+    private readonly Text[] L_LeftText = new Text[8];             // 左边的 8 个序列图文字
     private readonly Button[] L_LeftButton = new Button[11];
     private UGUI_BtnToggleGroup mLeftGroup;
     private GameObject go_Loading;
@@ -135,13 +140,13 @@ public class UI_Game : BaseUI
     private readonly Sub_Setting sub_Setting = new Sub_Setting();
     private readonly Sub_DaoRuResult sub_DaRuResult = new Sub_DaoRuResult();
     private readonly Sub_DuoTuInfo sub_DuoTuInfo = new Sub_DuoTuInfo();
-
+    private readonly Sub_BeforeClick sub_BeforeClick = new Sub_BeforeClick();
 
     protected override SubUI[] GetSubUI()
     {
         return new SubUI[]
         {
-            sub_ItemContant,sub_DaoRu,sub_Search,sub_Setting,sub_DaRuResult,sub_DuoTuInfo
+            sub_ItemContant,sub_DaoRu,sub_Search,sub_Setting,sub_DaRuResult,sub_DuoTuInfo,sub_BeforeClick
         };
     }
 
@@ -243,19 +248,33 @@ public class UI_Game : BaseUI
 
     private void E_OnLeftDoubleClick(ushort index)       // 双击左边的Item
     {
+        MyEventCenter.SendEvent(E_GameEvent.ShowBeforeClick, (EBeforeShow)index);
 
     }
 
 
 
+
     //—————————————————— 事件 ——————————————————
+
 
     private void E_LeftChangeItem(ushort bigIndex,ushort bottomIndex)           // 不是点击切换 Item ，而是其他要求切换
     {
         mLeftGroup.ChangeItem(bigIndex);
     }
 
-    //—————————————————— 文件、文件夹事件 ——————————————————
+
+
+    private void E_OnClickChangeColor(ushort bigIndex,string colorStr)          // 确定修改左边字体的颜色
+    {
+        Ctrl_Info.Instance.ChangeLeftItemNameColor(bigIndex,colorStr);
+        L_LeftText[bigIndex].text = Ctrl_Info.Instance.LeftItemNames[bigIndex];
+
+    }
+
+
+
+    #region  文件、文件夹事件
 
 
     private void OnShowGameWaitUI_File()            // 接收 显示等待的界面 文件 事件
@@ -272,12 +291,12 @@ public class UI_Game : BaseUI
 
     }
 
-
-
     private void OnHideGameWaitUI_Browser()         // 接收 取消等待浏览器的界面 事件
     {
         go_WaitBrowser.SetActive(false);
     }
+
+    #endregion
 
 
 }

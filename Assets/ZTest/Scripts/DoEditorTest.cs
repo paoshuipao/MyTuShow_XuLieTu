@@ -14,7 +14,7 @@ public static class DoEditorTest
 
     
 
-    [MenuItem("测试/测试")]
+//    [MenuItem("测试/测试")]
     static void DoTest()
     {
 

@@ -1,26 +1,31 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using PSPUtil;
 using PSPUtil.Control;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 
 public enum EDuoTuInfoType
 {
-    DaoRu,
-    InfoShow,
-    SearchShow,
+    DaoRu,           // 导入
+    InfoShow,        // 已导入的图片双击
+    SearchShow,      // 搜索出来的图片双击
 }
 
 
 public class Sub_DuoTuInfo : SubUI
 {
+
     protected override void OnStart(Transform root)
     {
         MyEventCenter.AddListener<ResultBean[], EDuoTuInfoType>(E_GameEvent.ShowDuoTuInfo, E_Show);    // 显示
-    
+        MyEventCenter.AddListener<ushort,ushort>(E_GameEvent.LeftChangeItem, E_OnChangeLeftItem);
+
+
 
         AddButtOnClick("BtnClose", Btn_OnCloseShowInfo);
 
@@ -59,7 +64,15 @@ public class Sub_DuoTuInfo : SubUI
 
         #endregion
 
+        #region 条目
 
+        moBan_Item = GetGameObject("Contant/Top/D2_Item/MoBan");
+        rt_GridContant = Get<RectTransform>("Contant/Top/D2_Item/Contant");
+
+
+
+
+        #endregion
 
         // 切换
         go_D2Tu = GetGameObject("Contant/Top/D2_Tu");
@@ -75,23 +88,43 @@ public class Sub_DuoTuInfo : SubUI
         AddButtOnClick("Contant/Middle/Left/BtnIsDelete", Btn_OnNoSaveThis);
 
 
-        go_Bottom = GetGameObject("Contant/Bottom");
-        // 导入
 
+        // 下
+        go_Bottom = GetGameObject("Contant/Bottom");
+        for (int i = 0; i < 8; i++)
+        {
+            l_TittleNames[i] = Get<Text>("Contant/Bottom/ScrollView/Contant/Item_Item" + i + "/TxTittle");
+
+            Text[] eachList = new Text[5];
+            for (int j = 0; j < 5; j++)
+            {
+                eachList[j] = Get<Text>("Contant/Bottom/ScrollView/Contant/Item_Item" + i + "/Contant/Btn"+(j+1)+"/BtnMDR/ItemDaoRu");
+            }
+            l_DaoRuTexts[i] = eachList;
+        }
 
     }
 
+
     public override void OnEnable()
     {
-
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                l_DaoRuTexts[i][j].text = Ctrl_Info.Instance.BottomName[i][j];
+            }
+        }
     }
 
 
     #region 私有
 
+
+    private EDuoTuInfoType mCurrentType;
     private ResultBean[] mCurrentBeans;
 
-    // 上
+    // 上的大图
     private RectTransform rtAnimTu;
     private UGUI_SpriteAnim anim_Tu;
     private Slider slider_Width, slider_Height;
@@ -99,18 +132,27 @@ public class Sub_DuoTuInfo : SubUI
     private Vector2 TuSize = new Vector2(512, 512);
     private float yuanLaiWidth, yuanLaiHidth;
 
+    // 上的条目
+    private bool isFirstShowItem = true;
+    private GameObject moBan_Item;
+    private RectTransform rt_GridContant;
+    private Dictionary<GameObject, ResultBean> itemSelectK_ResutltV = new Dictionary<GameObject, ResultBean>();     // item每行的作为 Key 结果为Value
 
 
     // 切换
     private bool isShowBigTu = true;
     private GameObject go_D2Tu, go_D2Item;
     private Text tx_ChangeText;
+    private GameObject mCuurentChooseBg;
+
+
 
 
     // 下
     private GameObject go_Delete;
     private GameObject go_Bottom;
-
+    private readonly Text[] l_TittleNames = new Text[8];
+    private Text[][] l_DaoRuTexts = new Text[8][];
 
 
     public override string GetUIPathForRoot()
@@ -196,9 +238,14 @@ public class Sub_DuoTuInfo : SubUI
     }
 
 
-    private void Btn_OnChangeBiTu()                     // 点击切换成大图
+    private void Btn_OnChangeBiTu()                     // 点击切换成大图或者条目
     {
         ShowWhicContant(!isShowBigTu);
+        if (isFirstShowItem)          // 第一次点击切换成条目
+        {
+            isFirstShowItem = false;
+            Ctrl_Coroutine.Instance.StartCoroutine(StartLoadItemu());
+        }
     }
 
 
@@ -221,10 +268,138 @@ public class Sub_DuoTuInfo : SubUI
         mCurrentBeans = null;
         MyEventCenter.SendEvent(E_GameEvent.CloseDuoTuInfo, mCurrentType);
 
+
+        if (itemSelectK_ResutltV.Count > 0)
+        {
+            List<GameObject> list = new List<GameObject>(itemSelectK_ResutltV.Keys);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Object.Destroy(list[i]);
+            }
+            itemSelectK_ResutltV.Clear();
+        }
+
     }
 
+
+
+
+    #region 条目
+
+
+
+    IEnumerator StartLoadItemu()                    // 加载 Item 条目
+    {
+        // 多项 Item 
+        foreach (ResultBean bean in mCurrentBeans)
+        {
+            Transform t = InstantiateMoBan(moBan_Item, rt_GridContant);
+            itemSelectK_ResutltV.Add(t.gameObject, bean);
+
+            // 图标
+            Transform btnIcon = t.Find("BtnIcon");
+            btnIcon.GetComponent<Image>().sprite = bean.SP;
+            FileInfo fileInfo = bean.File;
+            btnIcon.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                Application.OpenURL(fileInfo.FullName);
+            });
+
+
+            // 文件名
+            t.Find("FileName").GetComponent<Text>().text = bean.File.Name;
+            // 大小
+            t.Find("Size").GetComponent<Text>().text = bean.Width + " x " + bean.Height;
+
+            // 单击这一项
+            GameObject chooseGOBg = t.Find("Choose/Bg").gameObject;
+            t.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                if (null != mCuurentChooseBg)
+                {
+                    mCuurentChooseBg.SetActive(false);
+                }
+
+                mCuurentChooseBg = chooseGOBg;
+                mCuurentChooseBg.SetActive(true);
+            });
+            // 删除按钮
+            t.Find("Choose/BtnContrl/BtnDelete").GetComponent<Button>().onClick.AddListener(() =>
+            {
+                EachBtn_Delete(t.gameObject);
+            });
+            // Up 按钮
+            t.Find("Choose/BtnContrl/BtnUp").GetComponent<Button>().onClick.AddListener(() =>
+            {
+                EeachBtn_Up(t.gameObject);
+            });
+            // Down 按钮
+            t.Find("Choose/BtnContrl/BtnDown").GetComponent<Button>().onClick.AddListener(() =>
+            {
+                EachBtn_Down(t.gameObject);
+            });
+
+            yield return 0;
+
+        }
+
+
+    }
+
+
+
+    private void EachBtn_Delete(GameObject go)                        // 点击了 Item 的 Delete
+    {
+        itemSelectK_ResutltV.Remove(go);
+        Object.Destroy(go);
+    }
+
+
+    private void EeachBtn_Up(GameObject go)                           // 点击了 Item 的 Up
+    {
+
+        ChangeDicIndex(go, -1);
+    }
+
+
+    private void EachBtn_Down(GameObject go)                         // 点击了 Item 的 Down
+    {
+        ChangeDicIndex(go, 1);
+    }
+
+    private void ChangeDicIndex(GameObject go, int add)               // 改 Item 上下
+    {
+        List<GameObject> goList = new List<GameObject>(itemSelectK_ResutltV.Keys);
+        int index = goList.IndexOf(go);    // 索引是 0 开始   GetSiblingIndex 是从 1 开始
+        int want2Index = index + add;      // 要到的 索引
+        if (want2Index < 0 || want2Index >= goList.Count)
+        {
+            return;
+        }
+
+        GameObject changeGO = goList[want2Index];
+        // List 交换
+        goList[index] = changeGO;
+        goList[want2Index] = go;
+
+        go.transform.SetSiblingIndex(want2Index + 1);    // 因为从 1 开始
+        Dictionary<GameObject, ResultBean> tmp = new Dictionary<GameObject, ResultBean>();
+
+        foreach (GameObject tmpGO in goList)
+        {
+            tmp.Add(tmpGO, itemSelectK_ResutltV[tmpGO]);
+        }
+        itemSelectK_ResutltV = tmp;
+    }
+
+
+    #endregion
+
+
+
     //—————————————————— 事件 ——————————————————
-    private EDuoTuInfoType mCurrentType;
+
+
 
     private void E_Show(ResultBean[] resultBeans, EDuoTuInfoType type)      // 显示
     {
@@ -238,10 +413,18 @@ public class Sub_DuoTuInfo : SubUI
             case EDuoTuInfoType.DaoRu:
                 go_Delete.SetActive(false);
                 go_Bottom.SetActive(true);
+                for (int i = 0; i < l_TittleNames.Length; i++)
+                {
+                    l_TittleNames[i].text = "导入 "+Ctrl_Info.Instance.LeftItemNames[i]+" 处";
+                }
                 break;
             case EDuoTuInfoType.InfoShow:
                 go_Delete.SetActive(true);
                 go_Bottom.SetActive(true);
+                for (int i = 0; i < l_TittleNames.Length; i++)
+                {
+                    l_TittleNames[i].text = "转移到 " + Ctrl_Info.Instance.LeftItemNames[i] + " 处";
+                }
                 break;
             case EDuoTuInfoType.SearchShow:
                 go_Delete.SetActive(false);
@@ -253,12 +436,7 @@ public class Sub_DuoTuInfo : SubUI
 
 
         ShowWhicContant(true);
-        Ctrl_Coroutine.Instance.StartCoroutine(StartLoadDuoTu(resultBeans));
 
-    }
-
-    IEnumerator StartLoadDuoTu(ResultBean[] resultBeans)                    // 显示调用的
-    {
 
         // 设置大图
         Sprite[] sps = new Sprite[resultBeans.Length];
@@ -273,62 +451,17 @@ public class Sub_DuoTuInfo : SubUI
         anim_Tu.ChangeAnim(sps);
         SetTuSize(yuanLaiWidth, yuanLaiHidth);
 
+    }
 
-        yield return 0;
 
-//        // 多项 Item 
-//        foreach (ResultBean bean in resultBeans)
-//        {
-//            Transform t = InstantiateMoBan(moBan_Item, rt_GridContant);
-//            itemSelectK_ResutltV.Add(t.gameObject, bean);
-//
-//            // 图标
-//            Transform btnIcon = t.Find("BtnIcon");
-//            btnIcon.GetComponent<Image>().sprite = bean.SP;
-//            FileInfo fileInfo = bean.File;
-//            btnIcon.GetComponent<Button>().onClick.AddListener(() =>
-//            {
-//                Application.OpenURL(fileInfo.FullName);
-//            });
-//
-//
-//            // 文件名
-//            t.Find("FileName").GetComponent<Text>().text = bean.File.Name;
-//            // 大小
-//            t.Find("Size").GetComponent<Text>().text = bean.Width + " x " + bean.Height;
-//
-//            // 单击这一项
-//            GameObject chooseGOBg = t.Find("Choose/Bg").gameObject;
-//            t.GetComponent<Button>().onClick.AddListener(() =>
-//            {
-//                if (null != mCuurentChooseBg)
-//                {
-//                    mCuurentChooseBg.SetActive(false);
-//                }
-//
-//                mCuurentChooseBg = chooseGOBg;
-//                mCuurentChooseBg.SetActive(true);
-//            });
-//            // 删除按钮
-//            t.Find("Choose/BtnContrl/BtnDelete").GetComponent<Button>().onClick.AddListener(() =>
-//            {
-//                EachBtn_Delete(t.gameObject);
-//            });
-//            // Up 按钮
-//            t.Find("Choose/BtnContrl/BtnUp").GetComponent<Button>().onClick.AddListener(() =>
-//            {
-//                EeachBtn_Up(t.gameObject);
-//            });
-//            // Down 按钮
-//            t.Find("Choose/BtnContrl/BtnDown").GetComponent<Button>().onClick.AddListener(() =>
-//            {
-//                EachBtn_Down(t.gameObject);
-//            });
-//
-//            yield return 0;
 
-//        }
+    private void E_OnChangeLeftItem(ushort bigIndex,ushort bottomIndex)     // 切换左边总的Item时，如果开着就关了
+    {
 
+        if (mUIGameObject.activeSelf)
+        {
+            Btn_OnCloseShowInfo();
+        }
 
     }
 
