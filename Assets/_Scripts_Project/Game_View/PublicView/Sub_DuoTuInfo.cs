@@ -127,7 +127,7 @@ public class Sub_DuoTuInfo : SubUI
         {
             for (int j = 0; j < 5; j++)
             {
-                l_DaoRuTexts[i][j].text = Ctrl_Info.Instance.BottomName[i][j];
+                l_DaoRuTexts[i][j].text = Ctrl_ContantInfo.Instance.BottomName[i][j];
                 Get<TopTipItem>("Contant/Right/DaoRu/Contant/Item_Item" + i + "/Contant/Btn" + j).mGrid = l_Grids[i][j];
 
             }
@@ -471,7 +471,7 @@ public class Sub_DuoTuInfo : SubUI
                 go_AllDaoRu.SetActive(true);
                 for (int i = 0; i < l_TittleNames.Length; i++)
                 {
-                    l_TittleNames[i].text = "导入 "+Ctrl_Info.Instance.LeftItemNames[i]+" 处";
+                    l_TittleNames[i].text = "导入 "+Ctrl_ContantInfo.Instance.LeftItemNames[i]+" 处";
                 }
                 break;
             case EDuoTuInfoType.InfoShow:
@@ -479,7 +479,7 @@ public class Sub_DuoTuInfo : SubUI
                 go_AllDaoRu.SetActive(true);
                 for (int i = 0; i < l_TittleNames.Length; i++)
                 {
-                    l_TittleNames[i].text = "转移到 " + Ctrl_Info.Instance.LeftItemNames[i] + " 处";
+                    l_TittleNames[i].text = "转移到 " + Ctrl_ContantInfo.Instance.LeftItemNames[i] + " 处";
                 }
                 break;
             case EDuoTuInfoType.SearchShow:

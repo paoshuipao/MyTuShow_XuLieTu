@@ -110,8 +110,8 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         {
             for (int j = 0; j <5; j++)
             {
-                l_BottomNames[i][j].text = Ctrl_Info.Instance.BottomName[i][j];
-                l_Grids[i][j].CallSize = Ctrl_Info.Instance.l_GridSize[i][j].CurrentSize;
+                l_BottomNames[i][j].text = Ctrl_ContantInfo.Instance.BottomName[i][j];
+                l_Grids[i][j].CallSize = Ctrl_ContantInfo.Instance.l_GridSize[i][j].CurrentSize;
 
                 Get<TopTipItem>("Item" + i + "/Bottom/Contant/GeShiItem" + (j + 1)).mGrid = l_Grids[i][j];
             }
@@ -209,7 +209,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         if (!string.IsNullOrEmpty(input_GaiMIng.text))
         {
             l_BottomNames[mCurrentBigIndex][mCurrentBottomIndex].text = input_GaiMIng.text;
-            Ctrl_Info.Instance.BottomName[mCurrentBigIndex][mCurrentBottomIndex] = input_GaiMIng.text;
+            Ctrl_ContantInfo.Instance.BottomName[mCurrentBigIndex][mCurrentBottomIndex] = input_GaiMIng.text;
         }
         Btn_CloseGaiMing();
     }
@@ -227,7 +227,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
     private void Btn_DaoRu()                           // 点击导入
     {
-        MyOpenFileOrFolder.OpenFile(Ctrl_UserInfo.Instance.DaoRuFirstPath, "选择多个文件（序列图）", EFileFilter.TuAndAll,
+        MyOpenFileOrFolder.OpenFile(Ctrl_DaoRuInfo.Instance.DaoRuFirstPath, "选择多个文件（序列图）", EFileFilter.TuAndAll,
             (filePaths) =>
             {
                 List<FileInfo> fileInfos = new List<FileInfo>(filePaths.Length);

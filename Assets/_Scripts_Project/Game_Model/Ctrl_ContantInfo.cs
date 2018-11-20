@@ -14,7 +14,7 @@ public class GridSizeBean
 
 
 
-public class Ctrl_Info : Singleton_Mono<Ctrl_Info>
+public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
 {
 
 

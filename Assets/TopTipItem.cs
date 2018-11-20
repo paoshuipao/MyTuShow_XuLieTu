@@ -36,7 +36,7 @@ public class TopTipItem : MonoBehaviour , IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (Ctrl_UserInfo.Instance.IsXuLieTuShowTip || IsAllUse)
+        if (Ctrl_DaoRuInfo.Instance.IsXuLieTuShowTip || IsAllUse)
         {
             go_TopTip.SetActive(true);
             if (null!= tx_Size)
@@ -49,7 +49,7 @@ public class TopTipItem : MonoBehaviour , IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (Ctrl_UserInfo.Instance.IsXuLieTuShowTip || IsAllUse)
+        if (Ctrl_DaoRuInfo.Instance.IsXuLieTuShowTip || IsAllUse)
         {
             go_TopTip.SetActive(false);
         }

@@ -25,7 +25,7 @@ public class Sub_DaoRu : SubUI
             isFirstShow = false;
 
             // 收藏
-            List<string> favPaths = Ctrl_UserInfo.Instance.L_FavoritesPath;
+            List<string> favPaths = Ctrl_DaoRuInfo.Instance.L_FavoritesPath;
             foreach (string favPath in favPaths)
             {
                 CreateFavoites(favPath);     // 获取之前已保存的，创建收藏按键出来
@@ -51,16 +51,16 @@ public class Sub_DaoRu : SubUI
 
     protected override void OnStart(Transform root)
     {
-        MyEventCenter.AddListener(E_GameEvent.OnClickMouseRightDown, E_OnMouseLeftClick);            // 鼠标右键点击
-//        MyEventCenter.AddListener<EGameType, ushort, List<ResultBean>, bool>(E_GameEvent.DaoRuTuFromResult, E_OnDuoTuDaoRu);  // 确定导入图片
-        MyEventCenter.AddListener(E_GameEvent.GoToNextFolderDaoRu, E_GoToNextFolderDaoRu);          // 导入后 到一个文件夹
-        MyEventCenter.AddListener(E_GameEvent.OnClickCtrlAndA, E_OnClickCtrlAndA);                  // 按下 Ctrl + A
-        MyEventCenter.AddListener(E_GameEvent.OnClickCtrlAndC, E_OnClickCtrlAndC);                  // 按下 Ctrl + C
+        MyEventCenter.AddListener(E_GameEvent.OnClickMouseRightDown, E_OnMouseLeftClick);             // 鼠标右键点击
+        MyEventCenter.AddListener<List<ResultBean>>(E_GameEvent.ChangeDaoRuGreenText, E_OnDuoTuDaoRu);// 导入成功 换成绿色字体吧
+        MyEventCenter.AddListener(E_GameEvent.GoToNextFolderDaoRu, E_GoToNextFolderDaoRu);            // 导入后 到一个文件夹
+        MyEventCenter.AddListener(E_GameEvent.OnClickCtrlAndA, E_OnClickCtrlAndA);                    // 按下 Ctrl + A
+        MyEventCenter.AddListener(E_GameEvent.OnClickCtrlAndC, E_OnClickCtrlAndC);                    // 按下 Ctrl + C
 
         // 总
         rt_Right = Get<RectTransform>("Right/Contant");
 
-        l_AddressPaths[0] = Ctrl_UserInfo.Instance.ShowFirstPath;
+        l_AddressPaths[0] = Ctrl_DaoRuInfo.Instance.ShowFirstPath;
         l_AddressPaths[1] = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         l_AddressPaths[2] = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         l_AddressPaths[3] = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -486,7 +486,7 @@ public class Sub_DaoRu : SubUI
             tx_Path.text = dir.FullName;
             topPath = dir.Name;
             l_AddressPaths[mCurrentTopIndex] = dir.FullName;
-            Ctrl_UserInfo.Instance.ShowFirstPath = dir.FullName;
+            Ctrl_DaoRuInfo.Instance.ShowFirstPath = dir.FullName;
         }
         else
         {
@@ -517,7 +517,7 @@ public class Sub_DaoRu : SubUI
 
         // 这个路径是否书签
         bool isFavorite = false; 
-        foreach (string path in Ctrl_UserInfo.Instance.L_FavoritesPath)
+        foreach (string path in Ctrl_DaoRuInfo.Instance.L_FavoritesPath)
         {
             if (tx_Path.text.Equals(path))
             {
@@ -668,7 +668,7 @@ public class Sub_DaoRu : SubUI
                 t.Find("Text").GetComponent<Text>().text = GetShortName(fileInfo.Name);
 
                 MyEnumColor biaoJiColor = MyEnumColor.Hui;
-                bool isBiaoJi = Ctrl_UserInfo.Instance.GetIsBiaoJi(fileInfo.FullName, ref biaoJiColor);
+                bool isBiaoJi = Ctrl_DaoRuInfo.Instance.GetIsBiaoJi(fileInfo.FullName, ref biaoJiColor);
                 if (isBiaoJi)
                 {
                     GameObject biaoJi = t.Find("BiaoJi").gameObject;
@@ -1299,20 +1299,20 @@ public class Sub_DaoRu : SubUI
         string favPath = tx_Path.text;
         if (isOn) 
         {
-            if (!Ctrl_UserInfo.Instance.L_FavoritesPath.Contains(favPath))
+            if (!Ctrl_DaoRuInfo.Instance.L_FavoritesPath.Contains(favPath))
             {
                 CreateFavoites(favPath);
-                Ctrl_UserInfo.Instance.L_FavoritesPath.Add(favPath);
+                Ctrl_DaoRuInfo.Instance.L_FavoritesPath.Add(favPath);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(rt_ShuQianContant);
             }
         }
         else
         {
-            if (Ctrl_UserInfo.Instance.L_FavoritesPath.Contains(favPath))
+            if (Ctrl_DaoRuInfo.Instance.L_FavoritesPath.Contains(favPath))
             {
-                int index = Ctrl_UserInfo.Instance.L_FavoritesPath.IndexOf(favPath);
+                int index = Ctrl_DaoRuInfo.Instance.L_FavoritesPath.IndexOf(favPath);
                 GameObject go = mb_Favorites[index];
-                Ctrl_UserInfo.Instance.L_FavoritesPath.RemoveAt(index);
+                Ctrl_DaoRuInfo.Instance.L_FavoritesPath.RemoveAt(index);
                 mb_Favorites.RemoveAt(index);
                 Object.DestroyImmediate(go);
             }
@@ -1463,11 +1463,11 @@ public class Sub_DaoRu : SubUI
                     if (!isNull)
                     {
                         biaoJi.GetComponent<Image>().color = MyColor.GetColor(colorEnum);
-                        Ctrl_UserInfo.Instance.AddBiaoJi(m_CurrentSelectFile.FullName,colorEnum);
+                        Ctrl_DaoRuInfo.Instance.AddBiaoJi(m_CurrentSelectFile.FullName,colorEnum);
                     }
                     else
                     {
-                        Ctrl_UserInfo.Instance.RemoveBiaoJi(m_CurrentSelectFile.FullName);
+                        Ctrl_DaoRuInfo.Instance.RemoveBiaoJi(m_CurrentSelectFile.FullName);
                     }
                     break;
             }
@@ -1479,27 +1479,27 @@ public class Sub_DaoRu : SubUI
     #endregion
 
 
-//    private void E_OnDuoTuDaoRu(EGameType type,ushort index, List<ResultBean> resultBeans, bool isFromDaoRu)       // 点击了信息页的导入
-//    {
-//        if (isFromDaoRu)
-//        {
-//            // 把导入的都变成绿色字体
-//            foreach (ResultBean resultBean in resultBeans)
-//            {
-//                foreach (GameObject go in chooseGOK_BgV.Keys)
-//                {
-//                    if (resultBean == allGoK_ResultBeanV[go])
-//                    {
-//                        go.transform.Find("Text").GetComponent<Text>().color = Color.green;
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            // 清空选择
-//            ClearAllChooseZhong();
-//        }
-//    }
+    private void E_OnDuoTuDaoRu(List<ResultBean> resultBeans)       // 导入成功 换成绿色字体吧
+    {
+        if (mUIGameObject.activeSelf)
+        {
+            // 把导入的都变成绿色字体
+            foreach (ResultBean resultBean in resultBeans)
+            {
+                foreach (GameObject go in chooseGOK_BgV.Keys)
+                {
+                    if (resultBean == allGoK_ResultBeanV[go])
+                    {
+                        go.transform.Find("Text").GetComponent<Text>().color = Color.green;
+                        break;
+                    }
+                }
+            }
+
+            // 清空选择
+            ClearAllChooseZhong();
+        }
+    }
 
 
     private void E_GoToNextFolderDaoRu()                       // 导入后 到下个文件兲

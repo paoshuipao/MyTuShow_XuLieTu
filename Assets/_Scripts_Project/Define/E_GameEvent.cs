@@ -29,7 +29,6 @@ public enum E_GameEvent                           // 这里写事件
 
 
 
-
     ShowDuoTuInfo,           // 显示多图信息(ResultBean[] 文件集合，EDuoTuInfoType 展示类型)
     CloseDuoTuInfo,          // 关闭(EDuoTuInfoType 类型)
     OnClickNoSaveThisDuoTu,  // 点击了 不保存这个多图（EDuoTuInfoType 类型,string[] 删除路径）
@@ -41,15 +40,15 @@ public enum E_GameEvent                           // 这里写事件
     OnClickChangeColor,         // 点击了改变颜色按钮(ushort 大的索引 string 颜色字符)
 
 
+
+    ChangeDaoRuGreenText,       // 导入成功 可以改变绿色字体了( List<ResultBean>)
+
     //————————————————————————————————————
 
 
     OpenFileContrl,                // 打开 文件 资源管理器
     OpenFolderContrl,              // 打开 文件夹 资源管理器
     CloseFileOrFolderContrl,       // 关闭 文件或者文件夹资源管理器
-
-
-    //—————————————————— Old ——————————————————
 
 
 
@@ -72,16 +71,8 @@ public enum E_GameEvent                           // 这里写事件
 
 
     ChangGameToggleType,            // 切换左边总的选项 （EGameType,int）
+
     GoToNextFolderDaoRu,            // 去一个文件夹导入
-
-
-
-
-    /*
-        导入过程：   点击导入  -> 发DaoRuTuFromFile/DaoRuTuFromResult  ->（在 Sub_DaoRuResult 处理） 合格了才向各大项发送导入事件
-     
-     */
-
 
 
 

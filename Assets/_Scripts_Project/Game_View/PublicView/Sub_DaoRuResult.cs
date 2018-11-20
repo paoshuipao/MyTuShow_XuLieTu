@@ -98,11 +98,11 @@ public class Sub_DaoRuResult : SubUI
                 break;
             case EButtonType.TwoBtn:
                 go_Bottom2.SetActive(true);
-                tx_GoTo2.text = "去"+Ctrl_Info.Instance.LeftItemNames[mCurrentBigIndex];
+                tx_GoTo2.text = "去"+Ctrl_ContantInfo.Instance.LeftItemNames[mCurrentBigIndex];
                 break;
             case EButtonType.ThreeBtn:
                 go_Bottom3.SetActive(true);
-                tx_GoTo3.text = "去" + Ctrl_Info.Instance.LeftItemNames[mCurrentBigIndex];
+                tx_GoTo3.text = "去" + Ctrl_ContantInfo.Instance.LeftItemNames[mCurrentBigIndex];
                 break;
             default:
                 throw new Exception("未定义 —— "+ buttonType);
@@ -110,7 +110,7 @@ public class Sub_DaoRuResult : SubUI
     }
 
 
-    private void CloseThis()                                     // 关闭
+    private void CloseThis()                                         // 关闭
     {
         mUIGameObject.SetActive(false);
 
@@ -134,7 +134,8 @@ public class Sub_DaoRuResult : SubUI
 
     private void Btn_OnNextFolder()                                     // 点击 到下个文件夹
     {
-
+        MyEventCenter.SendEvent(E_GameEvent.GoToNextFolderDaoRu);
+        CloseThis();
 
     }
 
@@ -143,7 +144,7 @@ public class Sub_DaoRuResult : SubUI
     //—————————————————— 事件 ——————————————————
 
 
- 
+
     private void E_DaoRuTuFromFile(EButtonType buttonType,ushort bigIndex, ushort bottomIndex, List<FileInfo> fileInfos)      // 通过 FileInfo 导入
     {
         mCurrentBigIndex = bigIndex;
@@ -167,6 +168,10 @@ public class Sub_DaoRuResult : SubUI
         if (isSaveOk)
         {
             MyEventCenter.SendEvent(E_GameEvent.DaoRu_FromResult, bigIndex, bottomIndex, resultBeans);
+            if (buttonType == EButtonType.ThreeBtn)
+            {
+                MyEventCenter.SendEvent(E_GameEvent.ChangeDaoRuGreenText, resultBeans);
+            }
         }
 
     }

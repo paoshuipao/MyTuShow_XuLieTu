@@ -63,7 +63,7 @@ public class UI_Game : BaseUI
     {
         for (int i = 0; i < L_LeftText.Length; i++)
         {
-            L_LeftText[i].text = Ctrl_Info.Instance.LeftItemNames[i];
+            L_LeftText[i].text = Ctrl_ContantInfo.Instance.LeftItemNames[i];
         }
 
 
@@ -290,8 +290,8 @@ public class UI_Game : BaseUI
 
     private void E_OnClickChangeColor(ushort bigIndex,string colorStr)          // 确定修改左边字体的颜色
     {
-        Ctrl_Info.Instance.ChangeLeftItemNameColor(bigIndex,colorStr);
-        L_LeftText[bigIndex].text = Ctrl_Info.Instance.LeftItemNames[bigIndex];
+        Ctrl_ContantInfo.Instance.ChangeLeftItemNameColor(bigIndex,colorStr);
+        L_LeftText[bigIndex].text = Ctrl_ContantInfo.Instance.LeftItemNames[bigIndex];
 
     }
 
