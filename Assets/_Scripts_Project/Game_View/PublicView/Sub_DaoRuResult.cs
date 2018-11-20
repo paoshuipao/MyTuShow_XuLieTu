@@ -98,11 +98,11 @@ public class Sub_DaoRuResult : SubUI
                 break;
             case EButtonType.TwoBtn:
                 go_Bottom2.SetActive(true);
-                tx_GoTo2.text = "去"+Ctrl_ContantInfo.Instance.LeftItemNames[mCurrentBigIndex];
+                tx_GoTo2.text = "去"+Ctrl_ContantInfo.Instance.LeftItemNames[mCurrentBigIndex]+"处";
                 break;
             case EButtonType.ThreeBtn:
                 go_Bottom3.SetActive(true);
-                tx_GoTo3.text = "去" + Ctrl_ContantInfo.Instance.LeftItemNames[mCurrentBigIndex];
+                tx_GoTo3.text = "去" + Ctrl_ContantInfo.Instance.LeftItemNames[mCurrentBigIndex]+"处";
                 break;
             default:
                 throw new Exception("未定义 —— "+ buttonType);

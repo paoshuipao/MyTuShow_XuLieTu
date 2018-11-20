@@ -34,6 +34,10 @@ public enum E_GameEvent                           // 这里写事件
     OnClickNoSaveThisDuoTu,  // 点击了 不保存这个多图（EDuoTuInfoType 类型,string[] 删除路径）
 
 
+    ShowSingleTuInfo,      // 显示单图信息（ResultBean 文件）
+
+
+
 
 
     ShowBeforeClick,            // 显示前置的按钮界面(EBeforeShow)
@@ -42,6 +46,10 @@ public enum E_GameEvent                           // 这里写事件
 
 
     ChangeDaoRuGreenText,       // 导入成功 可以改变绿色字体了( List<ResultBean>)
+
+
+
+    GaiBottomName,                // 底下的名称修改了（ushort 大的索引，ushort 小 底下的索引，string 修改后的名称）
 
     //————————————————————————————————————
 
@@ -69,8 +77,6 @@ public enum E_GameEvent                           // 这里写事件
     OnClickMouseLeftUp,           // 点击鼠标左键
     OnClickMouseRightDown,          // 按下鼠标右键
 
-
-    ChangGameToggleType,            // 切换左边总的选项 （EGameType,int）
 
     GoToNextFolderDaoRu,            // 去一个文件夹导入
 
@@ -112,20 +118,6 @@ public enum E_GameEvent                           // 这里写事件
 
 
 
-    ShowIsSure,            // 显示 确定是否的界面（EGameType 标记,string 标题）
-    ClickTrue,             // 点击确定(EGameType)，
-    ClickFalse,            // 点击取消(EGameType)
-
-
-    ShowSingleTuInfo,      // 显示单图信息（EGameType 标记，ResultBean 文件）
-    CloseSingleTuInfo,     // 关闭（EGameType 标记）
-    OnClickNoSaveThis,     // 点击了 不保存这个（EGameType 标记）
-
-
-
-    ShowDuoTuDaoRu,         // 显示多图导入(ResultBean[] 结果集合,string 文件夹路径)
-    ShowSingleTuDaoRu,      // 显示单张图片导入（ResultBean 结果）
-
 
 
     DelteAll,               // 所有重置
@@ -134,8 +126,6 @@ public enum E_GameEvent                           // 这里写事件
 
     ShowChangeSizeSlider,         // 显示能改变大小的Slider
 
-    ShowGeiMingUI,               // 显示改名UI(EGameType,string 原名)
-    SureGeiMing,                 // 确定改名（EGameType，string 修改后的名称）
 
     ChangeAudioVolumeing,                   // 改变音量大小ing(float 大小)
     ChangeAudioVolumeEnd,                   // 结束改变音量大小(float 大小)

@@ -162,13 +162,15 @@ public class UI_Game : BaseUI
     private readonly Sub_Setting sub_Setting = new Sub_Setting();
     private readonly Sub_DaoRuResult sub_DaRuResult = new Sub_DaoRuResult();
     private readonly Sub_DuoTuInfo sub_DuoTuInfo = new Sub_DuoTuInfo();
+    private readonly Sub_SingleTuInfo sub_SingleTuInfo = new Sub_SingleTuInfo();
     private readonly Sub_BeforeClick sub_BeforeClick = new Sub_BeforeClick();
+
 
     protected override SubUI[] GetSubUI()
     {
         return new SubUI[]
         {
-            sub_ItemContant,sub_DaoRu,sub_Search,sub_Setting,sub_DaRuResult,sub_DuoTuInfo,sub_BeforeClick
+            sub_ItemContant,sub_DaoRu,sub_Search,sub_Setting,sub_DaRuResult,sub_DuoTuInfo,sub_SingleTuInfo,sub_BeforeClick
         };
     }
 

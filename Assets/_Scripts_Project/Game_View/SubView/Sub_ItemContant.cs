@@ -32,7 +32,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     {
         MyEventCenter.AddListener<ushort,ushort,List<FileInfo>>(E_GameEvent.DaoRu_FromFile, E_OnDaoRuFromFile);
         MyEventCenter.AddListener<ushort,ushort,List<ResultBean>>(E_GameEvent.DaoRu_FromResult, E_OnDaoRuFromResult);
-        MyEventCenter.AddListener<EDuoTuInfoType>(E_GameEvent.CloseDuoTuInfo, E_CloseDuoTuInfo);                              // 关闭多图信息
+        MyEventCenter.AddListener<EDuoTuInfoType>(E_GameEvent.CloseDuoTuInfo, E_CloseDuoTuInfo);                       // 关闭多图信息
         MyEventCenter.AddListener<EDuoTuInfoType,string[]>(E_GameEvent.OnClickNoSaveThisDuoTu, E_DeleteOne);           // 多图信息中删除一个
 
 
@@ -82,6 +82,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
             // 改名
             go_GaiNing = GetGameObject("GaiNing");
+            tx_YuanMing = Get<Text>("GaiNing/Contant/Grid/Middle/TxYuan");
             tx_GaiMing = Get<Text>("GaiNing/Contant/Grid/Middle/TxGaiName");
             input_GaiMIng = Get<InputField>("GaiNing/Contant/Grid/Top/InputField");
             AddInputOnValueChanged(input_GaiMIng, (str) =>
@@ -100,6 +101,13 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         AddButtOnClick("RightContrl/DeleteAll", Btn_DaoClear);
 
 
+
+        // 清空一行
+        go_ClearOneLine = GetGameObject("ClearOneLine");
+        tx_ClearTittle = Get<Text>("ClearOneLine/Contant/Tittle");
+        tx_ClearTip = Get<Text>("ClearOneLine/Contant/Tip");
+        AddButtOnClick("ClearOneLine/Contant/Bottom/BtnSure", Btn_SureClearOneLine);
+        AddButtOnClick("ClearOneLine/Contant/Bottom/BtnFalse", Btn_ColorClearUI);
     }
 
 
@@ -151,7 +159,15 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     // 改名
     private GameObject go_GaiNing;
     private InputField input_GaiMIng;
-    private Text tx_GaiMing;
+    private Text tx_YuanMing,tx_GaiMing;
+
+
+    // 清空一行
+    private GameObject go_ClearOneLine;
+    private Text tx_ClearTittle,tx_ClearTip;
+
+
+
 
 
     public override string GetUIPathForRoot()
@@ -201,15 +217,18 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     private void E_OnBottomDoubleClick(ushort index)            // 双击 要改名
     {
         go_GaiNing.SetActive(true);
+        tx_YuanMing.text = l_BottomNames[mCurrentBigIndex][mCurrentBottomIndex].text;
     }
 
 
     private void Btn_SureGaiMing()                             // 确定改名
     {
-        if (!string.IsNullOrEmpty(input_GaiMIng.text))
+        string changeName = input_GaiMIng.text;
+        if (!string.IsNullOrEmpty(changeName))
         {
-            l_BottomNames[mCurrentBigIndex][mCurrentBottomIndex].text = input_GaiMIng.text;
-            Ctrl_ContantInfo.Instance.BottomName[mCurrentBigIndex][mCurrentBottomIndex] = input_GaiMIng.text;
+            l_BottomNames[mCurrentBigIndex][mCurrentBottomIndex].text = changeName;
+            Ctrl_ContantInfo.Instance.BottomName[mCurrentBigIndex][mCurrentBottomIndex] = changeName;
+            MyEventCenter.SendEvent(E_GameEvent.GaiBottomName, mCurrentBigIndex, mCurrentBottomIndex, changeName);
         }
         Btn_CloseGaiMing();
     }
@@ -250,8 +269,43 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
     private void Btn_DaoClear()                        // 点击清空
     {
+        go_ClearOneLine.SetActive(true);
+        int num = l_TopContant[mCurrentBigIndex][mCurrentBottomIndex].childCount;
+        if (num<=0)
+        {
+            tx_ClearTip.text = "当前页一张序列图都没有,不用清空";
+        }
+        else
+        {
+            tx_ClearTittle.text = "清空当前<color=white> " + l_BottomNames[mCurrentBigIndex][mCurrentBottomIndex].text + " </color>页所有？";
+            tx_ClearTip.text = "当前页总共有序列图<color=white> " + num + " </color>张";
+        }
+        
+    }
+
+
+    private void Btn_SureClearOneLine()                // 确定清空一行
+    {
+        RectTransform rt = l_TopContant[mCurrentBigIndex][mCurrentBottomIndex];
+        int num = rt.childCount;
+        if (num>0)
+        {
+            for (int i = 0; i < rt.childCount; i++)
+            {
+                Object.Destroy(rt.GetChild(i).gameObject);
+            }
+            Ctrl_XuLieTu.Instance.ClearOneLine(mCurrentBigIndex, mCurrentBottomIndex);
+        }
+        Btn_ColorClearUI();
+    }
+
+
+    private void Btn_ColorClearUI()                  // 关闭清空的界面
+    {
+        go_ClearOneLine.SetActive(false);
 
     }
+
 
 
 
@@ -280,7 +334,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
 
 
-    private void E_OnDaoRuFromResult(ushort bigIndex,ushort bottomIndex,List<ResultBean> resultBeans)  // 通过 ResultBean 导入
+    private void E_OnDaoRuFromResult(ushort bigIndex,ushort bottomIndex,List<ResultBean> resultBeans)      // 通过 ResultBean 导入
     {
         Transform t = InstantiateMoBan(go_MoBan, l_TopContant[bigIndex][bottomIndex]);
         InitMoBan(t, resultBeans.ToArray());

@@ -597,7 +597,7 @@ public class Sub_DaoRu : SubUI
         {
             foreach (GameObject go in chooseGOK_BgV.Keys)
             {
-                MyEventCenter.SendEvent(E_GameEvent.ShowSingleTuDaoRu, allGoK_ResultBeanV[go]);
+                MyEventCenter.SendEvent(E_GameEvent.ShowSingleTuInfo, allGoK_ResultBeanV[go]);
                 break;
             }
         }
@@ -763,7 +763,7 @@ public class Sub_DaoRu : SubUI
                 if (t.gameObject.Equals(go_CurrentSelect) && isSelect)            // 双击
                 {
                     isSelect = false;
-                    MyEventCenter.SendEvent(E_GameEvent.ShowSingleTuDaoRu, bean);
+                    MyEventCenter.SendEvent(E_GameEvent.ShowSingleTuInfo, bean);
                 }
                 else                                                              // 单击
                 {
@@ -1083,6 +1083,10 @@ public class Sub_DaoRu : SubUI
         for (int i = 1; i < sortList.Count + 1; i++)
         {
             FileInfo fileInfo = allGoK_ResultBeanV[sortList[i - 1]].File;
+            if (fileK_NewFullPathV.ContainsKey(fileInfo))
+            {
+                continue;
+            }
             string yuanName = Path.GetFileNameWithoutExtension(fileInfo.FullName);
             string path = fileInfo.FullName.Replace(@"\", "/");        
             int tmpCount = path.LastIndexOf("/", StringComparison.Ordinal);
@@ -1102,6 +1106,7 @@ public class Sub_DaoRu : SubUI
                 addIndex++;
                 fileFullPath = folderPath + newFileName + "_" + addIndex.ToString("D2") + fileInfo.Extension;
             }
+
             fileK_NewFullPathV.Add(fileInfo, fileFullPath);
 
             Transform t = InstantiateMoBan(go_MoBanGeiMing, rt_GeiMing);

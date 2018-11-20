@@ -31,15 +31,14 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
 
 
 
-    public List<string[]> GetPaths(ushort bigIndex,ushort bottomIndex)                            // 获取
+    public List<string[]> GetPaths(ushort bigIndex,ushort bottomIndex)                  // 获取
     {
 
         return new List<string[]>(indexK_KNameV[bigIndex][bottomIndex].Values);
     }
 
 
-
-    public bool Save(ushort bigIndex,ushort bottomIndex,string[] paths)            // 保存,成功返回 true
+    public bool Save(ushort bigIndex,ushort bottomIndex,string[] paths)                // 保存,成功返回 true
     {
         string kName = Path.GetFileNameWithoutExtension(paths[0]);
         if (string.IsNullOrEmpty(kName))
@@ -68,6 +67,13 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
             return;
         }
         indexK_KNameV[bigIndex][bottomIndex].Remove(kName);
+    }
+
+
+
+    public void ClearOneLine(ushort bigIndex, ushort bottomIndex)                    // 删除一行
+    {
+        indexK_KNameV[bigIndex][bottomIndex].Clear();
     }
 
 

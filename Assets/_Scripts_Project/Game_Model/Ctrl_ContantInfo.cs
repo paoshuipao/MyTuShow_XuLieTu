@@ -13,7 +13,6 @@ public class GridSizeBean
 }
 
 
-
 public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
 {
 
@@ -29,18 +28,17 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
         {
             LeftItemNames = new string[8];
             LeftItemNames[0] = "<color=white>" + LeftName[0] + "</color>";
-            LeftItemNames[1] = "<color=white>" + LeftName[1] + "</color>";
-            LeftItemNames[2] = "<color=white>" + LeftName[2] + "</color>";
-            LeftItemNames[3] = "<color=white>" + LeftName[3] + "</color>";
-            LeftItemNames[4] = "<color=white>" + LeftName[4] + "</color>";
-            LeftItemNames[5] = "<color=white>" + LeftName[5] + "</color>";
-            LeftItemNames[6] = "<color=green>" + LeftName[6] + "</color>";
-            LeftItemNames[7] = "<color=green>" + LeftName[7] + "</color>";
+            LeftItemNames[1] = "<color=green>" + LeftName[1] + "</color>";
+            LeftItemNames[2] = "<color=green>" + LeftName[2] + "</color>";
+            LeftItemNames[3] = "<color=blue>" + LeftName[3] + "</color>";
+            LeftItemNames[4] = "<color=blue>" + LeftName[4] + "</color>";
+            LeftItemNames[5] = "<color=blue>" + LeftName[5] + "</color>";
+            LeftItemNames[6] = "<color=white>" + LeftName[6] + "</color>";
+            LeftItemNames[7] = "<color=white>" + LeftName[7] + "</color>";
         }
 
 
-        #region 底下名称
-
+        // 底下名称
         if (ES3.KeyExists(PP_BOTTOM_NAMES))
         {
             BottomName = ES3.Load<string[][]>(PP_BOTTOM_NAMES);
@@ -48,21 +46,19 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
         else
         {
             BottomName = new string[8][];
-            BottomName[0] = new[] { "64", "小2", "小3", "小4", "小5" };
-            BottomName[1] = new[] { "128", "中2", "中3", "中4", "中5" };
-            BottomName[2] = new[] { "150", "中2", "中2", "中2", "中2" };
-            BottomName[3] = new[] { "230", "大2", "大3", "大4", "大5" };
-            BottomName[4] = new[] { "230", "大2", "大3", "大4", "大5" };
-            BottomName[5] = new[] { "230", "大2", "大3", "大4", "大5" };
-            BottomName[6] = new[] { "2倍小", "2倍大", "3倍小", "3倍大", "4倍" };
-            BottomName[7] = new[] { "2倍小", "2倍大", "3倍小", "3倍大", "4倍" };
+            BottomName[0] = new[] { "64", "系统", "爆炸", "特效", "边框" };
+            BottomName[1] = new[] { "128", "128", "128", "128", "边框" };
+            BottomName[2] = new[] { "150", "150", "150", "150", "边框" };
+            BottomName[3] = new[] { "230", "系统", "文字", "传送点", "边框" };
+            BottomName[4] = new[] {"技能1", "技能2", "技能3", "技能4", "技能5" };
+            BottomName[5] = new[] { "风", "火", "水", "土", "雷" };
+            BottomName[6] = new[] { "128 x 64", "256 x 128", "120 x 40", "240 x 80", "256 x 64" };
+            BottomName[7] = new[] { "64 x 128", "128 x 256", "40 x 120", "80 x 240", "64 x 256" };
 
         }
 
-        #endregion
 
-
-        #region Grid 大小
+        // Grid 大小
 
         if (ES3.KeyExists(PP_BOTTOM_SIZES))
         {
@@ -97,16 +93,16 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
             };
             l_GridSize[6] = new[]
             {
-                GetSizeBean(64, 128), GetSizeBean(128, 256), GetSizeBean(40, 120), GetSizeBean(80, 240), GetSizeBean(64, 256),
+                GetSizeBean(128, 64), GetSizeBean(256, 128), GetSizeBean(120, 40), GetSizeBean(240, 80), GetSizeBean(256, 64),
             };
             l_GridSize[7] = new[]
             {
-                GetSizeBean(128, 64), GetSizeBean(256, 128), GetSizeBean(120, 40), GetSizeBean(240, 80), GetSizeBean(256, 64),
+                GetSizeBean(64, 128), GetSizeBean(128, 256), GetSizeBean(40, 120), GetSizeBean(80, 240), GetSizeBean(64, 256),
             };
+   
         }
 
 
-        #endregion
 
     }
 
@@ -118,14 +114,11 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
     }
 
 
-
     public string[] LeftItemNames { get; private set; }          // 总 左边Item
 
     public string[][] BottomName { get; private set; }           // 底下名称
 
     public GridSizeBean[][] l_GridSize { get; private set; }     // Grid 大小
-
-
 
 
 
@@ -160,11 +153,6 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
         ES3.Save<string[][]>(PP_BOTTOM_NAMES, BottomName);
         ES3.Save<GridSizeBean[][]>(PP_BOTTOM_SIZES, l_GridSize);
     }
-
-
-
-
-
 
 
 

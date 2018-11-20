@@ -22,9 +22,9 @@ public class Sub_DuoTuInfo : SubUI
 
     protected override void OnStart(Transform root)
     {
-        MyEventCenter.AddListener<ResultBean[], EDuoTuInfoType>(E_GameEvent.ShowDuoTuInfo, E_Show);    // 显示
-        MyEventCenter.AddListener(E_GameEvent.ItemChange, E_OnChangeLeftItem);      // 左边改
-
+        MyEventCenter.AddListener<ResultBean[], EDuoTuInfoType>(E_GameEvent.ShowDuoTuInfo, E_Show);  // 显示
+        MyEventCenter.AddListener(E_GameEvent.ItemChange, E_OnChangeLeftItem);                       // 左边改
+        MyEventCenter.AddListener<ushort,ushort,string>(E_GameEvent.GaiBottomName, E_GaiBottomName); // 修改了底下的名称
 
 
         AddButtOnClick("BtnClose", Btn_OnCloseShowInfo);
@@ -146,8 +146,6 @@ public class Sub_DuoTuInfo : SubUI
     }
 
 
-
-
     private const ushort Max_TuSize = 400;   // 限制图片最大的大小
     private EDuoTuInfoType mCurrentType;
     private ResultBean[] mCurrentBeans;
@@ -174,8 +172,6 @@ public class Sub_DuoTuInfo : SubUI
     private GameObject mCuurentChooseBg;
 
 
-
-
     // 右
     private GameObject go_Delete;
     private GameObject go_AllDaoRu;
@@ -183,9 +179,8 @@ public class Sub_DuoTuInfo : SubUI
 
 
 
-
-    private readonly Text[] l_TittleNames = new Text[8];
-    private readonly Text[][] l_DaoRuTexts = new Text[8][];
+    private readonly Text[] l_TittleNames = new Text[8];      // 8 个 标题
+    private readonly Text[][] l_DaoRuTexts = new Text[8][];   // 底下名称 
 
 
     public override string GetUIPathForRoot()
@@ -499,17 +494,9 @@ public class Sub_DuoTuInfo : SubUI
         tx_Size.text = resultBeans[0].Width + "x" + resultBeans[0].Height;
 
 
-        // 设置大图
-        Sprite[] sps = new Sprite[resultBeans.Length];
-
-        for (int i = 0; i < resultBeans.Length; i++)
-        {
-            sps[i] = resultBeans[i].SP;
-        }
-
         yuanLaiWidth = resultBeans[0].Width;
         yuanLaiHidth = resultBeans[0].Height;
-        anim_Tu.ChangeAnim(sps);
+        anim_Tu.ChangeAnim(resultBeans.ToSprites());
         SetTuSize(yuanLaiWidth, yuanLaiHidth);
 
 
@@ -526,6 +513,13 @@ public class Sub_DuoTuInfo : SubUI
             Btn_OnCloseShowInfo();
         }
 
+    }
+
+
+
+    private void E_GaiBottomName(ushort bigIndex,ushort bottomIndex,string changeName)     // 修改了底下的名称
+    {
+        l_DaoRuTexts[bigIndex][bottomIndex].text = changeName;
     }
 
 
