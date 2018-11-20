@@ -48,6 +48,10 @@ public class Sub_DaoRuResult : SubUI
         AddButtOnClick("Contant/BottomBtn3/BtnFanHui", CloseThis);
         AddButtOnClick("Contant/BottomBtn3/BtnNext", Btn_OnNextFolder);
 
+
+
+        Get<Button>().onClick.AddListener(CloseThis);
+
     }
 
 
@@ -115,8 +119,6 @@ public class Sub_DaoRuResult : SubUI
         mUIGameObject.SetActive(false);
 
     }
-
-
 
 
 

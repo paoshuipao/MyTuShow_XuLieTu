@@ -1,4 +1,5 @@
 ﻿using PSPUtil;
+using PSPUtil.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +15,32 @@ public class Sub_Setting : SubUI
             for (ushort j = 0; j < 5; j++)
             {
                 l_BottomNames[i][j].text = Ctrl_ContantInfo.Instance.BottomName[i][j];
-                l_Counts[i][j].text = Ctrl_XuLieTu.Instance.GetEachCount(i, j) + " 张";
+                int count = Ctrl_XuLieTu.Instance.GetEachCount(i, j);
+                string numStr = "";
+                if (count > 40)
+                {
+                    numStr = (count + " 张").AddRed();
+                }
+                else if (count > 30)
+                {
+                    numStr = (count + " 张").AddOrange();
+                }
+                else if (count > 20)
+                {
+                    numStr = (count + " 张").AddYellow();
+                }
+                else if (count > 10)
+                {
+                    numStr = (count + " 张").AddBlue();
+                }
+                else if (count > 0)
+                {
+                    numStr = (count + " 张").AddGreen();
+                }
+
+                l_Counts[i][j].text = numStr;
             }
+
         }
     }
 
@@ -34,15 +59,22 @@ public class Sub_Setting : SubUI
         MyEventCenter.AddListener(E_GameEvent.OnClickSureDeleteAll, E_SureDeleteAll);
 
         
-        for (int i = 0; i < 8; i++)
+        for (ushort i = 0; i < 8; i++)
         {
             l_LeftTittleNames[i] = Get<Text>("TopGrid/Tittle/LeftName" + i+"/LeftName");
             Text[] l_EachBottoms = new Text[5];
             Text[] l_EachCounts= new Text[5];
-            for (int j = 0; j < 5; j++)
+            for (ushort j = 0; j < 5; j++)
             {
                 l_EachBottoms[j] = Get<Text>("TopGrid/Contant/LeftItem"+i+"/BottomItem"+j+"/TxName");
                 l_EachCounts[j] = Get<Text>("TopGrid/Contant/LeftItem"+i+"/BottomItem"+j+ "/TxNum");
+
+                ushort bigIndex = i;
+                ushort bottomIndex = j;
+                AddButtOnClick("TopGrid/Contant/LeftItem" + i + "/BottomItem" + j, () =>
+                {
+                    MyEventCenter.SendEvent(E_GameEvent.ChangeLeftItem, bigIndex, bottomIndex);
+                });
             }
             l_BottomNames[i] = l_EachBottoms;
             l_Counts[i] = l_EachCounts;
@@ -53,10 +85,6 @@ public class Sub_Setting : SubUI
     }
 
 
-    public override void OnEnable()
-    {
-
-    }
 
 
     #region 私有
@@ -74,7 +102,10 @@ public class Sub_Setting : SubUI
     }
 
 
+    public override void OnEnable()
+    {
 
+    }
 
 
     public override void OnDisable()
@@ -86,6 +117,10 @@ public class Sub_Setting : SubUI
     #endregion
 
 
+    //————————————————————————————————————
+
+   
+   
 
     private void Btn_DeleteAll()            // 点击 准备清除所有
     {
@@ -96,13 +131,16 @@ public class Sub_Setting : SubUI
 
 
 
+
+    //—————————————————— 事件 ——————————————————
+
     private void E_SureDeleteAll()            // 确定 删除所有
     {
         for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 5; j++)
             {
-                l_Counts[i][j].text = "0 张";
+                l_Counts[i][j].text = "";
             }
         }
     }
