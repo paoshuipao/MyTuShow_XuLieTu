@@ -41,7 +41,9 @@ public enum E_GameEvent                           // 这里写事件
 
 
     ShowBeforeClick,            // 显示前置的按钮界面(EBeforeShow)
-    OnClickChangeColor,         // 点击了改变颜色按钮(ushort 大的索引 string 颜色字符)
+    OnClickChangeColor,         // 点击了 改变颜色按钮(ushort 大的索引 string 颜色字符)
+    OnClickSureDeleteAll,       // 点击了 确定删除所有
+
 
 
 

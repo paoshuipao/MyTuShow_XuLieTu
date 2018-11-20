@@ -5,7 +5,6 @@ using PSPUtil.StaticUtil;
 using UnityEngine;
 
 
-
 public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
 {
 
@@ -29,11 +28,16 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
     }
 
 
+    public int GetEachCount(ushort bigIndex, ushort bottomIndex)                       // 获取每个有多少张序列图
+    {
+        Dictionary<string, string[]> dic = indexK_KNameV[bigIndex][bottomIndex];
+        return dic.Count;
+    }
+
 
 
     public List<string[]> GetPaths(ushort bigIndex,ushort bottomIndex)                  // 获取
     {
-
         return new List<string[]>(indexK_KNameV[bigIndex][bottomIndex].Values);
     }
 
@@ -78,11 +82,49 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
 
 
 
+
+    //—————————————————— 用于搜索 ——————————————————
+
+
+    private readonly Dictionary<string, ResultBean[]> kNameK_ResultBeansV = new Dictionary<string, ResultBean[]>();   // 用于搜索
+
+
+    public Dictionary<string, ResultBean[]> Search(string searchName)
+    {
+        Dictionary<string, ResultBean[]> tmpRes = new Dictionary<string, ResultBean[]>();
+        if (!string.IsNullOrEmpty(searchName))
+        {
+            foreach (string key in kNameK_ResultBeansV.Keys)
+            {
+                if (key.ToLower().Contains(searchName))
+                {
+                    tmpRes.Add(key, kNameK_ResultBeansV[key]);
+                }
+            }
+        }
+        return tmpRes;
+    }
+
+
+    public void CeateMobanInitThis(ResultBean[] resultBeans)    // 只要创建一个模版就加进来
+    {
+        string kName = Path.GetFileNameWithoutExtension(resultBeans[0].File.FullName).ToLower();
+        int addIndex = 0;
+        while (kNameK_ResultBeansV.ContainsKey(kName))
+        {
+            addIndex++;
+            kName +="("+ addIndex+")";
+        }
+        kNameK_ResultBeansV.Add(kName, resultBeans);
+
+    }
+
+
+
     #region 私有
 
     public bool IsInitFinish = false;
     private readonly Dictionary<ushort,Dictionary<ushort,Dictionary<string,string[]>>> indexK_KNameV = new Dictionary<ushort, Dictionary<ushort, Dictionary<string, string[]>>>();
-
 
 
     private static readonly string[] FIleNames = new[]

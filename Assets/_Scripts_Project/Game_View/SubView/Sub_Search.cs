@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using PSPUtil;
 using PSPUtil.Control;
-using PSPUtil.StaticUtil;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -98,11 +97,20 @@ public class Sub_Search : SubUI
     {
     }
 
+
+    private bool isSelect;               // 是否之前点击了
+
+    private IEnumerator CheckoubleClick() // 检测是否双击
+    {
+        isSelect = true;
+        yield return new WaitForSeconds(MyDefine.DoubleClickTime);
+        isSelect = false;
+    }
     #endregion
 
 
 
-    private void Btn_SureSearch(bool isShowNullTip)                       //  点击 确定搜索
+    private void Btn_SureSearch(bool isShowNullTip)                         // 点击 确定搜索
     {
 
         // 提示输入少于 2 位数
@@ -123,7 +131,7 @@ public class Sub_Search : SubUI
             return;
         }
         mCurrentInputStr = kName;
-        // 提示找不到（TODO 暂停只找序列图）
+
         if (mDropdown.value>0)
         {
             anim_SearchNull.gameObject.SetActive(true);
@@ -132,9 +140,7 @@ public class Sub_Search : SubUI
         }
 
 
-
         SearchAndShow(kName,true);     // 搜索 And 显示
-
 
     }
 
@@ -147,18 +153,20 @@ public class Sub_Search : SubUI
             Object.Destroy(rt_Contant.GetChild(i).gameObject);
         }
         // 搜索 序列图的
-//        Dictionary<string, ResultBean[]> dir = Ctrl_TextureInfo.SearchXLT(kName);
-//        if (dir.Count == 0)
-//        {
-//            anim_SearchNull.gameObject.SetActive(true);
-//            anim_SearchNull.DORestart();
-//            return;
-//        }
-//        if (isAddHisetory)
-//        {
-//            AddHistroy(kName);         // 添加到历史
-//        }
-//        Ctrl_Coroutine.Instance.StartCoroutine(CreateXuLieTu(dir));
+        Dictionary<string, ResultBean[]> dir = Ctrl_XuLieTu.Instance.Search(kName);
+
+
+        if (dir.Count == 0)
+        {
+            anim_SearchNull.gameObject.SetActive(true);
+            anim_SearchNull.DORestart();
+            return;
+        }
+        if (isAddHisetory)
+        {
+            AddHistroy(kName);         // 添加到历史
+        }
+        Ctrl_Coroutine.Instance.StartCoroutine(CreateXuLieTu(dir));
     }
 
 
@@ -185,16 +193,26 @@ public class Sub_Search : SubUI
             // 名称
             t.Find("TxName").GetComponent<Text>().text = kName;
 
-
+            t.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                if (isSelect)
+                {
+                    isSelect = false;
+                    MyEventCenter.SendEvent(E_GameEvent.ShowDuoTuInfo, resultBeanse, EDuoTuInfoType.SearchShow);
+                }
+                else
+                {
+                    Ctrl_Coroutine.Instance.StartCoroutine(CheckoubleClick());
+                }
+            });
             yield return new WaitForEndOfFrame();
         }
     }
 
 
 
-    private void Btn_Clear()
+    private void Btn_Clear()                          // 点击 清除
     {
-
         mInputField.text = "";
         for (int i = 0; i < rt_Contant.childCount; i++)
         {

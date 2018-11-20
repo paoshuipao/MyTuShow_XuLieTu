@@ -9,6 +9,7 @@ public class Sub_SingleTuInfo : SubUI
     protected override void OnStart(Transform root)
     {
         MyEventCenter.AddListener<ResultBean>(E_GameEvent.ShowSingleTuInfo, E_Show);
+        MyEventCenter.AddListener(E_GameEvent.ItemChange, E_OnChangeLeftItem);                       // 左边改动
 
 
         tx_Name = Get<Text>("Right/InfoName/Name");
@@ -160,7 +161,6 @@ public class Sub_SingleTuInfo : SubUI
     //—————————————————— 事件 ——————————————————
 
 
-
     private void E_Show(ResultBean resultBeans)      // 显示
     {
         mCurrentResultBean = resultBeans;
@@ -178,4 +178,17 @@ public class Sub_SingleTuInfo : SubUI
 
 
     }
+
+
+
+    private void E_OnChangeLeftItem()     // 切换左边总的Item时，如果开着就关了
+    {
+
+        if (mUIGameObject.activeSelf)
+        {
+            Btn_OnCloseShowInfo();
+        }
+
+    }
+
 }

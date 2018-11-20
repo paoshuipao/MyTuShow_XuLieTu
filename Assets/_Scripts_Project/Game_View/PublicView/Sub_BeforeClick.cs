@@ -13,6 +13,7 @@ public enum EBeforeShow
     Color6,
     Color7,
     Color8,
+    DeleteAllSure,
 
 }
 
@@ -29,6 +30,8 @@ public class Sub_BeforeClick : SubUI
 
         MyEventCenter.AddListener<EBeforeShow>(E_GameEvent.ShowBeforeClick, E_Show);
 
+
+        // 颜色
         l_ColorsStr[0] = "white";
         l_ColorsStr[1] = "red";
         l_ColorsStr[2] = "#ff00ffff";
@@ -55,14 +58,24 @@ public class Sub_BeforeClick : SubUI
         }
 
 
+        // 删除所有
+        go_DeleteAll = GetGameObject("Right/DeleteAll");
+        AddButtOnClick("Right/DeleteAll", Btn_DeleteSure);
+
     }
 
 
     #region 私有
+
+    // 颜色
     private EBeforeShow mCurrentType;
     private readonly GameObject[] l_GoColors = new GameObject[8];
     private readonly string[] l_ColorsStr = new string[6];
     private GameObject mCurrentShowGO;
+
+    // 删除所有
+    private GameObject go_DeleteAll;
+
 
 
     public override string GetUIPathForRoot()
@@ -78,6 +91,8 @@ public class Sub_BeforeClick : SubUI
     public override void OnDisable()
     {
     }
+
+
     #endregion
 
     private void Btn_OnBigClick()          // 点击了最大的按钮
@@ -86,6 +101,19 @@ public class Sub_BeforeClick : SubUI
         mCurrentShowGO.SetActive(false);
         mCurrentShowGO = null;
     }
+
+
+
+    private void Btn_DeleteSure()           // 点击 确定删除
+    {
+        MyEventCenter.SendEvent(E_GameEvent.OnClickSureDeleteAll);
+        Btn_OnBigClick();
+    }
+
+
+
+
+    //—————————————————— 事件——————————————————
 
 
     private void E_Show(EBeforeShow showWhich)
@@ -104,11 +132,16 @@ public class Sub_BeforeClick : SubUI
             case EBeforeShow.Color7:
             case EBeforeShow.Color8:
                 mCurrentShowGO = l_GoColors[(ushort)showWhich];
-                mCurrentShowGO.SetActive(true);
+                break;
+            case EBeforeShow.DeleteAllSure:
+                mCurrentShowGO = go_DeleteAll;
                 break;
             default:
                 throw new Exception("未定义");
         }
+
+        mCurrentShowGO.SetActive(true);
+
 
     }
 

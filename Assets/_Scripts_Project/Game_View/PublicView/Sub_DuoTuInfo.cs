@@ -23,7 +23,7 @@ public class Sub_DuoTuInfo : SubUI
     protected override void OnStart(Transform root)
     {
         MyEventCenter.AddListener<ResultBean[], EDuoTuInfoType>(E_GameEvent.ShowDuoTuInfo, E_Show);  // 显示
-        MyEventCenter.AddListener(E_GameEvent.ItemChange, E_OnChangeLeftItem);                       // 左边改
+        MyEventCenter.AddListener(E_GameEvent.ItemChange, E_OnChangeLeftItem);                       // 左边改动
         MyEventCenter.AddListener<ushort,ushort,string>(E_GameEvent.GaiBottomName, E_GaiBottomName); // 修改了底下的名称
 
 
