@@ -823,7 +823,30 @@ public class FileBrowser
 
     private readonly List<string> parentFolderPaths = new List<string>();
 
-    public string GetNextFolderPath()
+
+    public string GetPreFolderPath()            // 获得上一文件夹
+    {
+        string currentPath = m_pCurrentDirectory.FullName;
+        for (int i = 0; i < parentFolderPaths.Count; i++)
+        {
+            if (parentFolderPaths[i] == currentPath)
+            {
+                int index = i - 1;
+                if (index < 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    return parentFolderPaths[index];
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public string GetNextFolderPath()            // 获得上一文件夹
     {
         string currentPath = m_pCurrentDirectory.FullName;
         for (int i = 0; i < parentFolderPaths.Count; i++)
@@ -842,9 +865,6 @@ public class FileBrowser
             }
         }
         return null;
-
-
-
     }
 
 

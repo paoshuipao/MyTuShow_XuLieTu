@@ -256,6 +256,9 @@ public class Sub_DaoRu : SubUI
         #endregion
 
 
+        AddButtOnClick("Right/Contant/ShangXia/BtnPre", Btn_PreFolder);
+        AddButtOnClick("Right/Contant/ShangXia/BtnNext", Btn_NextFolder);
+
     }
 
 
@@ -431,6 +434,10 @@ public class Sub_DaoRu : SubUI
 
 
     #endregion
+
+  
+
+
 
     #endregion
 
@@ -1507,23 +1514,13 @@ public class Sub_DaoRu : SubUI
     }
 
 
-    private void E_GoToNextFolderDaoRu()                       // 导入后 到下个文件兲
+    private void E_GoToNextFolderDaoRu()                            // 导入后 到下个文件兲
     {
         if (!mUIGameObject.activeSelf)
         {
             return;
         }
-        string nextPath = mFileBrowser.GetNextFolderPath();
-        if (string.IsNullOrEmpty(nextPath))
-        {
-            MyLog.Red("没有下个文件夹了");
-        }
-        else
-        {
-            mFileBrowser.Relocate(nextPath);
-            RefreshMiddleContent();
-        }
-
+        Btn_NextFolder();
     }
 
 
@@ -1577,6 +1574,36 @@ public class Sub_DaoRu : SubUI
         return sortList;
     }
 
+
+
+
+    private void Btn_PreFolder()                            // 到上一文件夹
+    {
+        string prePath = mFileBrowser.GetPreFolderPath();
+        if (string.IsNullOrEmpty(prePath))
+        {
+            MyLog.Red("没有下个文件夹了");
+        }
+        else
+        {
+            mFileBrowser.Relocate(prePath);
+            RefreshMiddleContent();
+        }
+    }
+
+    private void Btn_NextFolder()                          // 到下一文件夹
+    {
+        string nextPath = mFileBrowser.GetNextFolderPath();
+        if (string.IsNullOrEmpty(nextPath))
+        {
+            MyLog.Red("没有下个文件夹了");
+        }
+        else
+        {
+            mFileBrowser.Relocate(nextPath);
+            RefreshMiddleContent();
+        }
+    }
 
 
 }

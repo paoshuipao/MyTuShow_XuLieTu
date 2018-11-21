@@ -46,13 +46,13 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
         else
         {
             BottomName = new string[8][];
-            BottomName[0] = new[] { "64", "系统", "爆炸", "流光", "边框" };
-            BottomName[1] = new[] { "技能", "系统", "128", "光", "边框" };
-            BottomName[2] = new[] { "150", "150", "150", "150", "边框" };
-            BottomName[3] = new[] { "230", "系统", "文字", "传送点", "边框" };
-            BottomName[4] = new[] {"技能1", "技能2", "技能3", "技能4", "技能5" };
+            BottomName[0] = new[] { "圈圈", XI_TONG, WEN_ZI, "64", KUANG };
+            BottomName[1] = new[] { "技能", XI_TONG, WEN_ZI, "动物", KUANG };
+            BottomName[2] = new[] { "技能", XI_TONG, WEN_ZI, "150", KUANG };
+            BottomName[3] = new[] { "道具", XI_TONG, WEN_ZI, "传送点", KUANG };
+            BottomName[4] = new[] {"龙", "230", "230", "230", "230" };
             BottomName[5] = new[] { "火", "水", "风、雷", "土、草", "光、暗" };
-            BottomName[6] = new[] { "128 x 64", "256 x 128", "120 x 40", "240 x 80", "256 x 64" };
+            BottomName[6] = new[] { "128 x 64", "256 x 128", WEN_ZI, "240 x 80", "256 x 64" };
             BottomName[7] = new[] { "64 x 128", "128 x 256", "40 x 120", "80 x 240", "64 x 256" };
 
         }
@@ -93,7 +93,7 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
             };
             l_GridSize[6] = new[]
             {
-                GetSizeBean(128, 64), GetSizeBean(256, 128), GetSizeBean(120, 40), GetSizeBean(240, 80), GetSizeBean(256, 64),
+                GetSizeBean(128, 64), GetSizeBean(256, 128), GetSizeBean(256, 128), GetSizeBean(240, 80), GetSizeBean(256, 64),
             };
             l_GridSize[7] = new[]
             {
@@ -139,6 +139,12 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
         bean.ChangeValue = 0;
         return bean;
     }
+
+
+    private const string WEN_ZI = "<color=#00FF00>文字</color>";
+    private const string XI_TONG = "<color=#00EE76>系统</color>";
+    private const string KUANG = "<color=#00EE00>边框</color>";
+
 
 
     #endregion

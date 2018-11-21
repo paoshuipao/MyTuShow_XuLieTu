@@ -116,17 +116,17 @@ public class UI_Game : BaseUI
                     if (isChuZai) // 存在就导入进来
                     {
                         MyEventCenter.SendEvent(E_GameEvent.DaoRu_FromFile, bigIndex, bottomIndex, fileInfos);
-                        yield return 0;
                     }
                     else // 不存在就删除存储的
                     {
                         Ctrl_XuLieTu.Instance.DeleteOne(bigIndex, bottomIndex, tmpPaths);
                     }
                 }
-
+                yield return 0;
             }
 
             L_LeftButton[bigIndex].interactable = true;
+            yield return new WaitForSeconds(0.1f);
         }
 
         for (int i = 0; i < 11; i++)
