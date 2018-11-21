@@ -126,7 +126,7 @@ public class UI_Game : BaseUI
             }
 
             L_LeftButton[bigIndex].interactable = true;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
 
         for (int i = 0; i < 11; i++)

@@ -22,6 +22,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
     public void Show(ushort bigIndex,ushort bottomIndex)
     {
+        MyLog.Red("运行这里？");
         mCurrentBigIndex = bigIndex;
         mCurrentBottomIndex = bottomIndex;
 
@@ -49,7 +50,9 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         MyEventCenter.AddListener<EDuoTuInfoType>(E_GameEvent.CloseDuoTuInfo, E_CloseDuoTuInfo);                       // 关闭多图信息
         MyEventCenter.AddListener<EDuoTuInfoType,string[]>(E_GameEvent.OnClickNoSaveThisDuoTu, E_DeleteOne);           // 多图信息中删除一个
         MyEventCenter.AddListener(E_GameEvent.OnClickSureDeleteAll, E_SureDeleteAl);                                   // 删除所有
-        MyEventCenter.AddListener<List<ResultBean>>(E_GameEvent.DaoRuSucees2Delete, E_DaoRuSucees2Delete);            // 转换成功
+        MyEventCenter.AddListener<List<ResultBean>>(E_GameEvent.DaoRuSucees2Delete, E_DaoRuSucees2Delete);             // 转换成功
+
+
 
 
         // 模版

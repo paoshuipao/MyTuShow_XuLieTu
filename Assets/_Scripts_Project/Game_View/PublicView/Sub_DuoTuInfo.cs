@@ -81,6 +81,7 @@ public class Sub_DuoTuInfo : SubUI
         tx_Name = Get<Text>("Contant/Right/Top/TxInfo/Name/Name");
         tx_Num = Get<Text>("Contant/Right/Top/TxInfo/Num/Num");
         tx_Size = Get<Text>("Contant/Right/Top/TxInfo/Size/Num");
+        go_NoEqualTip = GetGameObject("Contant/Right/Top/TxInfo/NoEqualTip");
 
         // 切换
         go_D2Tu = GetGameObject("Contant/Left/D2_Tu");
@@ -177,7 +178,7 @@ public class Sub_DuoTuInfo : SubUI
     private GameObject go_Delete;
     private GameObject go_AllDaoRu;
     private Text tx_Name,tx_Num,tx_Size;
-
+    private GameObject go_NoEqualTip;
 
 
     private readonly Text[] l_TittleNames = new Text[8];      // 8 个 标题
@@ -257,7 +258,7 @@ public class Sub_DuoTuInfo : SubUI
 
 
 
-    private void Btn_OnOpenFolder()                     // 点击打开文件夹
+    private void Btn_OnOpenFolder()                       // 点击打开文件夹
     {
         FileInfo file1 = mCurrentBeans[0].File;
         DirectoryInfo dir = file1.Directory;
@@ -268,7 +269,7 @@ public class Sub_DuoTuInfo : SubUI
     }
 
 
-    private void Btn_OnChangeBiTu()                     // 点击切换成大图或者条目
+    private void Btn_OnChangeBiTu()                      // 点击切换成大图或者条目
     {
         ShowWhicContant(!isShowBigTu);
         if (isFirstShowItem)          // 第一次点击切换成条目
@@ -277,7 +278,6 @@ public class Sub_DuoTuInfo : SubUI
             Ctrl_Coroutine.Instance.StartCoroutine(StartLoadItemu());
         }
     }
-
 
 
     private void Sldier_OnSpeedChange(float value)      // 拖动滑动条改变速度
@@ -310,7 +310,6 @@ public class Sub_DuoTuInfo : SubUI
         }
 
     }
-
 
 
 
@@ -486,6 +485,18 @@ public class Sub_DuoTuInfo : SubUI
         SetTuSize(yuanLaiWidth, yuanLaiHidth);
 
 
+        // 是否尺寸全部相同 
+        bool isAllSameSize = true;
+
+        for (int i = 0; i < resultBeans.Length; i++)
+        {
+            if (yuanLaiWidth != resultBeans[i].Width || yuanLaiHidth != resultBeans[i].Height)
+            {
+                isAllSameSize = false;
+                break;
+            }
+        }
+        go_NoEqualTip.SetActive(!isAllSameSize);
 
     }
 
