@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using PSPUtil;
 using PSPUtil.Control;
+using PSPUtil.StaticUtil;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -199,6 +200,7 @@ public class Sub_DuoTuInfo : SubUI
 
     private void ShowWhicContant(bool showBigTu)                      // 显示那个 内容
     {
+        
         if (showBigTu)        // 显示大图
         {
             isShowBigTu = true;
@@ -312,25 +314,9 @@ public class Sub_DuoTuInfo : SubUI
 
 
 
-    private void ManyBtn_DaoRu(ushort bigIndex,ushort bottomIndex)                       // 多项的导入
+    private void ManyBtn_DaoRu(ushort bigIndex,ushort bottomIndex)      // 点击 多项的导入
     {
-        EButtonType buttonTyp;
-        switch (mCurrentType)
-        {
-            case EDuoTuInfoType.DaoRu:
-                buttonTyp = EButtonType.ThreeBtn;
-                break;
-            case EDuoTuInfoType.InfoShow:
-                buttonTyp = EButtonType.TwoBtn;
-                break;
-            case EDuoTuInfoType.SearchShow:
-                buttonTyp = EButtonType.OneBtn;
-                break;
-            default:
-                throw new Exception("未定义");
-        }
-
-        MyEventCenter.SendEvent(E_GameEvent.RealyDaoRu_Result, buttonTyp, bigIndex, bottomIndex, new List<ResultBean>(mCurrentBeans));
+        MyEventCenter.SendEvent(E_GameEvent.RealyDaoRu_Result, mCurrentType, bigIndex, bottomIndex, new List<ResultBean>(mCurrentBeans));
         Btn_OnCloseShowInfo();
     }
 
@@ -485,7 +471,7 @@ public class Sub_DuoTuInfo : SubUI
                 throw new Exception("未定义");
         }
 
-
+        isFirstShowItem = true;
         ShowWhicContant(true);
 
         // 设置右边信息

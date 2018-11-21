@@ -46,12 +46,12 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
         else
         {
             BottomName = new string[8][];
-            BottomName[0] = new[] { "64", "系统", "爆炸", "特效", "边框" };
-            BottomName[1] = new[] { "128", "128", "128", "128", "边框" };
+            BottomName[0] = new[] { "64", "系统", "爆炸", "流光", "边框" };
+            BottomName[1] = new[] { "技能", "系统", "128", "光", "边框" };
             BottomName[2] = new[] { "150", "150", "150", "150", "边框" };
             BottomName[3] = new[] { "230", "系统", "文字", "传送点", "边框" };
             BottomName[4] = new[] {"技能1", "技能2", "技能3", "技能4", "技能5" };
-            BottomName[5] = new[] { "风", "火", "水", "土", "雷" };
+            BottomName[5] = new[] { "火", "水", "风、雷", "土、草", "光、暗" };
             BottomName[6] = new[] { "128 x 64", "256 x 128", "120 x 40", "240 x 80", "256 x 64" };
             BottomName[7] = new[] { "64 x 128", "128 x 256", "40 x 120", "80 x 240", "64 x 256" };
 
@@ -102,8 +102,6 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
    
         }
 
-
-
     }
 
 
@@ -124,7 +122,8 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
 
     #region 私有
 
-    private readonly string[] LeftName = { "等边（小）", "等边（中）", "等边（中）", "等边（大）", "等边（大）", "等边（大）", "横", "竖" };
+
+    private readonly string[] LeftName = { "64（小）", "128（中）", "150（中）", "230（大）", "230（技能）", "230（元素）", "横", "竖" };
 
 
     private const string PP_LEFT_NAME = "PP_LEFT_NAME";

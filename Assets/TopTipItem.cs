@@ -1,4 +1,6 @@
-﻿using PSPUtil.StaticUtil;
+﻿using PSPUtil;
+using PSPUtil.Attribute;
+using PSPUtil.StaticUtil;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,8 +9,9 @@ public class TopTipItem : MonoBehaviour , IPointerEnterHandler, IPointerExitHand
 {
 
     public UGUI_Grid mGrid;
-    public bool IsAllUse = false;
 
+    [MyHead("是导入按钮就 true")]
+    public bool isDaoRuBtn;
 
 
     private GameObject go_TopTip;
@@ -30,14 +33,23 @@ public class TopTipItem : MonoBehaviour , IPointerEnterHandler, IPointerExitHand
             }
 
         }
+
+        if (isDaoRuBtn)
+        {
+            MyEventCenter.AddListener<ResultBean[],EDuoTuInfoType> (E_GameEvent.ShowDuoTuInfo, E_ShowDuoTuInfo);
+        }
+
         go_TopTip.SetActive(false);
     }
 
 
+    private bool isShow;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (Ctrl_DaoRuInfo.Instance.IsXuLieTuShowTip || IsAllUse)
+        if (Ctrl_DaoRuInfo.Instance.IsXuLieTuShowTip)
         {
+            isShow = true;
             go_TopTip.SetActive(true);
             if (null!= tx_Size)
             {
@@ -49,13 +61,32 @@ public class TopTipItem : MonoBehaviour , IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (Ctrl_DaoRuInfo.Instance.IsXuLieTuShowTip || IsAllUse)
+        if (Ctrl_DaoRuInfo.Instance.IsXuLieTuShowTip)
+        {
+            isShow = false;
+            go_TopTip.SetActive(false);
+        }
+    }
+
+    private void E_ShowDuoTuInfo(ResultBean[] resultBeans,EDuoTuInfoType type)
+    {
+        if (isShow && go_TopTip.activeSelf)
         {
             go_TopTip.SetActive(false);
         }
-       
-
     }
+
+
+
+
+    void OnDestroy()
+    {
+        if (isDaoRuBtn)
+        {
+            MyEventCenter.RemoveListener<ResultBean[],EDuoTuInfoType>(E_GameEvent.ShowDuoTuInfo, E_ShowDuoTuInfo);
+        }
+    }
+
 
 
 

@@ -115,7 +115,9 @@ public class Sub_Search : SubUI
 
         // 提示输入少于 2 位数
         string kName = mInputField.text;
-        if (string.IsNullOrEmpty(kName) || kName.Length<=1)
+
+        int min = isShowNullTip ? 1 : 2;
+        if (string.IsNullOrEmpty(kName) || kName.Length< min)
         {
             if (isShowNullTip)
             {

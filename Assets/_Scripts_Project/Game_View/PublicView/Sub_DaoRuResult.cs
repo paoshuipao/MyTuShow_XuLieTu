@@ -8,13 +8,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public enum EButtonType
-{
-    OneBtn,
-    TwoBtn,
-    ThreeBtn
-}
-
 
 public class Sub_DaoRuResult : SubUI 
 {
@@ -23,8 +16,8 @@ public class Sub_DaoRuResult : SubUI
     protected override void OnStart(Transform root)
     {
 
-        MyEventCenter.AddListener<EButtonType, ushort,ushort,List<FileInfo>>(E_GameEvent.RealyDaoRu_File, E_DaoRuTuFromFile);
-        MyEventCenter.AddListener<EButtonType, ushort,ushort,List<ResultBean>>(E_GameEvent.RealyDaoRu_Result, E_DaoRuFromTuResult);
+        MyEventCenter.AddListener<EDuoTuInfoType, ushort,ushort,List<FileInfo>>(E_GameEvent.RealyDaoRu_File, E_DaoRuTuFromFile);
+        MyEventCenter.AddListener<EDuoTuInfoType, ushort,ushort,List<ResultBean>>(E_GameEvent.RealyDaoRu_Result, E_DaoRuFromTuResult);
 
 
         go_Ok = GetGameObject("Contant/Ok");
@@ -88,28 +81,28 @@ public class Sub_DaoRuResult : SubUI
     #endregion
 
 
-    public void ShowThis(bool isSaveOk, EButtonType buttonType)       // 显示 
+    public void ShowThis(bool isSaveOk, EDuoTuInfoType type)       // 显示 
     {
         mUIGameObject.SetActive(true);
         go_Ok.SetActive(isSaveOk);
         go_Error.SetActive(!isSaveOk);
         go_Bottom1.SetActive(false);go_Bottom2.SetActive(false);go_Bottom3.SetActive(false);
         
-        switch (buttonType)
+        switch (type)
         {
-            case EButtonType.OneBtn:
+            case EDuoTuInfoType.SearchShow:
                 go_Bottom1.SetActive(true);
                 break;
-            case EButtonType.TwoBtn:
+            case EDuoTuInfoType.InfoShow:
                 go_Bottom2.SetActive(true);
                 tx_GoTo2.text = "去"+Ctrl_ContantInfo.Instance.LeftItemNames[mCurrentBigIndex]+"处";
                 break;
-            case EButtonType.ThreeBtn:
+            case EDuoTuInfoType.DaoRu:
                 go_Bottom3.SetActive(true);
                 tx_GoTo3.text = "去" + Ctrl_ContantInfo.Instance.LeftItemNames[mCurrentBigIndex]+"处";
                 break;
             default:
-                throw new Exception("未定义 —— "+ buttonType);
+                throw new Exception("未定义 —— "+ type);
         }
     }
 
@@ -147,12 +140,12 @@ public class Sub_DaoRuResult : SubUI
 
 
 
-    private void E_DaoRuTuFromFile(EButtonType buttonType,ushort bigIndex, ushort bottomIndex, List<FileInfo> fileInfos)      // 通过 FileInfo 导入
+    private void E_DaoRuTuFromFile(EDuoTuInfoType type,ushort bigIndex, ushort bottomIndex, List<FileInfo> fileInfos)      // 通过 FileInfo 导入
     {
         mCurrentBigIndex = bigIndex;
         mCurrentBottomIndex = bottomIndex;
         bool isSaveOk = Ctrl_XuLieTu.Instance.Save(bigIndex, bottomIndex,fileInfos.ToFullPaths());
-        ShowThis(isSaveOk, buttonType);
+        ShowThis(isSaveOk, type);
         if (isSaveOk)
         {
             MyEventCenter.SendEvent(E_GameEvent.DaoRu_FromFile, bigIndex, bottomIndex, fileInfos);
@@ -161,18 +154,25 @@ public class Sub_DaoRuResult : SubUI
 
 
    
-    private void E_DaoRuFromTuResult(EButtonType buttonType, ushort bigIndex, ushort bottomIndex, List<ResultBean> resultBeans) // 通过 ResultBean 导入
+    private void E_DaoRuFromTuResult(EDuoTuInfoType type, ushort bigIndex, ushort bottomIndex, List<ResultBean> resultBeans) // 通过 ResultBean 导入
     {
         mCurrentBigIndex = bigIndex;
         mCurrentBottomIndex = bottomIndex;
         bool isSaveOk = Ctrl_XuLieTu.Instance.Save(bigIndex, bottomIndex, resultBeans.ToFullPaths());
-        ShowThis(isSaveOk, buttonType);
+        ShowThis(isSaveOk, type);
         if (isSaveOk)
         {
             MyEventCenter.SendEvent(E_GameEvent.DaoRu_FromResult, bigIndex, bottomIndex, resultBeans);
-            if (buttonType == EButtonType.ThreeBtn)
+            switch (type)
             {
-                MyEventCenter.SendEvent(E_GameEvent.ChangeDaoRuGreenText, resultBeans);
+                case EDuoTuInfoType.DaoRu:
+                    MyEventCenter.SendEvent(E_GameEvent.ChangeDaoRuGreenText, resultBeans);   // 告诉改颜色
+                    break;
+                case EDuoTuInfoType.InfoShow:
+                    MyEventCenter.SendEvent(E_GameEvent.DaoRuSucees2Delete, resultBeans);
+                    break;
+                case EDuoTuInfoType.SearchShow:
+                    break;
             }
         }
 

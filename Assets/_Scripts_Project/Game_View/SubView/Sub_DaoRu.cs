@@ -675,7 +675,6 @@ public class Sub_DaoRu : SubUI
                     biaoJi.SetActive(true);
                     biaoJi.GetComponent<Image>().color = MyColor.GetColor(biaoJiColor);
                 }
-
                 break;
             case MiddleButtonType.Drive:     // 磁盘
                 t = InstantiateMoBan(moBan_YinPan, t_MiddleGrid, YINPAN_NAME, true);
@@ -782,6 +781,7 @@ public class Sub_DaoRu : SubUI
                     }
                     if (isShift && chooseGOK_BgV.Count > 0)         // 按下 Shift
                     {
+                        rt_Kuang.anchoredPosition = StartPosition;
 
                         List<GameObject> tmpList = new List<GameObject>(chooseGOK_BgV.Keys);
                         GameObject lastGo = tmpList[tmpList.Count - 1];
@@ -1040,31 +1040,33 @@ public class Sub_DaoRu : SubUI
     private readonly Dictionary<FileInfo,string> fileK_NewFullPathV = new Dictionary<FileInfo, string>();
     private void Btn_GeiMing()                     // 点击 准备改名
     {
-        Ctrl_Coroutine.Instance.StartCoroutine(StartSetGeiMingItem(input_GeiMing));
+        Ctrl_Coroutine.Instance.StopCoroutine(StartSetGeiMingItem(input_GeiMing.text));
+        Ctrl_Coroutine.Instance.StartCoroutine(StartSetGeiMingItem(input_GeiMing.text));
         go_IsGaiMing.SetActive(true);
 
     }
 
     private void Btn_GeiMing222()                 // 点击 再次改名
     {
-        Ctrl_Coroutine.Instance.StartCoroutine(StartSetGeiMingItem(input_GeiMing222));
+//        Ctrl_Coroutine.Instance.StartCoroutine(StartSetGeiMingItem(input_GeiMing222));
     }
 
     private void InputEnd_GeiMing222(string value)             // 输入完成 再次改名
     {
         if (!string.IsNullOrEmpty(value) && value.Length >1)
         {
-            Ctrl_Coroutine.Instance.StartCoroutine(StartSetGeiMingItem(input_GeiMing222));
+            Ctrl_Coroutine.Instance.StopCoroutine(StartSetGeiMingItem(input_GeiMing222.text));
+            Ctrl_Coroutine.Instance.StartCoroutine(StartSetGeiMingItem(input_GeiMing222.text));
         }
     }
 
 
     private int addIndex;
 
-    IEnumerator StartSetGeiMingItem(InputField inputField)         // 设置名称每个小 Item
+    IEnumerator StartSetGeiMingItem(string newFileName)         // 设置名称每个小 Item
     {
         addIndex = 0;
-        if (rt_GeiMing.childCount > 0)
+        if (rt_GeiMing.childCount > 0 || fileK_NewFullPathV.Count>0)
         {
             for (int i = 0; i < rt_GeiMing.childCount; i++)
             {
@@ -1073,20 +1075,17 @@ public class Sub_DaoRu : SubUI
             fileK_NewFullPathV.Clear();
         }
 
-        string newFileName = inputField.text;              // 要改的名称的前缀
         if (string.IsNullOrEmpty(newFileName))
         {
             newFileName = "未定义名称";
         }
 
         List<GameObject> sortList = GetSortChoose();      // 排序
+
         for (int i = 1; i < sortList.Count + 1; i++)
         {
             FileInfo fileInfo = allGoK_ResultBeanV[sortList[i - 1]].File;
-            if (fileK_NewFullPathV.ContainsKey(fileInfo))
-            {
-                continue;
-            }
+
             string yuanName = Path.GetFileNameWithoutExtension(fileInfo.FullName);
             string path = fileInfo.FullName.Replace(@"\", "/");        
             int tmpCount = path.LastIndexOf("/", StringComparison.Ordinal);
@@ -1108,7 +1107,6 @@ public class Sub_DaoRu : SubUI
             }
 
             fileK_NewFullPathV.Add(fileInfo, fileFullPath);
-
             Transform t = InstantiateMoBan(go_MoBanGeiMing, rt_GeiMing);
             t.Find("TxYuanName").GetComponent<Text>().text = yuanName;
             t.Find("TxGeiMing").GetComponent<Text>().text = Path.GetFileNameWithoutExtension(fileFullPath);
@@ -1139,6 +1137,8 @@ public class Sub_DaoRu : SubUI
         Btn_ShuaiXin();
         CloseIsGetMing();
     }
+
+
     private void Foreach2Do(ref bool isWhile2Do)   // 一直循环改，改到成功为止
     {
 
@@ -1361,7 +1361,7 @@ public class Sub_DaoRu : SubUI
     }
 
 
-
+    private static readonly Vector2 StartPosition = new Vector2(1000,100);
 
     private void ClearAllChooseZhong()                                    // 清除所有选中的
     {

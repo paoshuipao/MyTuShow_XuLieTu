@@ -10,6 +10,14 @@ using UnityEngine.UI;
 public class Sub_ItemContant : SubUI            // 包含全部的内容
 {
 
+    public void Show(ushort bigIndex)
+    {
+        mUIGameObject.SetActive(true);
+        mCurrentBigIndex = bigIndex;
+        l_ItemGOs[bigIndex].SetActive(true);
+    }
+
+
 
     public void Show(ushort bigIndex,ushort bottomIndex)
     {
@@ -17,6 +25,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         mCurrentBigIndex = bigIndex;
         l_ToggleGroup[bigIndex].ChangeItem(bottomIndex);
         l_ItemGOs[bigIndex].SetActive(true);
+        l_TopContant[bigIndex][bottomIndex].gameObject.SetActive(true);
     }
 
 
@@ -34,7 +43,8 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         MyEventCenter.AddListener<ushort,ushort,List<ResultBean>>(E_GameEvent.DaoRu_FromResult, E_OnDaoRuFromResult);
         MyEventCenter.AddListener<EDuoTuInfoType>(E_GameEvent.CloseDuoTuInfo, E_CloseDuoTuInfo);                       // 关闭多图信息
         MyEventCenter.AddListener<EDuoTuInfoType,string[]>(E_GameEvent.OnClickNoSaveThisDuoTu, E_DeleteOne);           // 多图信息中删除一个
-        MyEventCenter.AddListener(E_GameEvent.OnClickSureDeleteAll, E_SureDeleteAl);
+        MyEventCenter.AddListener(E_GameEvent.OnClickSureDeleteAll, E_SureDeleteAl);                                   // 删除所有
+        MyEventCenter.AddListener<List<ResultBean>>(E_GameEvent.DaoRuSucees2Delete, E_DaoRuSucees2Delete);            // 转换成功
 
 
         // 模版
@@ -169,13 +179,10 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
 
 
-
-
     public override string GetUIPathForRoot()
     {
         return "Right/EachContant/ItemContant";
     }
-
 
 
 
@@ -263,7 +270,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
                         MyLog.Red("选择了其他的格式文件 —— " + fileInfo.Name);
                     }
                 }
-                MyEventCenter.SendEvent(E_GameEvent.RealyDaoRu_File, EButtonType.OneBtn,mCurrentBigIndex, mCurrentBottomIndex, fileInfos);
+                MyEventCenter.SendEvent(E_GameEvent.RealyDaoRu_File, EDuoTuInfoType.SearchShow,mCurrentBigIndex, mCurrentBottomIndex, fileInfos);
             });
     }
 
@@ -407,6 +414,16 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
             }
         }
     }
+
+
+    private void E_DaoRuSucees2Delete(List<ResultBean>  resultBeans)             // 转换成功，需要把转换前的删除
+    {
+        Ctrl_XuLieTu.Instance.DeleteOne(mCurrentBigIndex,mCurrentBottomIndex, resultBeans.ToFullPaths());
+        Object.Destroy(go_CurrentSelect);
+        go_CurrentSelect = null;
+
+    }
+
 
 
 }

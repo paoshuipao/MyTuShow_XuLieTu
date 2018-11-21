@@ -252,7 +252,7 @@ public class UI_Game : BaseUI
             case 5:
             case 6:
             case 7:
-                sub_ItemContant.Show(bigIndex,0); 
+                sub_ItemContant.Show(bigIndex); 
                 break;
             case 8:
                 sub_DaoRu.Show();
