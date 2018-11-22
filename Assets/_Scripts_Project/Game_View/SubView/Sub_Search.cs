@@ -29,7 +29,6 @@ public class Sub_Search : SubUI
 
         // 上
         mInputField = Get<InputField>("Top/InputField");
-        mDropdown = Get<Dropdown>("Top/Dropdown");
         AddButtOnClick("Top/BtnSearch", () =>
         {
             Btn_SureSearch(true);
@@ -65,7 +64,6 @@ public class Sub_Search : SubUI
 
     // 上
     private InputField mInputField;
-    private Dropdown mDropdown;
     private DOTweenAnimation anim_ErrorTip,anim_SearchNull;
 
     // 内容模版
@@ -134,16 +132,7 @@ public class Sub_Search : SubUI
         }
         mCurrentInputStr = kName;
 
-        if (mDropdown.value>0)
-        {
-            anim_SearchNull.gameObject.SetActive(true);
-            anim_SearchNull.DORestart();
-            return;
-        }
-
-
         SearchAndShow(kName,true);     // 搜索 And 显示
-
     }
 
 

@@ -49,7 +49,7 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
         {
             return false;
         }
-
+        kName = kName.Trim();
         if (indexK_KNameV[bigIndex][bottomIndex].ContainsKey(kName))
         {
             return false;
@@ -62,15 +62,20 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
     }
 
 
-    public void DeleteOne(ushort bigIndex, ushort bottomIndex, string[] paths)        // 删除单个 
+    public bool DeleteOne(ushort bigIndex, ushort bottomIndex, string kName)        // 删除单个 
     {
-        string kName = Path.GetFileNameWithoutExtension(paths[0]);
-        if (string.IsNullOrEmpty(kName))
+        kName = kName.Trim();
+        if (indexK_KNameV[bigIndex][bottomIndex].ContainsKey(kName))
         {
-            MyLog.Red("不可能吧？");
-            return;
+            indexK_KNameV[bigIndex][bottomIndex].Remove(kName);
+            return true;
         }
-        indexK_KNameV[bigIndex][bottomIndex].Remove(kName);
+        else
+        {
+            MyLog.Red("没有包含这个名称 —— "+ kName+" 长度 —— "+ kName.Length);
+
+            return false;
+        }
     }
 
 

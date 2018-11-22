@@ -51,7 +51,15 @@ public static class Expansion_List
     }
 
 
-
+    public static Sprite[] ToSprites(this List<ResultBean> resultBeans)                // 转成全图片集合
+    {
+        Sprite[] sps = new Sprite[resultBeans.Count];
+        for (int i = 0; i < resultBeans.Count; i++)
+        {
+            sps[i] = resultBeans[i].SP;
+        }
+        return sps;
+    }
 
 
 }

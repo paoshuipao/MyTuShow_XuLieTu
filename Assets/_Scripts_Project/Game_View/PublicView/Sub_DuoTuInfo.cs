@@ -94,8 +94,11 @@ public class Sub_DuoTuInfo : SubUI
         AddButtOnClick("Contant/Right/Top/Btn/BtnOpenFolder", Btn_OnOpenFolder);
         AddSliderOnValueChanged("Contant/Right/Top/Btn/Speed/Slider", Sldier_OnSpeedChange);
         go_Delete = GetGameObject("Contant/Right/Top/Btn/BtnIsDelete");
-        AddButtOnClick("Contant/Right/Top/Btn/BtnIsDelete", Btn_OnNoSaveThis);
+        go_BtnJianBan = GetGameObject("Contant/Right/Top/Btn/BtnJianBan");
+        go_UseJianBanTip = GetGameObject("Contant/Right/Top/Btn/TipText");
 
+        AddButtOnClick("Contant/Right/Top/Btn/BtnIsDelete", Btn_OnNoSaveThis);
+        AddButtOnClick("Contant/Right/Top/Btn/BtnJianBan", Btn_JianBan);
 
 
         // 右下 导入 
@@ -150,7 +153,7 @@ public class Sub_DuoTuInfo : SubUI
 
     private const ushort Max_TuSize = 400;   // 限制图片最大的大小
     private EDuoTuInfoType mCurrentType;
-    private ResultBean[] mCurrentBeans;
+    private List<ResultBean> l_CurrentBeans;
 
     // 左边的大图
     private RectTransform rtAnimTu;
@@ -175,10 +178,10 @@ public class Sub_DuoTuInfo : SubUI
 
 
     // 右
-    private GameObject go_Delete;
+    private GameObject go_Delete, go_BtnJianBan;
     private GameObject go_AllDaoRu;
     private Text tx_Name,tx_Num,tx_Size;
-    private GameObject go_NoEqualTip;
+    private GameObject go_NoEqualTip,go_UseJianBanTip;
 
 
     private readonly Text[] l_TittleNames = new Text[8];      // 8 个 标题
@@ -260,7 +263,7 @@ public class Sub_DuoTuInfo : SubUI
 
     private void Btn_OnOpenFolder()                       // 点击打开文件夹
     {
-        FileInfo file1 = mCurrentBeans[0].File;
+        FileInfo file1 = l_CurrentBeans[0].File;
         DirectoryInfo dir = file1.Directory;
         if (null!=dir)
         {
@@ -287,18 +290,56 @@ public class Sub_DuoTuInfo : SubUI
 
     private void Btn_OnNoSaveThis()                     // 点击不保存这个
     {
-        MyEventCenter.SendEvent(E_GameEvent.OnClickNoSaveThisDuoTu, mCurrentType, mCurrentBeans.ToFullPaths());
+        MyEventCenter.SendEvent(E_GameEvent.OnClickNoSaveThisDuoTu, mCurrentType, l_CurrentBeans.ToFullPaths());
         Btn_OnCloseShowInfo();
     }
+
+    private void Btn_JianBan()                         // 点击了 一键减半
+    {
+        go_UseJianBanTip.SetActive(true);
+        go_BtnJianBan.SetActive(false);
+
+        for (int i = 0; i < l_CurrentBeans.Count; i++)
+        {
+            if (i % 2 ==1)
+            {
+                l_CurrentBeans.RemoveAt(i);
+            }
+        }
+        anim_Tu.ChangeAnim(l_CurrentBeans.ToSprites());
+        if (itemSelectK_ResutltV.Count > 0)
+        {
+            Ctrl_Coroutine.Instance.StartCoroutine(StartLoadItemu());
+        }
+        tx_Num.text = l_CurrentBeans.Count.ToString();
+    }
+
+
+
 
 
     private void Btn_OnCloseShowInfo()                 // 关闭打开的信息
     {
         mUIGameObject.SetActive(false);
-        mCurrentBeans = null;
+        l_CurrentBeans = null;
         MyEventCenter.SendEvent(E_GameEvent.CloseDuoTuInfo, mCurrentType);
+        DeleteAllItem();
+    }
 
 
+
+    private void ManyBtn_DaoRu(ushort bigIndex,ushort bottomIndex)      // 点击 多项的导入
+    {
+
+        MyEventCenter.SendEvent(E_GameEvent.RealyDaoRu_Result, mCurrentType, bigIndex, bottomIndex, l_CurrentBeans);
+        Btn_OnCloseShowInfo();
+    }
+
+
+    #region 条目
+
+    private void DeleteAllItem()
+    {
         if (itemSelectK_ResutltV.Count > 0)
         {
             List<GameObject> list = new List<GameObject>(itemSelectK_ResutltV.Keys);
@@ -308,26 +349,15 @@ public class Sub_DuoTuInfo : SubUI
             }
             itemSelectK_ResutltV.Clear();
         }
-
     }
-
-
-
-    private void ManyBtn_DaoRu(ushort bigIndex,ushort bottomIndex)      // 点击 多项的导入
-    {
-        MyEventCenter.SendEvent(E_GameEvent.RealyDaoRu_Result, mCurrentType, bigIndex, bottomIndex, new List<ResultBean>(mCurrentBeans));
-        Btn_OnCloseShowInfo();
-    }
-
-
-    #region 条目
-
 
 
     IEnumerator StartLoadItemu()                    // 加载 Item 条目
     {
+        DeleteAllItem();
+
         // 多项 Item 
-        foreach (ResultBean bean in mCurrentBeans)
+        foreach (ResultBean bean in l_CurrentBeans)
         {
             Transform t = InstantiateMoBan(moBan_Item, rt_GridContant);
             itemSelectK_ResutltV.Add(t.gameObject, bean);
@@ -376,9 +406,7 @@ public class Sub_DuoTuInfo : SubUI
             });
 
             yield return 0;
-
         }
-
 
     }
 
@@ -386,6 +414,7 @@ public class Sub_DuoTuInfo : SubUI
 
     private void EachBtn_Delete(GameObject go)                        // 点击了 Item 的 Delete
     {
+        l_CurrentBeans.Remove(itemSelectK_ResutltV[go]);
         itemSelectK_ResutltV.Remove(go);
         Object.Destroy(go);
     }
@@ -439,15 +468,16 @@ public class Sub_DuoTuInfo : SubUI
 
     private void E_Show(ResultBean[] resultBeans, EDuoTuInfoType type)      // 显示
     {
-        mCurrentBeans = resultBeans;
+        l_CurrentBeans = new List<ResultBean>(resultBeans);
         mCurrentType = type;
-
+        go_UseJianBanTip.SetActive(false);
         mUIGameObject.SetActive(true);
 
         switch (type)
         {
             case EDuoTuInfoType.DaoRu:
                 go_Delete.SetActive(false);
+                go_BtnJianBan.SetActive(true);
                 go_AllDaoRu.SetActive(true);
                 for (int i = 0; i < l_TittleNames.Length; i++)
                 {
@@ -456,6 +486,7 @@ public class Sub_DuoTuInfo : SubUI
                 break;
             case EDuoTuInfoType.InfoShow:
                 go_Delete.SetActive(true);
+                go_BtnJianBan.SetActive(false);
                 go_AllDaoRu.SetActive(true);
                 for (int i = 0; i < l_TittleNames.Length; i++)
                 {
@@ -464,6 +495,7 @@ public class Sub_DuoTuInfo : SubUI
                 break;
             case EDuoTuInfoType.SearchShow:
                 go_Delete.SetActive(false);
+                go_BtnJianBan.SetActive(false);
                 go_AllDaoRu.SetActive(false);
                 break;
             default:

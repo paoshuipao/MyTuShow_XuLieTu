@@ -46,14 +46,17 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
         else
         {
             BottomName = new string[8][];
-            BottomName[0] = new[] { "圈圈", XI_TONG, WEN_ZI, "64", KUANG };
-            BottomName[1] = new[] { "技能", XI_TONG, WEN_ZI, "动物", KUANG };
-            BottomName[2] = new[] { "技能", XI_TONG, WEN_ZI, "150", KUANG };
-            BottomName[3] = new[] { "道具", XI_TONG, WEN_ZI, "传送点", KUANG };
-            BottomName[4] = new[] {"龙", "230", "230", "230", "230" };
-            BottomName[5] = new[] { "火", "水", "风、雷", "土、草", "光、暗" };
-            BottomName[6] = new[] { "128 x 64", "256 x 128", WEN_ZI, "240 x 80", "256 x 64" };
-            BottomName[7] = new[] { "64 x 128", "128 x 256", "40 x 120", "80 x 240", "64 x 256" };
+            BottomName[0] = new[] { Quan_Quan, Xin_Gun_Dian, XI_TONG_WenZi, DongWu, KUANG };
+            BottomName[1] = new[] { Quan_Quan, Xin_Gun_Dian, XI_TONG_WenZi, DongWu, KUANG };
+            BottomName[2] = new[] { Quan_Quan, Xin_Gun_Dian, XI_TONG_WenZi, "水、火", KUANG };
+            BottomName[3] = new[] { Quan_Quan, Xin_Gun_Dian, XI_TONG_WenZi, DongWu, KUANG };
+
+
+            BottomName[4] = new[] { "加状态", "死亡特效", "道具", "230", "230" };
+            BottomName[5] = new[] { "水、火", "光、暗", "风、雷", "土、木", "五色" };
+
+            BottomName[6] = new[] { "128 x 64", "256 x 128", XI_TONG_WenZi, "240 x 80", "256 x 64" };
+            BottomName[7] = new[] { "64 x 128", "128 x 256", XI_TONG_WenZi, "80 x 240", "64 x 256" };
 
         }
 
@@ -97,7 +100,7 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
             };
             l_GridSize[7] = new[]
             {
-                GetSizeBean(64, 128), GetSizeBean(128, 256), GetSizeBean(40, 120), GetSizeBean(80, 240), GetSizeBean(64, 256),
+                GetSizeBean(64, 128), GetSizeBean(128, 256), GetSizeBean(128, 256), GetSizeBean(80, 240), GetSizeBean(64, 256),
             };
    
         }
@@ -123,7 +126,7 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
     #region 私有
 
 
-    private readonly string[] LeftName = { "64（小）", "128（中）", "150（中）", "230（大）", "230（技能）", "230（元素）", "横", "竖" };
+    private readonly string[] LeftName = { "64（小）", "128（中）", "150（中）", "230（大）", "230（大）", "230（元素）", "横", "竖" };
 
 
     private const string PP_LEFT_NAME = "PP_LEFT_NAME";
@@ -141,9 +144,11 @@ public class Ctrl_ContantInfo : Singleton_Mono<Ctrl_ContantInfo>
     }
 
 
-    private const string WEN_ZI = "<color=#00FF00>文字</color>";
-    private const string XI_TONG = "<color=#00EE76>系统</color>";
-    private const string KUANG = "<color=#00EE00>边框</color>";
+    private const string Quan_Quan = "<color=white>圆圈</color>";                // 白色
+    private const string Xin_Gun_Dian = "<color=yellow>星光点</color>";          // 黄色
+    private const string XI_TONG_WenZi = "<color=#00ff00ff>系统、文字</color>";  // 绿色
+    private const string KUANG = "<color=#ffa500ff>边框</color>";                // 橙色
+    private const string DongWu = "<color=#add8e6ff>动物</color>";               // 浅蓝
 
 
 

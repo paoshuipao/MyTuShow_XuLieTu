@@ -22,7 +22,6 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
 
     public void Show(ushort bigIndex,ushort bottomIndex)
     {
-        MyLog.Red("运行这里？");
         mCurrentBigIndex = bigIndex;
         mCurrentBottomIndex = bottomIndex;
 
@@ -127,6 +126,17 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         tx_ClearTip = Get<Text>("ClearOneLine/Contant/Tip");
         AddButtOnClick("ClearOneLine/Contant/Bottom/BtnSure", Btn_SureClearOneLine);
         AddButtOnClick("ClearOneLine/Contant/Bottom/BtnFalse", Btn_CloseClearUI);
+
+
+        // 删除失败
+        go_DeleteError = GetGameObject("DeleteError");
+        tx_DeleteErrorName = Get<Text>("DeleteError/Contant/Name/NameText");
+        tx_DeleteErrorLength = Get<Text>("DeleteError/Contant/Length/LengthText");
+
+        AddButtOnClick("DeleteError", () =>
+        {
+            go_DeleteError.SetActive(false);
+        });
     }
 
 
@@ -184,6 +194,10 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     // 清空一行
     private GameObject go_ClearOneLine;
     private Text tx_ClearTittle,tx_ClearTip;
+
+    // 删除失败
+    private GameObject go_DeleteError;
+    private Text tx_DeleteErrorName,tx_DeleteErrorLength;
 
 
 
@@ -405,8 +419,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     {
         if (type == EDuoTuInfoType.InfoShow)
         {
-            Ctrl_XuLieTu.Instance.DeleteOne(mCurrentBigIndex, mCurrentBottomIndex, paths);
-            Object.Destroy(go_CurrentSelect);
+            DeleteOne(Path.GetFileNameWithoutExtension(paths[0]));
         }
     }
 
@@ -424,12 +437,34 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     }
 
 
-    private void E_DaoRuSucees2Delete(List<ResultBean>  resultBeans)             // 转换成功，需要把转换前的删除
+    private void E_DaoRuSucees2Delete(List<ResultBean>  resultBeans) // 转换成功，需要把转换前的删除
     {
-        Ctrl_XuLieTu.Instance.DeleteOne(mCurrentBigIndex,mCurrentBottomIndex, resultBeans.ToFullPaths());
-        Object.Destroy(go_CurrentSelect);
+        DeleteOne(Path.GetFileNameWithoutExtension(resultBeans[0].File.FullName));
         go_CurrentSelect = null;
 
+    }
+
+
+    private void DeleteOne(string kName)           // 删除单个
+    {
+        if (string.IsNullOrEmpty(kName))
+        {
+            go_DeleteError.SetActive(true);
+            tx_DeleteErrorName.text = "为空？ 玩毛啊？";
+            return;
+        }
+
+        bool isDelete = Ctrl_XuLieTu.Instance.DeleteOne(mCurrentBigIndex, mCurrentBottomIndex, kName);
+        if (isDelete)
+        {
+            Object.Destroy(go_CurrentSelect);
+        }
+        else
+        {
+            go_DeleteError.SetActive(true);
+            tx_DeleteErrorName.text = kName;
+            tx_DeleteErrorLength.text = kName.Length.ToString();
+        }
     }
 
 

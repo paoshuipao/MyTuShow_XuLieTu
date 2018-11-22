@@ -119,7 +119,7 @@ public class UI_Game : BaseUI
                     }
                     else // 不存在就删除存储的
                     {
-                        Ctrl_XuLieTu.Instance.DeleteOne(bigIndex, bottomIndex, tmpPaths);
+                        Ctrl_XuLieTu.Instance.DeleteOne(bigIndex, bottomIndex, Path.GetFileNameWithoutExtension(tmpPaths[0]));
                     }
                 }
                 yield return 0;
