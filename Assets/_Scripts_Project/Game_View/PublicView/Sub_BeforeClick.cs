@@ -60,7 +60,7 @@ public class Sub_BeforeClick : SubUI
 
         // 删除所有
         go_DeleteAll = GetGameObject("Right/DeleteAll");
-        AddButtOnClick("Right/DeleteAll", Btn_DeleteSure);
+        AddButtOnClick("Right/DeleteAll/Contant/Btn", Btn_DeleteSure);
 
     }
 

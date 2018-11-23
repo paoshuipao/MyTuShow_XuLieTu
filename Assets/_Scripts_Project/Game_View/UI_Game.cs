@@ -159,7 +159,7 @@ public class UI_Game : BaseUI
     private readonly Sub_ItemContant sub_ItemContant = new Sub_ItemContant();
     private readonly Sub_DaoRu sub_DaoRu = new Sub_DaoRu();
     private readonly Sub_Search sub_Search = new Sub_Search();
-    private readonly Sub_Setting sub_Setting = new Sub_Setting();
+    private readonly Sub_QuYuSearch sub_QuYuSearch = new Sub_QuYuSearch();
     private readonly Sub_DaoRuResult sub_DaRuResult = new Sub_DaoRuResult();
     private readonly Sub_DuoTuInfo sub_DuoTuInfo = new Sub_DuoTuInfo();
     private readonly Sub_SingleTuInfo sub_SingleTuInfo = new Sub_SingleTuInfo();
@@ -170,7 +170,7 @@ public class UI_Game : BaseUI
     {
         return new SubUI[]
         {
-            sub_ItemContant,sub_DaoRu,sub_Search,sub_Setting,sub_DaRuResult,sub_DuoTuInfo,sub_SingleTuInfo,sub_BeforeClick
+            sub_ItemContant,sub_DaoRu,sub_Search,sub_QuYuSearch,sub_DaRuResult,sub_DuoTuInfo,sub_SingleTuInfo,sub_BeforeClick
         };
     }
 
@@ -232,7 +232,7 @@ public class UI_Game : BaseUI
                 sub_Search.Close();
                 break;
             case 10:
-                sub_Setting.Close();
+                sub_QuYuSearch.Close();
                 break;
             default:
                 throw new Exception("未定义");
@@ -261,7 +261,7 @@ public class UI_Game : BaseUI
                 sub_Search.Show();
                 break;
             case 10:
-                sub_Setting.Show();
+                sub_QuYuSearch.Show();
                 break;
             default:
                 throw new Exception("未定义");

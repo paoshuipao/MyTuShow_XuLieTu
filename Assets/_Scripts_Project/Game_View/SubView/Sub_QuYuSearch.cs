@@ -1,14 +1,18 @@
-﻿using PSPUtil;
+﻿using System.Collections;
+using PSPUtil;
+using PSPUtil.Control;
 using PSPUtil.Extensions;
+using PSPUtil.StaticUtil;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Sub_Setting : SubUI 
+public class Sub_QuYuSearch : SubUI 
 {
 
     public void Show()
     {
         mUIGameObject.SetActive(true);
+        addIndex = 0;
         for (ushort i = 0; i < 8; i++)
         {
             l_LeftTittleNames[i].text = Ctrl_ContantInfo.Instance.LeftItemNames[i];
@@ -42,6 +46,7 @@ public class Sub_Setting : SubUI
             }
 
         }
+
     }
 
 
@@ -80,8 +85,9 @@ public class Sub_Setting : SubUI
             l_Counts[i] = l_EachCounts;
         }
 
-        AddButtOnClick("Bottom/DeleteAll/Button", Btn_DeleteAll);
 
+
+        AddButtOnClick("Bottom/BtnDeleteAllClick", Btn_DeleteAll);
     }
 
 
@@ -98,7 +104,7 @@ public class Sub_Setting : SubUI
 
     public override string GetUIPathForRoot()
     {
-        return "Right/EachContant/Setting";
+        return "Right/EachContant/QuYuSearch";
     }
 
 
@@ -119,14 +125,19 @@ public class Sub_Setting : SubUI
 
     //————————————————————————————————————
 
-   
-   
+    private ushort addIndex = 0;
 
-    private void Btn_DeleteAll()            // 点击 准备清除所有
+    private void Btn_DeleteAll()            // 点击 准备清除所有(要点击5次)
     {
-
-        MyEventCenter.SendEvent(E_GameEvent.ShowBeforeClick, EBeforeShow.DeleteAllSure);
-
+        if (addIndex>=5)
+        {
+            MyEventCenter.SendEvent(E_GameEvent.ShowBeforeClick, EBeforeShow.DeleteAllSure);
+            addIndex = 0;
+        }
+        else
+        {
+            addIndex++;
+        }
     }
 
 

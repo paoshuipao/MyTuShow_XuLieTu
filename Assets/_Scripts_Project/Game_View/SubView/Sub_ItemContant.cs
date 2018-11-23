@@ -13,7 +13,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     public void Show(ushort bigIndex)
     {
         mCurrentBigIndex = bigIndex;
-
+        mCurrentBottomIndex = (ushort)l_ToggleGroup[bigIndex].mCurrentIndex;
         mUIGameObject.SetActive(true);
         l_ItemGOs[bigIndex].SetActive(true);
     }
@@ -29,8 +29,6 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
         l_ToggleGroup[bigIndex].ChangeItem(bottomIndex);
         l_ItemGOs[bigIndex].SetActive(true);
         l_TopContant[bigIndex][bottomIndex].gameObject.SetActive(true);
-
-
     }
 
 
@@ -445,7 +443,7 @@ public class Sub_ItemContant : SubUI            // 包含全部的内容
     }
 
 
-    private void DeleteOne(string kName)           // 删除单个
+    private void DeleteOne(string kName)                            // 删除单个
     {
         if (string.IsNullOrEmpty(kName))
         {

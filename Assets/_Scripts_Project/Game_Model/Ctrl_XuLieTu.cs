@@ -49,7 +49,6 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
         {
             return false;
         }
-        kName = kName.Trim();
         if (indexK_KNameV[bigIndex][bottomIndex].ContainsKey(kName))
         {
             return false;
@@ -64,7 +63,6 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
 
     public bool DeleteOne(ushort bigIndex, ushort bottomIndex, string kName)        // 删除单个 
     {
-        kName = kName.Trim();
         if (indexK_KNameV[bigIndex][bottomIndex].ContainsKey(kName))
         {
             indexK_KNameV[bigIndex][bottomIndex].Remove(kName);
@@ -72,8 +70,9 @@ public class Ctrl_XuLieTu : Singleton_Mono<Ctrl_XuLieTu>
         }
         else
         {
-            MyLog.Red("没有包含这个名称 —— "+ kName+" 长度 —— "+ kName.Length);
 
+            MyLog.Red("没有包含这个名称 —— "+ kName+" 长度 —— "+ kName.Length);
+            MyLog.Red("大索引 —— "+bigIndex +"    小索引 —— "+bottomIndex);
             return false;
         }
     }
